@@ -1,0 +1,19 @@
+%nav.top-bar(data-topbar='')
+  %ul.title-area
+    %li.toggle-topbar.menu-icon
+      %a(href='#')
+        %span Menu
+    %li.name
+      %h1
+        = link_to 'Dinghub', root_path
+  %section.top-bar-section
+    %ul.right
+      %li
+        = link_to "Menu 1", root_path
+      %li.has-dropdown
+        %a(href='#') Menu 2
+        %ul.dropdown
+          %li
+            = link_to "Sub menu 1", root_path
+          %li
+            = link_to "Sub menu 2", root_path
