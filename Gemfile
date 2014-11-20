@@ -41,3 +41,4 @@ gem 'spring',        group: :development
 
 
 gem 'foundation-rails'
+gem 'haml-rails'
