@@ -1,0 +1,2 @@
+module Hashgrid::NodesHelper
+end

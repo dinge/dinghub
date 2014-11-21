@@ -1,8 +1,21 @@
 $width: 1024
 $height: 768
 
-$height_top_bottom: 4em
-$height_middle: 31em
+$top_bottom_height: 4em
+$middle_height: 31em
+
+$focus_background_color: #fefefe
+$corner_background_color: #ddd
+$edge_background_color: #ccc
+
+
+%hashgrid-border-grid-columns
+  @extend .small-2
+
+%hashgrid-center-grid-columns
+  @extend .small-8
+
+
 
 .hashgrid
   width: 1024px
@@ -10,48 +23,48 @@ $height_middle: 31em
 
 
 .hashgrid-c1
-  background: #ddd
-  height: $height_top_bottom
-  @extend .small-1
+  background: $corner_background_color
+  height: $top_bottom_height
+  @extend %hashgrid-border-grid-columns
 
 .hashgrid-e1
-  background: #ccc
-  height: $height_top_bottom
-  @extend .small-10
+  background: $edge_background_color
+  height: $top_bottom_height
+  @extend %hashgrid-center-grid-columns
 
 .hashgrid-c2
-  background: #ddd
-  height: $height_top_bottom
-  @extend .small-1
+  background: $corner_background_color
+  height: $top_bottom_height
+  @extend %hashgrid-border-grid-columns
 
 
 .hashgrid-e4
-  background: #ccc
-  height: $height_middle
-  @extend .small-1
+  background: $edge_background_color
+  height: $middle_height
+  @extend %hashgrid-border-grid-columns
 
 .hashgrid-focus
-  background: #fff
-  height: $height_middle
-  @extend .small-10
+  background: $focus_background_color
+  height: $middle_height
+  @extend %hashgrid-center-grid-columns
 
 .hashgrid-e2
-  background: #ccc
-  height: $height_middle
-  @extend .small-1
+  background: $edge_background_color
+  height: $middle_height
+  @extend %hashgrid-border-grid-columns
 
 
 .hashgrid-c4
-  background: #ddd
-  height: $height_top_bottom
-  @extend .small-1
+  background: $corner_background_color
+  height: $top_bottom_height
+  @extend %hashgrid-border-grid-columns
 
 .hashgrid-e3
-  background: #ccc
-  height: $height_top_bottom
-  @extend .small-10
+  background: $edge_background_color
+  height: $top_bottom_height
+  @extend %hashgrid-center-grid-columns
 
 .hashgrid-c3
-  background: #ddd
-  height: $height_top_bottom
-  @extend .small-1
+  background: $corner_background_color
+  height: $top_bottom_height
+  @extend %hashgrid-border-grid-columns
