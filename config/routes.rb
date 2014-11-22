@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   namespace :hashgrid do
-    resources :nodes
+    resource :player
+    resources :nodes do
+      get 'by_label/:label', on: :collection, action: :by_label, as: :by_label
+    end
+
+    resources :labels
   end
 
 end

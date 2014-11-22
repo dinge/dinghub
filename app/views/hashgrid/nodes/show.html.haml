@@ -1,0 +1,16 @@
+%ul.no-bullet
+  %li
+    %h3
+      = @node.title
+      %small= @node.neo_id
+  %li
+    = @node.ident rescue 'n/a'
+  %li
+    = @node.labels.join(', ')
+  %li
+    %hr
+  - @node.props.each do |key, value|
+    %li
+      = key
+      = ':'
+      = value
