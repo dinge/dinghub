@@ -2,19 +2,9 @@
   - @nodes.in_groups_of(3, false) do |row_nodes|
     .row
       - row_nodes.each do |node|
-        .columns.hashbox-box{ data: { 'remote-url' => hashgrid_node_path(node.neo_id), 'destination-element' => 'hashgrid-focus' } }
+        .columns.hashbox-box{ data: { 'destination-url' => hashgrid_node_path(node.neo_id), 'destination-element' => 'hashgrid-focus' } }
           %h5
             = node.title
             %small= node.neo_id
           %small= node.ident rescue ''
           %small= node.labels.join(', ')
-
-
-
-
-
-
-
-
-
-

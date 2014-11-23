@@ -1,24 +1,21 @@
 .card
   .card-header
-    %ul.no-bullet
-      %li
-        %h3
-          = @node.title
-          %small= @node.neo_id
+    %h3
+      = @node.title
+      %small= @node.neo_id
+    %ul
       %li
         = @node.ident rescue 'n/a'
       %li
         = @node.labels.join(', ')
-      %li
-        %hr
+    %hr
+    %dl
       - @node.props.each do |key, value|
-        %li
+        %dt
           = key
-          = ':'
+        %dd
           = value
-  .card-editor
-    %pre
-      = @cardtec_node.to_s
+
   .card-editor
     %big
       = text_area_tag :code, @cardtec_node.to_s, rows: 30, cols: 80
