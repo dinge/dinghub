@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :nodes do
       get 'by_label/:label', on: :collection, action: :by_label, as: :by_label
     end
-
+    resources :node_controls
     resources :labels
   end
 

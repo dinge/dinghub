@@ -1,5 +1,1 @@
-%ul.labels.no-bullet
-  - @labels.each do |label|
-    %li
-      %a{href: '#', data: { 'remote-url' => by_label_hashgrid_nodes_path(label), 'destination-element' => 'hashgrid-focus' } }
-        = label
+= render 'labels', labels: @labels
