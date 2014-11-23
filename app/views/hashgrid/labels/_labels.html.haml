@@ -2,5 +2,5 @@
 %ul.labels.stack.button-group
   - labels.each do |label|
     %li
-      %a{href: '#', :class => 'button large', data: { 'remote-url' => by_label_hashgrid_nodes_path(label), 'destination-element' => 'hashgrid-focus' } }
+      %a{href: '#', :class => 'button large', data: { 'destination-url' => by_label_hashgrid_nodes_path(label), 'destination-element' => 'hashgrid-focus' } }
         = label

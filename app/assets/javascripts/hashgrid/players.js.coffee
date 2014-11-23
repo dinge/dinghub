@@ -18,11 +18,11 @@ initial_load_contents = () ->
 observe_load_content_clicks = () ->
   $(document).on 'click touchend', '*[data-destination-element]', ->
     destination_element = $('.' + $(this).data('destination-element'))
-    if destination_element && (remote_url = $(this).data('remote-url'))
-      load_content_in_element(destination_element, remote_url)
+    if destination_element && (destination_url = $(this).data('destination-url'))
+      load_content_in_element(destination_element, destination_url)
 
 
-window.load_contents = initial_load_contents
+# window.load_contents = initial_load_contents
 
 
 initial_load_contents()
