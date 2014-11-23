@@ -7,6 +7,8 @@ class Hashgrid::NodesController < ApplicationController
 
   def show
     @node = query.match(:n).where(n: { neo_id: params[:id] }).return(:n).first.n
+    @cardtec_node = Cardtec::TextEncoder.new(@node)
+    # binding.pry
   end
 
   def by_label

@@ -52,7 +52,7 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // This is the default html and body font-size for the base rem value.
-// $rem-base: 16px;
+$rem-base: 24px;
 
 // Allows the use of rem-calc() or lower-bound() in your settings
 @import "foundation/functions";
@@ -64,6 +64,7 @@
 // If you want your base font-size to be different and not have it affect the grid breakpoints,
 // set $rem-base to $base-font-size and make sure $base-font-size is a px value.
 // $base-font-size: 100%;
+$base-font-size: 24px;
 
 // The $base-font-size is 100% while $base-line-height is 150%
 // $base-line-height: 150%;
@@ -211,6 +212,14 @@ $body-bg: #eee;
 // $h4-font-size: rem-calc(23);
 // $h5-font-size: rem-calc(18);
 // $h6-font-size: 1rem;
+
+$h1-font-size: rem-calc(44*1.5);
+$h2-font-size: rem-calc(37*1.5);
+$h3-font-size: rem-calc(27*1.5);
+$h4-font-size: rem-calc(23*1.5);
+$h5-font-size: rem-calc(18*1.5);
+$h6-font-size: 1*1.5rem;
+
 
 // We use these to control header size reduction on small screens
 // $h1-font-reduction: rem-calc(10) !default;
@@ -1439,5 +1448,24 @@ $body-bg: #eee;
 // $include-table-visibility-classes: true;
 // $include-legacy-visibility-classes: true;
 // $include-accessibility-classes: true;
+
+
+
+//-------- CUSTOM -------------------------------
+
+// We use these to build padding for buttons.
+$button-med: rem-calc(12*0.2);
+$button-tny: rem-calc(7*0.2);
+$button-sml: rem-calc(9*0.2);
+$button-lrg: rem-calc(16*0.2);
+
+$button-margin-bottom: rem-calc(20*0.2);
+
+// ipad sizes
+// $small-range: (0em, 40em);
+// $medium-range: (40.063em, 64em);
+// $large-range: (64.063em, 90em);
+// $xlarge-range: (90.063em, 120em);
+// $xxlarge-range: (120.063em);
 
 @import 'foundation';

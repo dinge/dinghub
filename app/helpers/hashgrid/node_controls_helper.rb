@@ -1,0 +1,2 @@
+module Hashgrid::NodeControlsHelper
+end

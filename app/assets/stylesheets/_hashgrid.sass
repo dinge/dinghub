@@ -1,19 +1,24 @@
 // $width: 1024
 // $height: 768
 
-$top_bottom_height: 4em
-$middle_height: 31em
+$top_bottom_height: 2em
+$middle_height: 35em
 
 $focus_background_color: #fefefe
 $corner_background_color: #ddd
 $edge_background_color: #ccc
 
 
-%hashgrid-border-grid-columns
-  @extend .small-2
+%hashgrid-left-grid-columns
+  @extend .small-3
 
 %hashgrid-center-grid-columns
   @extend .small-8
+
+%hashgrid-right-grid-columns
+  @extend .small-1
+
+
 
 
 
@@ -25,7 +30,7 @@ $edge_background_color: #ccc
 .hashgrid-c1
   background: $corner_background_color
   height: $top_bottom_height
-  @extend %hashgrid-border-grid-columns
+  @extend %hashgrid-left-grid-columns
 
 .hashgrid-e1
   background: $edge_background_color
@@ -35,13 +40,13 @@ $edge_background_color: #ccc
 .hashgrid-c2
   background: $corner_background_color
   height: $top_bottom_height
-  @extend %hashgrid-border-grid-columns
+  @extend %hashgrid-right-grid-columns
 
 
 .hashgrid-e4
   background: $edge_background_color
   // height: $middle_height
-  @extend %hashgrid-border-grid-columns
+  @extend %hashgrid-left-grid-columns
 
 .hashgrid-focus
   background: $focus_background_color
@@ -51,7 +56,7 @@ $edge_background_color: #ccc
 .hashgrid-e2
   background: $edge_background_color
   // height: $middle_height
-  @extend %hashgrid-border-grid-columns
+  @extend %hashgrid-right-grid-columns
 
 
 // .hashgrid-c4
