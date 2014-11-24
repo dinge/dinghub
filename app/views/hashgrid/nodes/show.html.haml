@@ -1,9 +1,9 @@
-.card
-  .card-header
+.cardtec-card
+  .cardtec-card-header
     %h3
-      = @cardtec_node.try(:title)
+      = @cardtec_node.title rescue 'n/a'
       %small= @cardtec_node.neo_id
-    %ul
+    %ul.no-bullet
       %li
         = @cardtec_node.ident rescue 'n/a'
       %li
@@ -11,6 +11,5 @@
     %hr
       = @cardtec_node.to_html
 
-  .card-editor
-    %big
-      = text_area_tag :code, @cardtec_node.to_yaml, rows: 30, cols: 80
+  .cardtec-card-editor
+    = text_area_tag :code, @cardtec_node.to_yaml, rows: 30, cols: 80
