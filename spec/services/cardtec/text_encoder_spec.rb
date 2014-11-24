@@ -25,9 +25,9 @@ class NodeMock
       color:    'rot' }
   end
 
-  def method_missing(method, *args)
-    props[method] if props.has_key?(method)
-  end
+  # def method_missing(method, *args)
+  #   props[method] if props.has_key?(method)
+  # end
 end
 
 
@@ -81,8 +81,8 @@ color: rot
     end
 
 
-    it { expect(text_encoder.to_s).to eql encoded_text }
-    it { expect(YAML.parse(encoded_text).to_ruby).to eql decoded_with_yaml }
+    it { expect(text_encoder.to_yaml).to eql encoded_text }
+    it { expect(YAML.parse(encoded_text).to_ruby).to match decoded_with_yaml }
 
   end
 

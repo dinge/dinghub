@@ -19,6 +19,15 @@ class Cardtec::TextEncoder
     to_hash.stringify_keys.to_yaml
   end
 
+  alias :to_yaml :to_s
+
+  def to_json
+    to_hash.stringify_keys.to_json
+  end
+
+  def to_html
+    HtmlEncoder.new(self).to_html
+  end
 
   def to_hash
     {}.tap do |props|
