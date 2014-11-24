@@ -12,6 +12,25 @@
     = csrf_meta_tags
   %body
     = # render 'layouts/header'
-    = yield
+
+    .row
+      .columns.hashgrid
+        .row
+          .columns.hashgrid-c1
+            = ".."
+          .columns.hashgrid-e1
+            = ".."
+          .columns.hashgrid-c2
+            = ".."
+
+        .row
+          .columns.hashgrid-e4(data-initial-remote-url = hashgrid_labels_path)
+            = ".."
+          .columns.hashgrid-focus
+            = yield
+          .columns.hashgrid-e2(data-remote-url = hashgrid_node_controls_path)
+            = ".."
+
+
     = # render 'layouts/footer'
     = javascript_include_tag "application"

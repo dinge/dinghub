@@ -1,5 +1,5 @@
 class Hashgrid::NodeControlsController < ApplicationController
-  layout false
+  # layout false
 
   def index
     @node_controls = [:add, :edit, :destroy]

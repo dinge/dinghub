@@ -11,8 +11,8 @@ load_content_in_element = (element, url) ->
 
 
 initial_load_contents = () ->
-  for element in $('*[data-remote-url]')
-    load_content_in_element($(element), $(element).data('remote-url'))
+  for element in $('*[data-initial-remote-url]')
+    load_content_in_element($(element), $(element).data('initial-remote-url'))
 
 
 observe_load_content_clicks = () ->
@@ -26,4 +26,4 @@ observe_load_content_clicks = () ->
 
 
 initial_load_contents()
-observe_load_content_clicks()
+# observe_load_content_clicks()

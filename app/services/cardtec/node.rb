@@ -35,6 +35,9 @@ class Cardtec::Node
     Cardtec::YamlDecoder.new(yaml, access_scope).from_yaml
   end
 
+  def to_param
+    neo_node.neo_id
+  end
 
   def method_missing(method, *args)
     neo_node.send(method, *args)
