@@ -1,14 +1,6 @@
 require 'rails_helper'
-require 'support/node_mock'
 
-RSpec.describe Cardtec::TextEncoder do
-  let(:node) { NodeMock.new }
-
-  it { expect(node.neo_id).to eql 22 }
-
-
-  describe 'encoding to text' do
-    let(:text_encoder) { Cardtec::TextEncoder.new(node) }
+RSpec.describe Cardtec::TextDecoder::YamlDecoder do
 
     let(:encoded_text) do
       text = <<-TEXT
@@ -29,7 +21,7 @@ color: rot
       TEXT
     end
 
-    let(:decoded_with_yaml) do
+    let(:decoded_to_hash) do
       { labels:   [:Item],
         neo_id:   22,
 
@@ -44,13 +36,15 @@ color: rot
 
         height:   35,
         weight:   240,
-        color:   'rot' }.with_indifferent_access
+        color:   'rot' }
     end
 
 
-    it { expect(text_encoder.to_yaml).to eql encoded_text }
-    it { expect(YAML.parse(encoded_text).to_ruby).to match decoded_with_yaml }
+    let(:yaml_decoder) do
+      Cardtec::TextDecoder::YamlDecoder.new(encoded_text)
+    end
 
-  end
+
+    it { expect(yaml_decoder.to_hash).to match decoded_to_hash }
 
 end
