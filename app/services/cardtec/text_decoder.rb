@@ -9,12 +9,12 @@ class Cardtec::TextDecoder
     to_hash.to_json
   end
 
-  def to_a
-    @data.split(/\n/,).select(&:present?).map { |r| r.split(/:/).map(&:strip) }
-  end
+  # def to_a
+  #   @data.split(/\n/,).select(&:present?).map { |r| r.split(/:/).map(&:strip) }
+  # end
 
   def to_hash
-    HashWithIndifferentAccess.new(Hash[to_a])
+    # HashWithIndifferentAccess.new(Hash[to_a])
   end
 
   def keys

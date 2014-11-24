@@ -15,6 +15,11 @@ class Cardtec::Node
   end
 
 
+  def self.from_yaml(yaml, access_scope = :all)
+    Cardtec::TextDecoder.new(access_scope).from_yaml
+  end
+
+
   def method_missing(method, *args)
     @neo_node.send(method, *args) if @neo_node.respond_to?(method)
   end
