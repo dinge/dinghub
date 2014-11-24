@@ -1,5 +1,7 @@
 class Cardtec::TextEncoder
 
+  attr_reader :node, :props, :access_scope
+
   PROPS =
     [ :labels,
       :neo_id,
@@ -11,8 +13,9 @@ class Cardtec::TextEncoder
       :created_at,
       :updated_at ]
 
-  def initialize(node)
+  def initialize(node, access_scope = :all)
     @node, @props = node, node.props
+    @access_scope = access_scope
   end
 
   def to_s
