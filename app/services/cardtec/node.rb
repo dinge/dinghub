@@ -6,16 +6,17 @@ class Cardtec::Node
     @neo_node = neo_node
   end
 
+  def to_yaml(access_scope = :all)
+    Cardtec::TextEncoder.new(@neo_node, access_scope).to_yaml
+  end
+
+  def to_html(access_scope = :all)
+    Cardtec::TextEncoder.new(@neo_node, access_scope).to_html
+  end
+
+
   def method_missing(method, *args)
     @neo_node.send(method, *args) if @neo_node.respond_to?(method)
-  end
-
-  def to_yaml
-    Cardtec::TextEncoder.new(@neo_node).to_yaml
-  end
-
-  def to_html
-    Cardtec::TextEncoder.new(@neo_node).to_html
   end
 
 end
