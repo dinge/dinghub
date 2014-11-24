@@ -15,13 +15,14 @@ class Cardtec::Node
   end
 
   def update_from_yaml(yaml)
-    yaml_decoder = Cardtec::TextDecoder::YamlDecoder.new(yaml)
-    new_props = yaml_decoder.to_hash
+    new_props = Cardtec::TextDecoder::YamlDecoder.new(yaml).to_hash
 
     labels = new_props.delete(:labels)
     neo_id = new_props.delete(:neo_id)
 
     neo_node.props = new_props
+    neo_node.set_label(*labels)
+
     neo_node.to_cardtec_node
   end
 
