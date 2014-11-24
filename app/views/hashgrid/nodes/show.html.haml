@@ -9,13 +9,8 @@
       %li
         = @node.labels.join(', ')
     %hr
-    %dl
-      - @node.props.each do |key, value|
-        %dt
-          = key
-        %dd
-          = value
+      = @cardtec_node.to_html
 
   .card-editor
     %big
-      = text_area_tag :code, @cardtec_node.to_s, rows: 30, cols: 80
+      = text_area_tag :code, @cardtec_node.to_yaml, rows: 30, cols: 80

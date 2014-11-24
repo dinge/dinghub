@@ -10,8 +10,12 @@ class Cardtec::Node
     @neo_node.send(method, *args) if @neo_node.respond_to?(method)
   end
 
-  def to_s
-    Cardtec::TextEncoder.new(@neo_node).to_s
+  def to_yaml
+    Cardtec::TextEncoder.new(@neo_node).to_yaml
+  end
+
+  def to_html
+    Cardtec::TextEncoder.new(@neo_node).to_html
   end
 
 end

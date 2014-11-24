@@ -1,10 +1,8 @@
 class Cardtec::TextDecoder
   class Object < OpenStruct; end
 
-  cattr_accessor :sample_data
-
   def initialize(data = nil)
-    @data = data || self.class.sample_data
+    @data = data
   end
 
   def to_json
@@ -36,21 +34,3 @@ class Cardtec::TextDecoder
   end
 
 end
-
-
-
-
-Cardtec::TextDecoder.sample_data = %q|
-labels:   sause_app item
-app:      sause
-title:    Kerze
-ident:    item-44
-uuid:     xyz
-neo_id:   22
-
-height: 35cm
-weight: 240g
-color:  rot
-
-facets: physical_object
-|
