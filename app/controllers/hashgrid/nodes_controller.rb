@@ -10,7 +10,8 @@ class Hashgrid::NodesController < ApplicationController
   def show; end
 
   def update
-    @cardtec_node.update_from_yaml(yaml)
+    @cardtec_node.update_from_yaml(params[:yaml])
+    render :nothing => true
   end
 
   def by_label

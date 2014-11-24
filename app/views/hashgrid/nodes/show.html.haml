@@ -9,7 +9,10 @@
       %li
         = @cardtec_node.labels.join(', ')
     %hr
+    .props.clearfix
       = @cardtec_node.to_html
 
   .cardtec-card-editor
-    = text_area_tag :code, @cardtec_node.to_yaml, rows: 30, cols: 80
+    = simple_form_for :cardtec_node, method: :put, remote: true do |f|
+      = f.submit
+      = f.text_area :yaml, value: @cardtec_node.to_yaml, rows: 30, cols: 80
