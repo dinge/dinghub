@@ -1,5 +1,7 @@
 class Cardtec::TextDecoder
-  class Object < OpenStruct; end
+  class ValueObject < OpenStruct; end
+
+  attr_reader :data
 
   def initialize(data = nil)
     @data = data
@@ -9,12 +11,12 @@ class Cardtec::TextDecoder
     to_hash.to_json
   end
 
-  # def to_a
-  #   @data.split(/\n/,).select(&:present?).map { |r| r.split(/:/).map(&:strip) }
-  # end
+  def to_a
+    @data.split(/\n/,).select(&:present?).map { |r| r.split(/:/).map(&:strip) }
+  end
 
   def to_hash
-    # HashWithIndifferentAccess.new(Hash[to_a])
+    HashWithIndifferentAccess.new(Hash[to_a])
   end
 
   def keys
@@ -25,8 +27,8 @@ class Cardtec::TextDecoder
     to_hash.values
   end
 
-  def to_object
-    Object.new(to_hash)
+  def to_value_object
+    ValueObject.new(to_hash)
   end
 
   def method_missing(method, *args)

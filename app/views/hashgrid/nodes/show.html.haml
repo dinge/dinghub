@@ -1,13 +1,13 @@
 .card
   .card-header
     %h3
-      = @node.title
-      %small= @node.neo_id
+      = @cardtec_node.try(:title)
+      %small= @cardtec_node.neo_id
     %ul
       %li
-        = @node.ident rescue 'n/a'
+        = @cardtec_node.ident rescue 'n/a'
       %li
-        = @node.labels.join(', ')
+        = @cardtec_node.labels.join(', ')
     %hr
       = @cardtec_node.to_html
 
