@@ -23,5 +23,7 @@ module Dinghub
 
     config.neo4j.session_type = :server_db
     config.neo4j.session_path = 'http://localhost:7474'
+
+    config.autoload_paths += %W(#{config.root}/app)
   end
 end
