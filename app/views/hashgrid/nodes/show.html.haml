@@ -9,10 +9,30 @@
       %li
         = @cardtec_node.labels.join(', ')
     %hr
-    .props.clearfix
-      = @cardtec_node.to_html
+  .cardtec-card-content
+    %dl.tabs{"data-tab" => ""}
+      %dd.active
+        %a{:href => "#panel1"} Tab 1
+      %dd
+        %a{:href => "#panel2"} Tab 2
+      .tabs-content
+        #panel1.content.active
+          .props.clearfix
+            = @cardtec_node.to_html
 
-  .cardtec-card-editor
-    = simple_form_for :cardtec_node, method: :put, remote: true do |f|
-      = f.submit
-      = f.text_area :yaml, value: @cardtec_node.to_yaml, rows: 30, cols: 80
+        #panel2.content
+          .cardtec-card-editor
+            = simple_form_for :cardtec_node, method: :put, remote: false do |f|
+              = f.submit
+              = f.text_area :yaml, value: @cardtec_node.to_yaml, rows: 30, cols: 80
+
+
+
+
+
+
+
+
+
+
+
