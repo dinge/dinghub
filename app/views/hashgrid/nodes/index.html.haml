@@ -4,7 +4,7 @@
       - row_nodes.each do |node|
         .columns.hashbox-box{ data: { 'destination-url' => hashgrid_node_path(node.neo_id), 'destination-element' => 'hashgrid-focus' } }
           %h5
-            = node.try(:title)
+            = node.title rescue 'n/a'
             %small= node.neo_id
           %small= node.ident rescue ''
           %small= node.labels.join(', ')

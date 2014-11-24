@@ -16,13 +16,11 @@ class Cardtec::Node
 
   def update_from_yaml(yaml)
     new_props = Cardtec::TextDecoder::YamlDecoder.new(yaml).to_hash
-
     labels = new_props.delete(:labels)
     neo_id = new_props.delete(:neo_id)
 
     neo_node.props = new_props
     neo_node.set_label(*labels)
-
     neo_node.to_cardtec_node
   end
 
@@ -39,7 +37,7 @@ class Cardtec::Node
 
 
   def method_missing(method, *args)
-    neo_node.send(method, *args) if neo_node.respond_to?(method)
+    neo_node.send(method, *args)
   end
 
 end

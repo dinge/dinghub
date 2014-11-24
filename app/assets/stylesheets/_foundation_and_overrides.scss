@@ -1469,4 +1469,22 @@ $button-margin-bottom: rem-calc(20*0.2);
 // $xlarge-range: (90.063em, 120em);
 // $xxlarge-range: (120.063em);
 
+dl {
+  margin: 10px 0;
+}
+
+dt {
+  margin: 0 0 0px 0;
+  float: left;
+  clear: left;
+  width: 28%;
+}
+
+dd {
+  float: left;
+  width: 71%;
+  margin: 0 0 0px 0;
+}
+
+
 @import 'foundation';
