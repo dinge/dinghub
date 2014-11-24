@@ -43,7 +43,7 @@ gem 'spring',        group: :development
 gem 'foundation-rails'
 gem 'neo4j'
 gem 'haml-rails'
-
+gem 'simple_form'
 
 group :test, :development do
   gem 'pry-rails'
