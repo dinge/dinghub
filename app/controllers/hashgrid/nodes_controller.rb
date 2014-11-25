@@ -28,6 +28,10 @@ class Hashgrid::NodesController < ApplicationController
     render :index
   end
 
+  def destroy
+   Neo4j::Node.load(params[:id]).del
+   redirect_to hashgrid_nodes_path
+  end
 
 
   private

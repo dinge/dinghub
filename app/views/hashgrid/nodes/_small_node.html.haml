@@ -1,7 +1,7 @@
 %li
   .small-card
     %h5
-      = link_to(node.title, hashgrid_node_path(node.neo_id)) rescue 'n/a'
+      = link_to((node.title rescue node.neo_id), hashgrid_node_path(node.neo_id))
       %small= node.neo_id
     %small= node.ident rescue 'n/a'
     %small= node.labels.join(', ')
