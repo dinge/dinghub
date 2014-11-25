@@ -18,24 +18,13 @@
         %a{:href => "#edit"}
           = fa_icon :pencil
 
-      .tabs-content
-        #show.content.active
-          .props.horizontal
-            = node.to_html
+    .tabs-content
+      #show.content.active
+        .props.horizontal
+          = node.to_html
 
-        #edit.content
-          .cardtec-card-editor
-            = simple_form_for :cardtec_node, method: :put, remote: false do |f|
-              = f.button :submit
-              = f.text_area :yaml, value: node.to_yaml, rows: 30, cols: 80
-
-
-
-
-
-
-
-
-
-
-
+      #edit.content
+        .cardtec-card-editor
+          = simple_form_for :cardtec_node, method: :put, remote: false do |f|
+            = f.button :submit
+            = f.text_area :yaml, value: node.to_yaml, rows: 30, cols: 80
