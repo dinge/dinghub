@@ -1,5 +1,4 @@
 %ul.stack.button-group
-  - node_controls.each do |node_control|
-    %li
-      %a{href: '#', :class => 'button large', data: { 'remote-url' => '', 'destination-element' => 'hashgrid-focus' } }
-        = 'X'
+  %li
+    %a.button.large{href: new_hashgrid_node_path}
+      add
