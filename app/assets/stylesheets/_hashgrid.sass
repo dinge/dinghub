@@ -6,19 +6,34 @@ $middle_height: 35em
 
 $focus_background_color: #fefefe
 $corner_background_color: #ddd
-$edge_background_color: #ccc
+$edge_background_color: #eee
 
+.spacer
+  margin-top: 0.3rem
 
 %hashgrid-left-grid-columns
+  padding-left: 0.33333rem
+  padding-right: 0.33333rem
   @extend .small-3
 
 %hashgrid-center-grid-columns
   @extend .small-8
 
 %hashgrid-right-grid-columns
+  padding-left: 0.33333rem
+  padding-right: 0.33333rem
   @extend .small-1
 
+.large-card
+  background-color: $white
+  @extend .panel
 
+.small-card
+  background-color: $white
+  @extend .panel
+  @extend .radius
+  h5
+    text-align: center
 
 
 
@@ -48,8 +63,9 @@ $edge_background_color: #ccc
   // height: $middle_height
   @extend %hashgrid-left-grid-columns
 
+
 .hashgrid-focus
-  background: $focus_background_color
+  // background: $focus_background_color
   // height: $middle_height
   @extend %hashgrid-center-grid-columns
 
@@ -57,6 +73,8 @@ $edge_background_color: #ccc
   background: $edge_background_color
   // height: $middle_height
   @extend %hashgrid-right-grid-columns
+  padding-left: 0.33333rem
+  padding-right: 0.33333rem
 
 
 // .hashgrid-c4

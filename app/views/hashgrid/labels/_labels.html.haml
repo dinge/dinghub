@@ -1,5 +1,5 @@
-%ul.labels.stack.button-group
+%ul.side-nav
   - labels.each do |label|
     %li
-      %a{href: by_label_hashgrid_nodes_path(label), :class => 'button large'}
+      %a.button.radius.expand{href: by_label_hashgrid_nodes_path(label)}
         = label

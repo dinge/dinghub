@@ -1,30 +1,31 @@
-.cardtec-card
-  .cardtec-card-header
-    %h3
-      = node.title rescue 'n/a'
-      %small= node.neo_id
-    %ul.no-bullet
-      %li
-        = node.ident rescue 'n/a'
-      %li
-        = node.labels.join(', ')
+.large-card.radius
+  .cardtec-card
+    .cardtec-card-header
+      %h3
+        = node.title rescue 'n/a'
+        %small= node.neo_id
+      %ul.no-bullet
+        %li
+          = node.ident rescue 'n/a'
+        %li
+          = node.labels.join(', ')
 
-  .cardtec-card-content
-    %ul.tabs{"data-tab" => ""}
-      %li.tab-title.active
-        %a{:href => "#show"}
-          = fa_icon :columns
-      %li.tab-title
-        %a{:href => "#edit"}
-          = fa_icon :pencil
+    .cardtec-card-content
+      %ul.tabs{"data-tab" => ""}
+        %li.tab-title.active
+          %a{:href => "#show"}
+            = fa_icon :columns
+        %li.tab-title
+          %a{:href => "#edit"}
+            = fa_icon :pencil
 
-    .tabs-content
-      #show.content.active
-        .props.horizontal
-          = node.to_html
+      .tabs-content
+        #show.content.active
+          .props.horizontal
+            = node.to_html
 
-      #edit.content
-        .cardtec-card-editor
-          = simple_form_for :cardtec_node, method: :put, remote: false do |f|
-            = f.button :submit
-            = f.text_area :yaml, value: node.to_yaml, rows: 30, cols: 80
+        #edit.content
+          .cardtec-card-editor
+            = simple_form_for :cardtec_node, method: :put, remote: false do |f|
+              = f.button :submit
+              = f.text_area :yaml, value: node.to_yaml, rows: 30, cols: 80
