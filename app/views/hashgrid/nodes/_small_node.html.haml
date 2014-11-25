@@ -1,0 +1,6 @@
+%li
+  %h5
+    = link_to(node.title, hashgrid_node_path(node.neo_id)) rescue 'n/a'
+    %small= node.neo_id
+  %small= node.ident rescue ''
+  %small= node.labels.join(', ')
