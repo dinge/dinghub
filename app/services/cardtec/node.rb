@@ -35,6 +35,13 @@ class Cardtec::Node
     Cardtec::YamlDecoder.new(yaml, access_scope).from_yaml
   end
 
+  def self.create_from_yaml(yaml)
+    new_props = Cardtec::TextDecoder::YamlDecoder.new(yaml).to_hash
+    labels = new_props.delete(:labels)
+    neo_id = new_props.delete(:neo_id)
+    Neo4j::Node.create(new_props, *labels).to_cardtec_node
+  end
+
   def to_param
     neo_node.neo_id
   end
