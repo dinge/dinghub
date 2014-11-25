@@ -7,12 +7,12 @@ class Hashgrid::NodesController < ApplicationController
   end
 
   def new
-
+    @node = Cardtec::Node.new(OpenStruct.new(props: {}))
   end
 
   def create
-    Cardtec::Node.create_from_yaml(params[:cardtec_node][:yaml])
-    redirect_to hashgrid_nodes_path
+    @cardtec_node = Cardtec::Node.create_from_yaml(params[:cardtec_node][:yaml])
+    redirect_to hashgrid_node_path(@cardtec_node.neo_id)
   end
 
   def show; end
