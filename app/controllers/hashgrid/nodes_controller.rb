@@ -11,9 +11,7 @@ class Hashgrid::NodesController < ApplicationController
   def update
     @cardtec_node = Cardtec.query.match(:n).where(n: { neo_id: params[:id] }).return(:n).first.n.to_cardtec_node
     @cardtec_node.update_from_yaml(params[:cardtec_node][:yaml])
-    # binding.pry
-
-    redirect_to hashgrid_node_path(@cardtec_node.neo_id)
+    redirect_to hashgrid_node_path(@cardtec_node.neo_id, anchor: 'edit')
   end
 
   def by_label
@@ -27,7 +25,7 @@ class Hashgrid::NodesController < ApplicationController
 
     def init_cardtec_node
       # @cardtec_node = Cardtec.query.match(:n).where(n: { neo_id: params[:id] }).return(:n).first.n.to_cardtec_node
-      @cardtec_node = Neo4j::Node.load(params[:id]).to_cardtec_node
+      @node = Neo4j::Node.load(params[:id]).to_cardtec_node
     end
 
 end

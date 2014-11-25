@@ -52,7 +52,7 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // This is the default html and body font-size for the base rem value.
-$rem-base: 24px;
+$rem-base: 18px;
 
 // Allows the use of rem-calc() or lower-bound() in your settings
 @import "foundation/functions";
@@ -64,7 +64,7 @@ $rem-base: 24px;
 // If you want your base font-size to be different and not have it affect the grid breakpoints,
 // set $rem-base to $base-font-size and make sure $base-font-size is a px value.
 // $base-font-size: 100%;
-$base-font-size: 24px;
+$base-font-size: 18px;
 
 // The $base-font-size is 100% while $base-line-height is 150%
 // $base-line-height: 150%;
@@ -213,12 +213,12 @@ $body-bg: #eee;
 // $h5-font-size: rem-calc(18);
 // $h6-font-size: 1rem;
 
-$h1-font-size: rem-calc(44*1.5);
-$h2-font-size: rem-calc(37*1.5);
-$h3-font-size: rem-calc(27*1.5);
-$h4-font-size: rem-calc(23*1.5);
-$h5-font-size: rem-calc(18*1.5);
-$h6-font-size: 1*1.5rem;
+// $h1-font-size: rem-calc(44*1.2);
+// $h2-font-size: rem-calc(37*1.2);
+// $h3-font-size: rem-calc(27*1.2);
+// $h4-font-size: rem-calc(23*1.2);
+// $h5-font-size: rem-calc(18*1.2);
+// $h6-font-size: 1*1.2rem;
 
 
 // We use these to control header size reduction on small screens
@@ -1469,18 +1469,19 @@ $button-margin-bottom: rem-calc(20*0.2);
 // $xlarge-range: (90.063em, 120em);
 // $xxlarge-range: (120.063em);
 
-dl {
+
+dl.horizontal {
   margin: 10px 0;
 }
 
-dt {
+.horizontal dt {
   margin: 0 0 0px 0;
   float: left;
   clear: left;
   width: 28%;
 }
 
-dd {
+.horizontal dd {
   float: left;
   width: 71%;
   margin: 0 0 0px 0;
