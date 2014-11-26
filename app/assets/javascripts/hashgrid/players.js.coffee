@@ -25,5 +25,5 @@ observe_load_content_clicks = () ->
 # window.load_contents = initial_load_contents
 
 
-initial_load_contents()
+# initial_load_contents()
 # observe_load_content_clicks()
