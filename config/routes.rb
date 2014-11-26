@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
-  root 'hashgrid/players#show'
+  root 'noodle/nodes#index'
 
-  namespace :hashgrid do
-    resource :player
+  namespace :noodle do
     resources :nodes do
       get 'by_label/:label', on: :collection, action: :by_label, as: :by_label
     end
-    resources :node_controls
-    resources :labels
   end
 
 end

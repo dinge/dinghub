@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
+
 load_content_in_element = (element, url) ->
   $(element).load url, (response, status) ->
     $(element).addClass('alert-box alert') if status == 'error'

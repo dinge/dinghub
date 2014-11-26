@@ -11,29 +11,7 @@
     = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
   %body
-    =# render 'layouts/header'
+    = render 'layouts/header'
 
-    / .row
-    /   .columns.hashgrid
-    /     .row
-    /       .columns.hashgrid-c1
-    /         = ".."
-    /       .columns.hashgrid-e1
-    /         = ".."
-    /       .columns.hashgrid-c2
-    /         = ".."
-
-    .row.spacer
-      .row{"data-equalizer" => ""}
-        .columns.hashgrid-e4{"data-initial-remote-url" => hashgrid_labels_path, "data-equalizer-watch" => ""}
-          = yield(:left_sidebar)
-          = render 'hashgrid/labels/labels', labels: @labels
-        .columns.hashgrid-focus{"data-equalizer-watch" => ""}
-          = yield
-        .columns.hashgrid-e2{"data-initial-remote-url" => hashgrid_node_controls_path, "data-equalizer-watch" => ""}
-          = yield(:right_sidebar)
-          = render 'hashgrid/node_controls/node_controls'
-
-
-  = # render 'layouts/footer'
+    = render 'layouts/footer'
   = javascript_include_tag "application"

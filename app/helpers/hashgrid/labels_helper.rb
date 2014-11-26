@@ -1,2 +1,0 @@
-module Hashgrid::LabelsHelper
-end

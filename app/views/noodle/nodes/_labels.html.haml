@@ -1,0 +1,5 @@
+%ul.side-nav
+  - labels.each do |label|
+    %li
+      %a.button.radius.expand{href: by_label_noodle_nodes_path(label)}
+        = label
