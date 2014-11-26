@@ -1,7 +1,8 @@
 %li
   .small-card
-    %h5
-      = link_to((node.title rescue node.neo_id), hashgrid_node_path(node.neo_id))
-      %small= node.neo_id
-    %small= node.ident rescue 'n/a'
-    %small= node.labels.join(', ')
+    .small-card-header
+      %h5
+        = render 'hashgrid/nodes/node/header', node: node
+      %hr
+    .small-card-body
+

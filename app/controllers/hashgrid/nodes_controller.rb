@@ -1,4 +1,4 @@
-class Hashgrid::NodesController < ApplicationController
+class Hashgrid::NodesController < Hashgrid::BaseController
 
   before_filter :init_cardtec_node, only: [:show]
 

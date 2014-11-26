@@ -1,8 +1,6 @@
-class Hashgrid::LabelsController < ApplicationController
+class Hashgrid::LabelsController < Hashgrid::BaseController
   layout false
 
-  def index
-    @labels = query.match(:n).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
-  end
+  def index; end
 
 end
