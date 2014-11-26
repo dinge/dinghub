@@ -1,9 +1,0 @@
-= link_to(hashgrid_node_path(node.neo_id)) do
-  %small.left
-    = node.labels.join(', ')
-  %small.right
-    = node.neo_id
-  %br
-  = (node.title rescue node.neo_id)
-  %br
-  %small= node.ident rescue ''
