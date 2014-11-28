@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   namespace :raw_node do
     resources :nodes do
-      get 'by_label/:label', on: :collection, action: :by_label, as: :by_label
+      get 'by_container/:container', on: :collection, action: :by_container, as: :by_container
     end
   end
 
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/modix', to: redirect('/modix/nodes')
   namespace :modix do
     resources :nodes do
-      get 'by_container/:label', on: :collection, action: :by_container, as: :by_container
+      get 'by_container/:container', on: :collection, action: :by_container, as: :by_container
     end
   end
 

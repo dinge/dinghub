@@ -1,8 +1,6 @@
 class RawNode::NodesController < ApplicationController
-  layout 'raw_node'
-  before_filter :init_cardtec_node, only: [:show]
-  before_filter :init_labels
-
+  before_filter :init_node, only: [:show, :update, :destroy]
+  before_filter :init_navigation_container_elements, only: [:index, :new, :show, :by_container]
 
   def index
     @nodes = neo4j_query.match(:n).return(:n).map(&:n)
@@ -13,39 +11,40 @@ class RawNode::NodesController < ApplicationController
   end
 
   def create
-    @cardtec_node = Cardtec::Node.create_from_yaml(params[:cardtec_node][:yaml])
-    redirect_to raw_node_node_path(@cardtec_node.neo_id)
+    @node = Cardtec::Node.create_from_yaml(params[:cardtec_node][:yaml])
+    redirect_to current_show_path(@cardtec.neo_id)
   end
 
   def show; end
 
   def update
-    @cardtec_node = Cardtec.query.match(:n).where(n: { neo_id: params[:id] }).return(:n).first.n.to_cardtec_node
-    @cardtec_node.update_from_yaml(params[:cardtec_node][:yaml])
-    redirect_to raw_node_node_path(@cardtec_node.neo_id)
-  end
-
-  def by_label
-    @nodes = neo4j_query.match(n: params[:label]).return(:n).map(&:n)
-    render :index
+    @node.update_from_yaml(params[:cardtec_node][:yaml])
+    redirect_to current_show_path(@node.neo_id)
   end
 
   def destroy
-   Neo4j::Node.load(params[:id]).del
-   redirect_to raw_node_nodes_path
+   @node.del
+   redirect_to current_index_path
   end
+
+  def by_container
+    @nodes = neo4j_query.match(n: params[:container]).return(:n).map(&:n)
+    render :index
+  end
+
 
 
 
   private
 
-    def init_cardtec_node
+    def init_node
       # @cardtec_node = Cardtec.query.match(:n).where(n: { neo_id: params[:id] }).return(:n).first.n.to_cardtec_node
-      @node = Neo4j::Node.load(params[:id]).to_cardtec_node
+      node = Neo4j::Node.load(params[:id])
+      @node = (node.is_a?(Neo4j::Server::CypherNode) ? node : node.neo4j_obj).to_cardtec_node
     end
 
-    def init_labels
-      @labels = neo4j_query.match(:n).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
+    def init_navigation_container_elements
+      @navigation_container_elements = neo4j_query.match(:n).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
     end
 
 
