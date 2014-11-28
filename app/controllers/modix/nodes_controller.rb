@@ -12,7 +12,7 @@ class Modix::NodesController < ApplicationController
 
   def create
     @node = Cardtec::Node.create_from_yaml(params[:cardtec_node][:yaml])
-    redirect_to current_show_path(@cardtec.neo_id)
+    redirect_to current_show_path(@node.neo_id)
   end
 
   def show; end
