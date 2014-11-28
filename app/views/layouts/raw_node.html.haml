@@ -1,28 +1,9 @@
 !!!
-%html(lang='de')
+%html{lang: I18n.locale}
   %head
-    %meta(charset='utf-8')/
-    %meta(content='width=device-width, initial-scale=1.0' name='viewport')/
-    %meta(name='apple-mobile-web-app-capable' content='yes')/
-    %meta(name='apple-mobile-web-app-status-bar-style' content='black')/
+    = render 'layouts/html_head'
 
-    %title Dinghub
-    = stylesheet_link_tag    "application"
-    = javascript_include_tag "vendor/modernizr"
-    = csrf_meta_tags
   %body
-    =# render 'layouts/header'
-
-    / .row
-    /   .columns.hashgrid
-    /     .row
-    /       .columns.hashgrid-c1
-    /         = ".."
-    /       .columns.hashgrid-e1
-    /         = ".."
-    /       .columns.hashgrid-c2
-    /         = ".."
-
     .row.spacer
       .row{"data-equalizer" => ""}
         .columns.hashgrid-e4
@@ -34,6 +15,6 @@
           = yield(:right_sidebar)
           = render 'raw_node/nodes/node_controls'
 
+  = javascript_include_tag 'application'
 
-  = # render 'layouts/footer'
-  = javascript_include_tag "application"
+

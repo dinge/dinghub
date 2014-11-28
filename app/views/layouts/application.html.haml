@@ -1,17 +1,18 @@
 !!!
-%html(lang='de')
+%html{lang: I18n.locale}
   %head
-    %meta(charset='utf-8')/
-    %meta(content='width=device-width, initial-scale=1.0' name='viewport')/
-    %meta(name='apple-mobile-web-app-capable' content='yes')/
-    %meta(name='apple-mobile-web-app-status-bar-style' content='black')/
+    = render 'layouts/html_head'
 
-    %title Dinghub
-    = stylesheet_link_tag    "application"
-    = javascript_include_tag "vendor/modernizr"
-    = csrf_meta_tags
   %body
-    = render 'layouts/header'
+    .row.spacer
+      .row{"data-equalizer" => ""}
+        .columns.hashgrid-e4
+          = render 'navigation'
+        .columns.hashgrid-focus{"data-equalizer-watch" => ""}
+          = yield
+        .columns.hashgrid-e2
+          = render 'node_controls'
 
-    = render 'layouts/footer'
-  = javascript_include_tag "application"
+  = javascript_include_tag 'application'
+
+

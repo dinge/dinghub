@@ -1470,22 +1470,4 @@ $button-margin-bottom: rem-calc(20*0.2);
 // $xxlarge-range: (120.063em);
 
 
-dl.horizontal {
-  margin: 10px 0;
-}
-
-.horizontal dt {
-  margin: 0 0 0px 0;
-  float: left;
-  clear: left;
-  width: 28%;
-}
-
-.horizontal dd {
-  float: left;
-  width: 71%;
-  margin: 0 0 0px 0;
-}
-
-
 @import 'foundation';

@@ -1,4 +1,4 @@
-.large-card.radius
+.card.large-card.radius
 
   .cardtec-card
     .cardtec-card-header
@@ -12,10 +12,6 @@
           %a{:href => "#edit"}
             %span.button.radius
               = fa_icon 'pencil 2x', text: 'edit'
-        / %li.tab-title
-        /   %a{:href => "#json"}
-        /     %span.button.radius
-        /       = fa_icon 'columns 2x', text: 'json'
         %li.tab-title
           %a{:href => "#show"}
             %span.button.radius
@@ -28,20 +24,11 @@
 
       .tabs-content
         #edit.content.active
-          .cardtec-card-editor
-            = simple_form_for :cardtec_node, method: :put, remote: false do |f|
-              = f.button :submit
-              = f.text_area :yaml, value: node.to_yaml, rows: 20, cols: 80
-              = f.button :submit
-        / #json.content.active
-        /   .cardtec-card-editor
-        /     = simple_form_for :cardtec_node, method: :put, remote: false do |f|
-        /       = f.button :submit
-        /       = f.text_area :json, value: node.to_json, rows: 30, cols: 80
-        /       = f.button :submit
+          = simple_form_for :cardtec_node, method: :put, remote: false do |f|
+            = f.button :submit
+            = f.text_area :yaml, value: node.to_yaml, rows: 20, cols: 80
+            = f.button :submit
         #show.content
-          .props.horizontal
-            = node.to_html
+          = node.to_html
         #delete.content
-          .props.horizontal
-            = link_to 'sure?', raw_node_node_path(node.neo_id), method: :delete, class: 'button'
+          = link_to 'sure?', raw_node_node_path(node.neo_id), method: :delete, class: 'button'

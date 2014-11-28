@@ -1,0 +1,29 @@
+.card.large-card
+  .card-header
+    %h2
+      = render 'node_header', node: node
+    %hr
+  .card-body
+
+    %ul.tabs{"data-tab" => ""}
+      %li.tab-title.active
+        %a{:href => "#edit"}
+          %span.button.radius
+            = fa_icon 'pencil 2x', text: 'edit'
+      %li.tab-title
+        %a{:href => "#show"}
+          %span.button.radius
+            = fa_icon 'columns 2x', text: 'show'
+      %li.tab-title
+        %a{:href => "#delete"}
+          %span.button.radius
+            = fa_icon 'columns 2x', text: 'delete'
+
+
+    .tabs-content
+      #edit.content.active
+        = render 'form', node: node
+      #show.content
+        = node.to_html
+      #delete.content
+        = link_to 'sure?', current_show_path(node.neo_id), method: :delete, class: 'button'

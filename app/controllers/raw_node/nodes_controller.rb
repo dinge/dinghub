@@ -4,8 +4,9 @@ class RawNode::NodesController < ApplicationController
   before_filter :init_labels
 
 
+
   def index
-    @nodes = query.match(:n).return(:n).map(&:n)
+    @nodes = neo4j_query.match(:n).return(:n).map(&:n)
   end
 
   def new
@@ -26,7 +27,7 @@ class RawNode::NodesController < ApplicationController
   end
 
   def by_label
-    @nodes = query.match(n: params[:label]).return(:n).map(&:n)
+    @nodes = neo4j_query.match(n: params[:label]).return(:n).map(&:n)
     render :index
   end
 
@@ -45,7 +46,7 @@ class RawNode::NodesController < ApplicationController
     end
 
     def init_labels
-      @labels = query.match(:n).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
+      @labels = neo4j_query.match(:n).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
     end
 
 
