@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root 'noodle/nodes#index'
+  root 'raw_node/nodes#index'
 
-  namespace :noodle do
+  namespace :raw_node do
     resources :nodes do
       get 'by_label/:label', on: :collection, action: :by_label, as: :by_label
     end

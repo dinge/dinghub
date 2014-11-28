@@ -27,12 +27,12 @@
       .row{"data-equalizer" => ""}
         .columns.hashgrid-e4
           = yield(:left_sidebar)
-          = render 'noodle/nodes/labels', labels: @labels
+          = render 'raw_node/nodes/labels', labels: @labels
         .columns.hashgrid-focus{"data-equalizer-watch" => ""}
           = yield
         .columns.hashgrid-e2
           = yield(:right_sidebar)
-          = render 'noodle/nodes/node_controls'
+          = render 'raw_node/nodes/node_controls'
 
 
   = # render 'layouts/footer'

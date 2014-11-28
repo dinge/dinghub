@@ -1,5 +1,5 @@
-class Noodle::NodesController < ApplicationController
-  layout 'noodle'
+class RawNode::NodesController < ApplicationController
+  layout 'raw_node'
   before_filter :init_cardtec_node, only: [:show]
   before_filter :init_labels
 
@@ -14,7 +14,7 @@ class Noodle::NodesController < ApplicationController
 
   def create
     @cardtec_node = Cardtec::Node.create_from_yaml(params[:cardtec_node][:yaml])
-    redirect_to noodle_node_path(@cardtec_node.neo_id)
+    redirect_to raw_node_node_path(@cardtec_node.neo_id)
   end
 
   def show; end
@@ -22,7 +22,7 @@ class Noodle::NodesController < ApplicationController
   def update
     @cardtec_node = Cardtec.query.match(:n).where(n: { neo_id: params[:id] }).return(:n).first.n.to_cardtec_node
     @cardtec_node.update_from_yaml(params[:cardtec_node][:yaml])
-    redirect_to noodle_node_path(@cardtec_node.neo_id)
+    redirect_to raw_node_node_path(@cardtec_node.neo_id)
   end
 
   def by_label
@@ -32,7 +32,7 @@ class Noodle::NodesController < ApplicationController
 
   def destroy
    Neo4j::Node.load(params[:id]).del
-   redirect_to noodle_nodes_path
+   redirect_to raw_node_nodes_path
   end
 
 
