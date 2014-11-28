@@ -7,4 +7,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :modix do
+    resources :nodes do
+      get 'by_label/:label', on: :collection, action: :by_label, as: :by_label
+    end
+  end
+
+
 end
