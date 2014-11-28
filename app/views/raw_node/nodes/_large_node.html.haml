@@ -3,7 +3,7 @@
   .cardtec-card
     .cardtec-card-header
       %h2
-        = render 'modix/nodes/node/header', node: node
+        = render 'raw_node/nodes/node/header', node: node
       %hr
     .cardtec-card-content
 
@@ -44,4 +44,4 @@
             = node.to_html
         #delete.content
           .props.horizontal
-            = link_to 'sure?', modix_node_path(node.neo_id), method: :delete, class: 'button'
+            = link_to 'sure?', raw_node_node_path(node.neo_id), method: :delete, class: 'button'
