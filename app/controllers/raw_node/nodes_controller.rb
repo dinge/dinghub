@@ -4,7 +4,6 @@ class RawNode::NodesController < ApplicationController
   before_filter :init_labels
 
 
-
   def index
     @nodes = neo4j_query.match(:n).return(:n).map(&:n)
   end

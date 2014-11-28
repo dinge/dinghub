@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'raw_node/nodes#index'
+  root 'modix/nodes#index'
+  # root 'raw_node/nodes#index'
 
   namespace :raw_node do
     resources :nodes do
@@ -14,6 +15,5 @@ Rails.application.routes.draw do
       get 'by_container/:label', on: :collection, action: :by_container, as: :by_container
     end
   end
-
 
 end

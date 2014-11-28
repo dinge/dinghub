@@ -9,15 +9,15 @@
       %li.tab-title.active
         %a{:href => "#edit"}
           %span.button.radius
-            = fa_icon 'pencil 2x', text: 'edit'
+            = fa_icon :pencil, text: 'edit'
       %li.tab-title
         %a{:href => "#show"}
           %span.button.radius
-            = fa_icon 'columns 2x', text: 'show'
+            = fa_icon :columns, text: 'show'
       %li.tab-title
         %a{:href => "#delete"}
           %span.button.radius
-            = fa_icon 'columns 2x', text: 'delete'
+            = fa_icon :trash, text: 'delete'
 
 
     .tabs-content
@@ -26,4 +26,5 @@
       #show.content
         = node.to_html
       #delete.content
-        = link_to 'sure?', current_show_path(node.neo_id), method: :delete, class: 'button'
+        #span.text-center
+          = link_to 'sure?', current_show_path(node.neo_id), method: :delete, class: 'button alert radius'
