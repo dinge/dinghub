@@ -5,8 +5,4 @@ class ApplicationController < ActionController::Base
 
   include ControllerExtensions::PathExtension
 
-  def neo4j_query
-    Neo4j::Session.query
-  end
-
 end
