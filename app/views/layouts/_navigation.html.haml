@@ -5,15 +5,15 @@
         %span Menu
     %li.name
       %h1
-        = link_to 'Dinghub', root_path
+        = link_to "dinghub #{controller.controller_path}", root_path
   %section.top-bar-section
     %ul.right
       %li
-        = link_to "Menu 1", root_path
+        = link_to 'RawNode', raw_node_nodes_path
       %li.has-dropdown
-        %a(href='#') Menu 2
+        %a(href=modix_concepts_path) Modix
         %ul.dropdown
           %li
-            = link_to "Sub menu 1", root_path
+            = link_to 'Things', modix_things_path
           %li
-            = link_to "Sub menu 2", root_path
+            = link_to 'Concepts', modix_concepts_path

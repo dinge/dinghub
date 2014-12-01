@@ -4,6 +4,10 @@
     = render 'layouts/html_head'
 
   %body
+    = render 'layouts/navigation'
+    .row
+      .columns.small-12
+        = render 'sub_navigation'
     .row.spacer
       .row{"data-equalizer" => ""}
         .columns.hashgrid-e4

@@ -4,6 +4,9 @@ class Cardtech::NodesController < ApplicationController
   before_filter :init_node, only: [:show, :update, :destroy]
   before_filter :init_navigation_container_elements, only: [:index, :new, :show, :by_container]
 
+  before_filter :prepend_current_app_as_view_path
+
+
   def index
     @nodes = neo4j_query.match(:n).return(:n).map(&:n)
   end
@@ -54,8 +57,12 @@ class Cardtech::NodesController < ApplicationController
     end
 
 
-  def neo4j_query
-    Neo4j::Session.query
-  end
+    def neo4j_query
+      Neo4j::Session.query
+    end
+
+    def prepend_current_app_as_view_path
+      prepend_view_path(Rails.root.join('app/views', controller_path.split('/').first))
+    end
 
 end
