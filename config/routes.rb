@@ -14,6 +14,12 @@ Rails.application.routes.draw do
     resources :nodes do
       get 'by_container/:container', on: :collection, action: :by_container, as: :by_container
     end
+    resources :concepts do
+      get 'by_container/:container', on: :collection, action: :by_container, as: :by_container
+    end
+    resources :things do
+      get 'by_container/:container', on: :collection, action: :by_container, as: :by_container
+    end
   end
 
 end

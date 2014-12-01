@@ -2,6 +2,16 @@ class Cardtec::Node
 
   attr_reader :neo_node
 
+  SYSTEM_PROPERTIES =
+    [ :labels,
+      :neo_id,
+      :app,
+      :uuid,
+      :created_at,
+      :updated_at,
+      :_classname ]
+
+
   def initialize(neo_node)
     @neo_node = neo_node
   end

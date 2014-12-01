@@ -16,8 +16,9 @@ class Cardtec::TextEncoder::HtmlEncoder
   end
 
   def to_editable_html
+    editable_properties = @text_encoder.to_hash.except(*Cardtec::Node::SYSTEM_PROPERTIES)
     content_tag(:dl, id: :cardtect_card_html) do
-      @text_encoder.to_hash.map do |k, v|
+      editable_properties.map do |k, v|
         content_tag(:dt, k, contenteditable: true) <<
         content_tag(:dd, v, contenteditable: true)
       end.join.html_safe

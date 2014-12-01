@@ -1,5 +1,4 @@
 class Cardtech::NodesController < ApplicationController
-
   skip_before_action :verify_authenticity_token # TODO: remove
 
   before_filter :init_node, only: [:show, :update, :destroy]
