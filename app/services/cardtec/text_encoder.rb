@@ -38,7 +38,7 @@ class Cardtec::TextEncoder
   def to_hash
     {}.tap do |props|
       PROPS.each do |p|
-        props[p] = @props[p] || (@node.respond_to?(p) ? @node.send(p) : nil)
+        props[p] = @props[p] || (@node.respond_to?(p) ? (@node.send(p) rescue nil) : nil)
       end
       @props.each { |k, v| props[k] ||= v }
     end

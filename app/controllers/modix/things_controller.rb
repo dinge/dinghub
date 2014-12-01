@@ -1,4 +1,4 @@
-class Modix::ThingsController < Cardtech::NodesController
+class Modix::ThingsController < Cardtec::NodesController
 
   def index
     @nodes = Modix::Thing.all

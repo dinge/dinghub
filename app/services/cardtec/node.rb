@@ -42,7 +42,7 @@ class Cardtec::Node
     neo_id = new_props.delete(:neo_id)
 
     neo_node.props = new_props
-    neo_node.set_label(*labels)
+    neo_node.set_label(*labels) if labels.present?
     neo_node.to_cardtec_node
   end
 

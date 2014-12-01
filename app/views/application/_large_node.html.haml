@@ -27,7 +27,7 @@
         %hr
         = node.to_editable_html
       #yaml.content
-        = render 'form', node: node
+        = render 'form_yaml', node: node
       #delete.content
         #span.text-center
           = link_to 'sure?', current_show_path(node.neo_id), method: :delete, class: 'button alert radius'
