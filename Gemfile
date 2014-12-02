@@ -45,7 +45,7 @@ gem 'haml-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'nokogiri'
-
+gem 'unicorn'
 
 
 group :test, :development do
