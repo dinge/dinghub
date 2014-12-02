@@ -16,6 +16,7 @@ class NodeMock
       image_url: 'http://image.url',
       created_at: DateTime.parse('2014-11-24 13:11:22').to_s,
       updated_at: DateTime.parse('2014-11-24 13:11:22').to_s,
+      _classname: 'Bang',
 
       height:   35,
       weight:   240,

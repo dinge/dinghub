@@ -1,13 +1,25 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+  root 'modix/nodes#index'
+  # root 'raw_node/nodes#index'
 
-  namespace :hashgrid do
-    resource :player
+  namespace :raw_node do
     resources :nodes do
-      get 'by_label/:label', on: :collection, action: :by_label, as: :by_label
+      get 'by_container/:container', on: :collection, action: :by_container, as: :by_container
     end
-    resources :node_controls
-    resources :labels
+  end
+
+
+  get '/modix', to: redirect('/modix/nodes')
+  namespace :modix do
+    resources :concepts do
+      get 'by_container/:container', on: :collection, action: :by_container, as: :by_container
+    end
+    resources :things do
+      get 'by_container/:container', on: :collection, action: :by_container, as: :by_container
+    end
+    resources :nodes do
+      get 'by_container/:container', on: :collection, action: :by_container, as: :by_container
+    end
   end
 
 end

@@ -1,6 +1,6 @@
 class Cardtec::TextEncoder
 
-  attr_reader :node, :props, :access_scope
+  attr_reader :node, :props
 
   PROPS =
     [ :labels,
@@ -11,11 +11,11 @@ class Cardtec::TextEncoder
       :uuid,
       :image_url,
       :created_at,
-      :updated_at ]
+      :updated_at,
+      :_classname ]
 
-  def initialize(node, access_scope = :all)
+  def initialize(node)
     @node, @props = node, node.props
-    @access_scope = access_scope
   end
 
   def to_s
@@ -32,10 +32,14 @@ class Cardtec::TextEncoder
     HtmlEncoder.new(self).to_html
   end
 
+  def to_editable_html
+    HtmlEncoder.new(self).to_editable_html
+  end
+
   def to_hash
     {}.tap do |props|
       PROPS.each do |p|
-        props[p] =  @props[p] || (@node.respond_to?(p) ? @node.send(p) : nil)
+        props[p] = @props[p] || (@node.respond_to?(p) ? (@node.send(p) rescue nil) : nil)
       end
       @props.each { |k, v| props[k] ||= v }
     end

@@ -1,0 +1,33 @@
+.card.large-card
+  .card-header
+    %h2
+      = render 'node_header', node: node
+    %hr
+  .card-body
+
+    %ul.tabs{"data-tab" => ""}
+      %li.tab-title.active
+        %a{:href => "#edit"}
+          %span.button.radius
+            = fa_icon :columns, text: 'edit'
+      %li.tab-title
+        %a{:href => "#yaml"}
+          %span.button.radius
+            = fa_icon 'file-text-o', text: 'yaml'
+      %li.tab-title
+        %a{:href => "#delete"}
+          %span.button.radius
+            = fa_icon :trash, text: 'delete'
+
+
+    .tabs-content
+      #edit.content.active
+        %button.success.radius.right.update-editable-html
+          save
+        %hr
+        = node.to_editable_html
+      #yaml.content
+        = render 'form_yaml', node: node
+      #delete.content
+        #span.text-center
+          = link_to 'sure?', current_show_path(node.neo_id), method: :delete, class: 'button alert radius'

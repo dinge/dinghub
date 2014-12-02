@@ -1,2 +1,0 @@
-module Hashgrid::PlayersHelper
-end
