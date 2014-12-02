@@ -1,10 +1,10 @@
 class Cardtec::NodesController < ApplicationController
   skip_before_action :verify_authenticity_token # TODO: remove
 
-  before_action :init_node, only: [:show, :update, :destroy]
+  before_action :prepend_current_app_as_view_path
+  # before_action :init_node, only: [:show, :update, :destroy]
   before_action :init_navigation_container_elements, only: [:index, :new, :show, :by_container]
 
-  before_action :prepend_current_app_as_view_path
 
 
   def index
@@ -26,9 +26,12 @@ class Cardtec::NodesController < ApplicationController
     redirect_to current_show_path(@node.neo_id)
   end
 
-  def show; end
+  def show
+    init_node
+  end
 
   def update
+    init_node
     if yaml = params[:cardtec_node][:yaml]
       @node.update_from_yaml(yaml)
     elsif html = params[:cardtec_node][:html]
@@ -38,8 +41,9 @@ class Cardtec::NodesController < ApplicationController
   end
 
   def destroy
-   @node.del
-   redirect_to current_index_path
+    init_node
+    @node.del
+    redirect_to current_index_path
   end
 
   def by_container

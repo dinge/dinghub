@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+# gem 'rails', '4.1.8'
 gem 'rails', '4.2.0.rc1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -45,18 +46,18 @@ gem 'haml-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'nokogiri'
-gem 'unicorn'
+# gem 'unicorn'
 
 
 group :test, :development do
   gem 'pry-rails'
   gem 'rspec-rails'
-  gem 'web-console', '~> 2.0'
+  # gem 'web-console', '~> 2.0'
 end
 
 
 group :development do
-  gem 'spring'
+  # gem 'spring'
 end
 
 
