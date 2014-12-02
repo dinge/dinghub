@@ -1,10 +1,10 @@
 class Cardtec::NodesController < ApplicationController
   skip_before_action :verify_authenticity_token # TODO: remove
 
-  before_filter :init_node, only: [:show, :update, :destroy]
-  before_filter :init_navigation_container_elements, only: [:index, :new, :show, :by_container]
+  before_action :init_node, only: [:show, :update, :destroy]
+  before_action :init_navigation_container_elements, only: [:index, :new, :show, :by_container]
 
-  before_filter :prepend_current_app_as_view_path
+  before_action :prepend_current_app_as_view_path
 
 
   def index
