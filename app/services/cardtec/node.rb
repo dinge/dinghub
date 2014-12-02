@@ -58,6 +58,13 @@ class Cardtec::Node
     Neo4j::Node.create(new_props, *labels).to_cardtec_node
   end
 
+  def self.create_from_html(html)
+    new_props = Cardtec::TextDecoder::HtmlDecoder.new(html).to_hash
+    labels = new_props.delete(:labels)
+    neo_id = new_props.delete(:neo_id)
+    Neo4j::Node.create(new_props, *labels).to_cardtec_node
+  end
+
   def to_param
     neo_node.neo_id
   end

@@ -11,7 +11,8 @@ class Cardtec::TextEncoder
       :uuid,
       :image_url,
       :created_at,
-      :updated_at ]
+      :updated_at,
+      :_classname ]
 
   def initialize(node)
     @node, @props = node, node.props

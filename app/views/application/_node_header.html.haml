@@ -1,6 +1,6 @@
 = link_to(current_show_path(node.neo_id)) do
   %small.left
-    = node.labels.join(', ')
+    = node.labels.join(', ') rescue ''
   %small.right
     = node.neo_id
   %br
