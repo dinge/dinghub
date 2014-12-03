@@ -5,9 +5,8 @@ class Blog::PostsController < Cardtec::NodesController
   end
 
   def new
-    @node = Blog::Post.new.to_cardtec_node
+    @node = Blog::Post.new
   end
-
 
   def create
     @node =
@@ -19,6 +18,5 @@ class Blog::PostsController < Cardtec::NodesController
 
     redirect_to current_show_path(@node.neo_id)
   end
-
 
 end

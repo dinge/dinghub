@@ -1,6 +1,6 @@
 class Cardtec::Node
 
-  attr_reader :neo_node
+  attr_reader :neo_node, :neo_ruby_klass
 
   SYSTEM_PROPERTIES =
     [ :labels,
@@ -12,22 +12,18 @@ class Cardtec::Node
       :_classname ]
 
 
-  def initialize(neo_node = NullNode.new, ruby_klass = nil)
-    @neo_node, @ruby_klass = neo_node, ruby_klass
+  delegate :to_yaml, :to_html, :to_editable_html, :to_hash, :to_json, to: :text_encoder_instance
+
+
+  def initialize(neo_node = NullNode.new, neo_ruby_klass = nil)
+    @neo_node, @neo_ruby_klass = neo_node, neo_ruby_klass
   end
 
 
-  def to_yaml
-    Cardtec::TextEncoder.new(neo_node).to_yaml
+  def text_encoder_instance
+    Cardtec::TextEncoder.new(neo_node, self)
   end
 
-  def to_html
-    Cardtec::TextEncoder.new(neo_node).to_html
-  end
-
-  def to_editable_html
-    Cardtec::TextEncoder.new(neo_node).to_editable_html
-  end
 
   def to_param
     neo_node.neo_id
@@ -43,16 +39,6 @@ class Cardtec::Node
     update_from_hash(Cardtec::TextDecoder::HtmlDecoder.new(html).to_hash)
   end
 
-  def self.create_from_yaml(yaml)
-    create_from_hash(Cardtec::TextDecoder::YamlDecoder.new(yaml).to_hash)
-  end
-
-  def self.create_from_html(html)
-    create_from_hash(Cardtec::TextDecoder::HtmlDecoder.new(html).to_hash)
-  end
-
-
-
   def update_from_hash(new_props)
     labels = new_props.delete(:labels)
     neo_id = new_props.delete(:neo_id)
@@ -62,16 +48,9 @@ class Cardtec::Node
     neo_node.to_cardtec_node
   end
 
-  def create_from_hash(new_props)
-    labels = new_props.delete(:labels)
-    neo_id = new_props.delete(:neo_id)
-    Neo4j::Node.create(new_props, *labels)
-  end
-
-
 
   def method_missing(method, *args)
-    if neo_node.props.has_key?(:title)
+    if neo_node.props.has_key?(method)
       neo_node.props[method]
     else
       neo_node.send(method, *args)
@@ -80,8 +59,25 @@ class Cardtec::Node
 
 
 
-  class NullNode < OpenStruct
+  class << self
+    def create_from_yaml(yaml)
+      create_from_hash(Cardtec::TextDecoder::YamlDecoder.new(yaml).to_hash)
+    end
 
+    def create_from_html(html)
+      create_from_hash(Cardtec::TextDecoder::HtmlDecoder.new(html).to_hash)
+    end
+
+    def create_from_hash(new_props)
+      labels = new_props.delete(:labels)
+      neo_id = new_props.delete(:neo_id)
+      Neo4j::Node.create(new_props, *labels)
+    end
+  end
+
+
+
+  class NullNode < OpenStruct
     def props
       {}
     end

@@ -8,10 +8,12 @@ module CypherNodeExtension
 end
 
 
+
 module ActiveNodeExtension
 
   def to_cardtec_node
-    @cardtec_node ||= Cardtec::Node.new(neo4j_obj, self.class)
+    node = persisted? ? neo4j_obj : Cardtec::Node::NullNode.new
+    @cardtec_node ||= Cardtec::Node.new(node, self.class)
   end
   alias :ctn :to_cardtec_node
 
