@@ -50,6 +50,7 @@ gem 'haml-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'nokogiri'
+gem 'configatron', require: false
 
 
 

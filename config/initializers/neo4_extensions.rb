@@ -17,33 +17,11 @@ module ActiveNodeExtension
   end
   alias :ctn :to_cardtec_node
 
-
-  def self.included(base)
-    puts base
-    base.extend(ClassMethods)
-  end
-
-
-  module ClassMethods
-
-    puts "... "
-
-    def bums
-      "bang"
-    end
-
-  end
-
-  # def self.bums
-  #   "bang"
-  # end
-
-
 end
-
 
 
 Neo4j::Server::CypherNode.send(:include, CypherNodeExtension)
 Neo4j::ActiveNode.send(:include, ActiveNodeExtension)
+#Neo4j::ActiveNode.extend(ActiveNodeClassExtension)
 
 # Neo4j::Node
