@@ -1,9 +1,7 @@
 = link_to(current_show_path(node.neo_id)) do
   %small.left
-    = node.labels.join(', ')
+    = node.labels.last
   %small.right
     = node.neo_id
   %br
   = (node.ctn.title rescue node.neo_id )
-  %br
-  %small= node.ident rescue ''

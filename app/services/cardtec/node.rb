@@ -12,9 +12,10 @@ class Cardtec::Node
       :_classname ]
 
 
-  def initialize(neo_node)
-    @neo_node = neo_node
+  def initialize(neo_node = NullNode.new, ruby_klass = nil)
+    @neo_node, @ruby_klass = neo_node, ruby_klass
   end
+
 
   def to_yaml
     Cardtec::TextEncoder.new(neo_node).to_yaml
@@ -28,6 +29,11 @@ class Cardtec::Node
     Cardtec::TextEncoder.new(neo_node).to_editable_html
   end
 
+  def to_param
+    neo_node.neo_id
+  end
+
+
 
   def update_from_yaml(yaml)
     update_from_hash(Cardtec::TextDecoder::YamlDecoder.new(yaml).to_hash)
@@ -36,6 +42,16 @@ class Cardtec::Node
   def update_from_html(html)
     update_from_hash(Cardtec::TextDecoder::HtmlDecoder.new(html).to_hash)
   end
+
+  def self.create_from_yaml(yaml)
+    create_from_hash(Cardtec::TextDecoder::YamlDecoder.new(yaml).to_hash)
+  end
+
+  def self.create_from_html(html)
+    create_from_hash(Cardtec::TextDecoder::HtmlDecoder.new(html).to_hash)
+  end
+
+
 
   def update_from_hash(new_props)
     labels = new_props.delete(:labels)
@@ -46,31 +62,34 @@ class Cardtec::Node
     neo_node.to_cardtec_node
   end
 
-
-  def self.from_yaml(yaml)
-    Cardtec::YamlDecoder.new(yaml).from_yaml
-  end
-
-  def self.create_from_yaml(yaml)
-    new_props = Cardtec::TextDecoder::YamlDecoder.new(yaml).to_hash
+  def create_from_hash(new_props)
     labels = new_props.delete(:labels)
     neo_id = new_props.delete(:neo_id)
-    Neo4j::Node.create(new_props, *labels).to_cardtec_node
+    Neo4j::Node.create(new_props, *labels)
   end
 
-  def self.create_from_html(html)
-    new_props = Cardtec::TextDecoder::HtmlDecoder.new(html).to_hash
-    labels = new_props.delete(:labels)
-    neo_id = new_props.delete(:neo_id)
-    Neo4j::Node.create(new_props, *labels).to_cardtec_node
-  end
 
-  def to_param
-    neo_node.neo_id
-  end
 
   def method_missing(method, *args)
-    neo_node.send(method, *args)
+    if neo_node.props.has_key?(:title)
+      neo_node.props[method]
+    else
+      neo_node.send(method, *args)
+    end
+  end
+
+
+
+  class NullNode < OpenStruct
+
+    def props
+      {}
+    end
+
+    def to_cardtec_node
+      @cardtec_node ||= Cardtec::Node.new(self)
+    end
+    alias :ctn :to_cardtec_node
   end
 
 end

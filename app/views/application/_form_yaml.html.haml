@@ -1,8 +1,7 @@
 :ruby
   form_options = node.persisted? ? { method: :put } : { method: :post, url: raw_node_nodes_path }
 
-
 = simple_form_for :cardtec_node, form_options do |f|
   = f.button :submit, 'save', class: 'success radius right'
-  = f.text_area :yaml, value: node.to_yaml, rows: 18, cols: 80
+  = f.text_area :yaml, value: node.ctn.to_yaml, rows: 18, cols: 80
   = f.button :submit, 'save', class: 'success radius right'

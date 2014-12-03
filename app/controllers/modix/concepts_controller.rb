@@ -26,7 +26,8 @@ class Modix::ConceptsController < Cardtec::NodesController
   private
 
     def init_navigation_container_elements
-      @navigation_container_elements = neo4j_query.match('(n:Modix)').pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
+      @navigation_container_elements =
+        neo4j_query.match('(n:Modix)').pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
     end
 
 

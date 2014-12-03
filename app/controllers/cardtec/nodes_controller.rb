@@ -12,7 +12,7 @@ class Cardtec::NodesController < ApplicationController
   end
 
   def new
-    @node = Cardtec::Node.new(OpenStruct.new(props: {}))
+    @node = Cardtec::Node.new
   end
 
   def create
@@ -33,9 +33,9 @@ class Cardtec::NodesController < ApplicationController
   def update
     init_node
     if yaml = params[:cardtec_node][:yaml]
-      @node.update_from_yaml(yaml)
+      @node.ctn.update_from_yaml(yaml)
     elsif html = params[:cardtec_node][:html]
-      @node.update_from_html(html)
+      @node.ctn.update_from_html(html)
     end
     redirect_to current_show_path(@node.neo_id)
   end
@@ -57,13 +57,12 @@ class Cardtec::NodesController < ApplicationController
   private
 
     def init_node
-      # @cardtec_node = Cardtec.query.match(:n).where(n: { neo_id: params[:id] }).return(:n).first.n.to_cardtec_node
-      node = Neo4j::Node.load(params[:id])
-      @node = (node.is_a?(Neo4j::Server::CypherNode) ? node : node.neo4j_obj).to_cardtec_node
+      @node = Neo4j::Node.load(params[:id])
     end
 
     def init_navigation_container_elements
-      @navigation_container_elements = neo4j_query.match(:n).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
+      @navigation_container_elements =
+        neo4j_query.match(:n).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
     end
 
 
