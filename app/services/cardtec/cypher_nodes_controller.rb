@@ -72,19 +72,20 @@ class Cardtec::CypherNodesController < ApplicationController
       @node.del
     end
 
+
     def init_side_navigation_items
       @side_navigation_items =
         neo4j_query.match(:n).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
     end
 
+
+
     def prepend_current_app_as_view_path
       prepend_view_path(Rails.root.join('app/views', controller_path.split('/').first))
     end
 
-
     def neo4j_query
       Neo4j::Session.query
     end
-
 
 end
