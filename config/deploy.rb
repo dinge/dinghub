@@ -2,7 +2,7 @@
 # lock '3.2.1'
 
 set :application, 'dinghub'
-set :repo_url, 'git@github.com:megorei/dinghub_server.git'
+set :repo_url, 'git@github.com:dinge/dinghub.git'
 
 set :deploy_to, "/home/live/apps/#{fetch(:application)}"
 
@@ -49,6 +49,8 @@ set :log_level, :info
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+
 
 namespace :deploy do
 

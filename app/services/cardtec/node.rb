@@ -1,6 +1,21 @@
 class Cardtec::Node
+  extend Cardtec::Node::Creater
+  include Cardtec::Node::Updater
 
-  attr_reader :neo_node
+  attr_reader :neo_node, :neo_ruby_klass
+
+  PROPERTIES =
+    [ :labels,
+      :neo_id,
+      :ident,
+      :title,
+      :uuid,
+      :body,
+      :image_url,
+      :created_at,
+      :updated_at,
+      :_classname ]
+
 
   SYSTEM_PROPERTIES =
     [ :labels,
@@ -12,65 +27,30 @@ class Cardtec::Node
       :_classname ]
 
 
-  def initialize(neo_node)
-    @neo_node = neo_node
+  delegate :to_yaml, :to_html, :to_param, :to_editable_html, :to_hash, :to_json, to: :text_encoder_instance
+  delegate :from_yaml, :from_html, to: :text_decoder_instance
+
+
+  def initialize(neo_node = NullNode.new, neo_ruby_klass = nil)
+    @neo_node, @neo_ruby_klass = neo_node, neo_ruby_klass
   end
 
-  def to_yaml
-    Cardtec::TextEncoder.new(neo_node).to_yaml
+  def text_encoder_instance
+    Cardtec::TextEncoder.new(neo_node, self)
   end
 
-  def to_html
-    Cardtec::TextEncoder.new(neo_node).to_html
-  end
-
-  def to_editable_html
-    Cardtec::TextEncoder.new(neo_node).to_editable_html
-  end
-
-
-  def update_from_yaml(yaml)
-    update_from_hash(Cardtec::TextDecoder::YamlDecoder.new(yaml).to_hash)
-  end
-
-  def update_from_html(html)
-    update_from_hash(Cardtec::TextDecoder::HtmlDecoder.new(html).to_hash)
-  end
-
-  def update_from_hash(new_props)
-    labels = new_props.delete(:labels)
-    neo_id = new_props.delete(:neo_id)
-
-    neo_node.props = new_props
-    neo_node.set_label(*labels) if labels.present?
-    neo_node.to_cardtec_node
+  def text_decoder_instance
+    Cardtec::TextDecoder.new(self)
   end
 
 
-  def self.from_yaml(yaml)
-    Cardtec::YamlDecoder.new(yaml).from_yaml
-  end
-
-  def self.create_from_yaml(yaml)
-    new_props = Cardtec::TextDecoder::YamlDecoder.new(yaml).to_hash
-    labels = new_props.delete(:labels)
-    neo_id = new_props.delete(:neo_id)
-    Neo4j::Node.create(new_props, *labels).to_cardtec_node
-  end
-
-  def self.create_from_html(html)
-    new_props = Cardtec::TextDecoder::HtmlDecoder.new(html).to_hash
-    labels = new_props.delete(:labels)
-    neo_id = new_props.delete(:neo_id)
-    Neo4j::Node.create(new_props, *labels).to_cardtec_node
-  end
-
-  def to_param
-    neo_node.neo_id
-  end
 
   def method_missing(method, *args)
-    neo_node.send(method, *args)
+    if neo_node.props.has_key?(method)
+      neo_node.props[method]
+    else
+      neo_node.send(method, *args)
+    end
   end
 
 end

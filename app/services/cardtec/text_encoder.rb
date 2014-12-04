@@ -1,21 +1,15 @@
 class Cardtec::TextEncoder
 
-  attr_reader :node, :props
+  attr_reader :neo_node, :props
 
-  PROPS =
-    [ :labels,
-      :neo_id,
-      :app,
-      :title,
-      :ident,
-      :uuid,
-      :image_url,
-      :created_at,
-      :updated_at,
-      :_classname ]
+  def initialize(neo_node, cardtec_node)
+    @neo_node, @props = neo_node, neo_node.props
+    @cardtec_node = cardtec_node
+  end
 
-  def initialize(node)
-    @node, @props = node, node.props
+
+  def to_param
+    neo_node.neo_id
   end
 
   def to_s
@@ -38,15 +32,20 @@ class Cardtec::TextEncoder
 
   def to_hash
     {}.tap do |props|
-      PROPS.each do |p|
-        props[p] = @props[p] || (@node.respond_to?(p) ? (@node.send(p) rescue nil) : nil)
+      all_property_names.each do |p|
+        props[p] = @props[p] || (neo_node.respond_to?(p) ? (neo_node.send(p) rescue nil) : nil)
       end
       @props.each { |k, v| props[k] ||= v }
     end
   end
 
+  def all_property_names
+    ( Cardtec::Node::PROPERTIES +
+      (@cardtec_node.neo_ruby_klass ? @cardtec_node.neo_ruby_klass.attribute_names.map(&:to_sym) : []) ).uniq
+  end
+
   def raw_dump
-    @node.to_yaml
+    neo_node.to_yaml
   end
 
 end

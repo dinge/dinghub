@@ -1,4 +1,8 @@
-class Cardtec::TextDecoder::HtmlDecoder < Cardtec::TextDecoder
+class Cardtec::TextDecoder::HtmlDecoder
+
+  def initialize(data)
+    @data = data
+  end
 
   def to_hash
     props = {}

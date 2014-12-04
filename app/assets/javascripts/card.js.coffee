@@ -8,7 +8,6 @@ observe_card_contenteditable_save = () ->
         data: { cardtec_node: { html: html_to_save.html() } }
         type: 'PUT'
 
-
   $(document).on 'click touchend', '.create-editable-html', ->
     html_to_save = $('#cardtec_card_html')
     path_elements = window.location.pathname.split('/')
@@ -19,7 +18,6 @@ observe_card_contenteditable_save = () ->
       $.ajax path,
         data: { cardtec_node: { html: html_to_save.html() } }
         type: 'POST'
-
 
   $(document).on 'click touchend', '.add-editable-html', ->
     current_property = $(this).closest('.cardtec_property')

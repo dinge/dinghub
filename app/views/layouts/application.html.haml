@@ -8,8 +8,8 @@
     = render 'sub_navigation'
     .row.spacer
       .row{"data-equalizer" => ""}
-        .columns.hashgrid-e4{"data-equalizer-watch" => ""}
-          = render 'navigation'
+        .columns.hashgrid-e4
+          = render 'side_navigation'
         .columns.hashgrid-focus{"data-equalizer-watch" => ""}
           = yield
         .columns.hashgrid-e2{"data-equalizer-watch" => ""}

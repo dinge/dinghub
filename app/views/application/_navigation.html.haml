@@ -1,5 +1,0 @@
-%ul.side-nav
-  - @navigation_container_elements.each do |container_element|
-    %li
-      %a.button.radius.expand{href: current_path_for_action(:by_container, container_element)}
-        = container_element

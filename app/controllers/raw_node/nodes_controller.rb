@@ -1,4 +1,4 @@
-class RawNode::NodesController < Cardtec::NodesController
+class RawNode::NodesController < Cardtec::CypherNodesController
 
 end
 

@@ -1,12 +1,14 @@
 class Blog::Post < Blog
 
-  property  :title, type: String
-  property  :body, type: String
-  property  :created_at
-  property  :updated_at
 
 end
 
+
+
+# class Cardtec::Node::ClassMethodsProxy
+#   include Cardtec::Node::ClassMethods
+
+# end
 
 
 

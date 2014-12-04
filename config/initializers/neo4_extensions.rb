@@ -1,26 +1,27 @@
 module CypherNodeExtension
-  def method_missing(method, *args)
-    if props.key?(method)
-      props[method]
-    else
-      super
-    end
-  end
 
   def to_cardtec_node
-    Cardtec::Node.new(self)
+    @cardtec_node ||= Cardtec::Node.new(self)
   end
+  alias :ctn :to_cardtec_node
+
 end
+
+
 
 module ActiveNodeExtension
-  def to_cardtec_node
-    Cardtec::Node.new(self)
-  end
-end
 
+  def to_cardtec_node
+    node = persisted? ? neo4j_obj : Cardtec::Node::NullNode.new
+    @cardtec_node ||= Cardtec::Node.new(node, self.class)
+  end
+  alias :ctn :to_cardtec_node
+
+end
 
 
 Neo4j::Server::CypherNode.send(:include, CypherNodeExtension)
 Neo4j::ActiveNode.send(:include, ActiveNodeExtension)
+#Neo4j::ActiveNode.extend(ActiveNodeClassExtension)
 
 # Neo4j::Node

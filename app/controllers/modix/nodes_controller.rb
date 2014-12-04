@@ -1,3 +1,3 @@
-class Modix::NodesController < Cardtec::NodesController
+class Modix::NodesController < Cardtec::ActiveNodesController
 
 end
