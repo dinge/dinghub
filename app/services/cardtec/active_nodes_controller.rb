@@ -46,6 +46,13 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     end
 
 
+    def init_side_navigation_items
+      @side_navigation_items =
+        neo4j_query.match(n: model_klass_name_space).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
+    end
+
+
+
     def model_klass_name
       controller_path.singularize.camelize
     end
@@ -54,9 +61,8 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
       model_klass_name.constantize
     end
 
-    def init_side_navigation_items
-      @side_navigation_items =
-        neo4j_query.match('(n:Blog)').pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
+    def model_klass_name_space
+      model_klass_name.split('::').first
     end
 
 end

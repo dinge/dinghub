@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'modix/nodes#index'
+  root 'modix/concepts#index'
   # root 'raw_node/nodes#index'
 
   namespace :blog do
