@@ -58,7 +58,7 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     end
 
     def model_klass
-      model_klass_name.constantize
+      model_klass_name.constantize rescue nil
     end
 
     def model_klass_name_space

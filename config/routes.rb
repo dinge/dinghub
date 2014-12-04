@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
 
-  get '/modix', to: redirect('/modix/nodes')
+  get '/modix', to: redirect('/modix/conceps')
   namespace :modix do
     resources :concepts do
       get 'by_container/:container', on: :collection, action: :by_container, as: :by_container
@@ -23,10 +23,6 @@ Rails.application.routes.draw do
     resources :things do
       get 'by_container/:container', on: :collection, action: :by_container, as: :by_container
     end
-    resources :nodes do
-      get 'by_container/:container', on: :collection, action: :by_container, as: :by_container
-    end
-
   end
 
 end
