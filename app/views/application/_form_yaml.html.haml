@@ -2,6 +2,8 @@
   form_options = node.persisted? ? { method: :put } : { method: :post, url: raw_node_nodes_path }
 
 = simple_form_for :cardtec_node, form_options do |f|
-  = f.button :submit, 'save', class: 'success radius right'
+  .panel.cardtec_node_actions.expand
+    = f.button :submit, 'save', class: 'success radius'
   = f.text_area :yaml, value: node.ctn.to_yaml, rows: 18, cols: 80
-  = f.button :submit, 'save', class: 'success radius right'
+  .panel.cardtec_node_actions.expand
+    = f.button :submit, 'save', class: 'success radius'

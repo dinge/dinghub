@@ -2,16 +2,21 @@
   @extend .row
 
 .cardtec_property_name
-  height: 1.7rem
+  min-height: 1.7rem
   font-weight: bold
   &:after
     content: ':'
   @extend .small-4
   @extend .columns
 .cardtec_property_value
-  height: 1.7rem
-  @extend .small-7
+  min-height: 1.7rem
+  @extend .small-6
   @extend .columns
+.cardtec_property_actions
+  @extend .small-2
+  @extend .columns
+  .button
+    margin: 0 0.2rem
 
 
 %card-horizontal-definition-list
