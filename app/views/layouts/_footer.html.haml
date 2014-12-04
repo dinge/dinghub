@@ -1,10 +1,11 @@
-%footer
-  %hr
-  .row
-    .columns.small-6
-      Text on left side
-    .columns.small-6
-      %ul.inline-list.right
-        %li= link_to 'FooterLink 1', '#'
-        %li= link_to 'FooterLink 2', root_path
-        %li= link_to 'FooterLink 3', root_path
+- unless browser.mobile?
+  %footer
+    %hr
+    .row
+      .columns.small-6
+        Text on left side
+      .columns.small-6
+        %ul.inline-list.right
+          %li= link_to 'FooterLink 1', '#'
+          %li= link_to 'FooterLink 2', root_path
+          %li= link_to 'FooterLink 3', root_path

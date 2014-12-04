@@ -40,6 +40,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (6.0.0)
+    browser (0.8.0)
     builder (3.2.2)
     capistrano (3.3.3)
       capistrano-stats (~> 1.0.3)
@@ -233,6 +234,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  browser
   capistrano-bundler
   capistrano-rails
   capistrano-rvm

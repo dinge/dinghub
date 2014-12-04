@@ -8,17 +8,4 @@ class Blog::PostsController < Cardtec::NodesController
     @node = Blog::Post.new.to_cardtec_node
   end
 
-
-  def create
-    @node =
-      if yaml = params[:cardtec_node][:yaml]
-        Cardtec::Node.create_from_yaml(yaml)
-      elsif html = params[:cardtec_node][:html]
-        Cardtec::Node.create_from_html(html)
-      end
-
-    redirect_to current_show_path(@node.neo_id)
-  end
-
-
 end

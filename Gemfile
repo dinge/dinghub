@@ -51,6 +51,7 @@ gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'nokogiri'
 # gem 'unicorn'
+gem 'browser' # allows filtering for user agent
 
 
 group :test, :development do

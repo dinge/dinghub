@@ -23,7 +23,10 @@ class Cardtec::NodesController < ApplicationController
         Cardtec::Node.create_from_html(html)
       end
 
-    redirect_to current_show_path(@node.neo_id)
+    respond_to do |format|
+      format.html { redirect_to current_show_path(@node.neo_id) }
+      format.js   { render js: "window.location.pathname = '#{current_show_path(@node.neo_id)}'"}
+    end
   end
 
   def show
@@ -37,7 +40,10 @@ class Cardtec::NodesController < ApplicationController
     elsif html = params[:cardtec_node][:html]
       @node.update_from_html(html)
     end
-    redirect_to current_show_path(@node.neo_id)
+    respond_to do |format|
+      format.html { redirect_to current_show_path(@node.neo_id) }
+      format.js { render js: "window.location.pathname = '#{current_show_path(@node.neo_id)}'"}
+    end
   end
 
   def destroy
