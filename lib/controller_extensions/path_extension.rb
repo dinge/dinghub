@@ -17,7 +17,7 @@ module ControllerExtensions::PathExtension
     current_path_for_action(nil, id)
   end
 
-  def current_path_for_action(action, id = nil)
+  def current_path_for_action(action, id = nil, params = {})
     [current_index_path, action, id].compact.join('/')
   end
 

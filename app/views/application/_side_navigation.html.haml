@@ -6,5 +6,5 @@
   - if side_navigation_items.present?
     - side_navigation_items.each do |item|
       %li
-        %a.button.radius.expand{href: current_path_for_action(:by_container, item)}
+        %a.button.radius.expand{href: current_path_for_action(:filtered, item)}
           = item

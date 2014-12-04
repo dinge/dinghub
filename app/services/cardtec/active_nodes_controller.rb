@@ -1,32 +1,28 @@
 class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
 
-  def index
-    @nodes = model_klass.all
-    init_side_navigation_items
-  end
-
-  def new
-    @node = model_klass.new
-    init_side_navigation_items
-  end
-
-
-  def by_container
-    @nodes = neo4j_query.match(n: params[:container]).return(:n).map(&:n)
-    init_side_navigation_items
-    render :index
-  end
-
 
 
   private
+
+    def init_nodes
+      @nodes = model_klass.all
+    end
 
     def init_node
       @node = model_klass.find_by_neo_id(params[:id])
     end
 
+    def init_new_node
+      @node = model_klass.new
+    end
+
+    def init_filtered_nodes
+      @nodes = neo4j_query.match(n: params[:filter]).where("n:`#{model_klass_name_space}`").return(:n).map(&:n)
+    end
+
+
     def create_node
-      if yaml = params[:cardtec_node][:yaml]
+      @node = if yaml = params[:cardtec_node][:yaml]
         model_klass.ctn.create_from_yaml(yaml)
       elsif html = params[:cardtec_node][:html]
         model_klass.ctn.create_from_html(html)
@@ -58,7 +54,7 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     end
 
     def model_klass
-      model_klass_name.constantize rescue nil
+      model_klass_name.constantize
     end
 
     def model_klass_name_space
