@@ -30,16 +30,16 @@ observe_card_contenteditable_save = () ->
     $(this).closest('.cardtec_property').remove()
 
   add_button = () ->
-    $('<a>').attr(class: 'button radius add-editable-html', href: '#').append(
+    $('<button>').attr(class: 'button radius add-editable-html').append(
       $('<i>').attr(class: "fa fa-plus-circle")
     )
 
   remove_button = () ->
-    $('<a>').attr(class: 'button radius remove-editable-html', href: '#').append(
+    $('<button>').attr(class: 'button radius remove-editable-html').append(
       $('<i>').attr(class: "fa fa-minus-circle")
     )
   button_wrapper = () ->
-    $('<div>').attr(class: '.cardtec_property_actions')
+    $('<div>').attr(class: 'cardtec_property_actions')
 
   property_buttons = () ->
     button_wrapper().append(add_button()).append(remove_button())
