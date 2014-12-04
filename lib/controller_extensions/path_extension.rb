@@ -18,7 +18,8 @@ module ControllerExtensions::PathExtension
   end
 
   def current_path_for_action(action, id = nil, params = {})
-    [current_index_path, action, id.to_param.presence].compact.join('/')
+    id = neo_node_to_param(id) if id.respond_to?(:neo_id)
+    [current_index_path, action, id].compact.join('/')
   end
 
 end

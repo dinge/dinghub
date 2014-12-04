@@ -59,7 +59,8 @@ class Cardtec::CypherNodesController < ApplicationController
     end
 
     def init_node
-      @node = Neo4j::Node.load(params[:id])
+      # @node = neo4j_query.match(:n).where(n: { neo_id: params[:id] }).return(:n).first.n
+      @node = Neo4j::Node.load(params[:id]).neo4j_obj
     end
 
     def init_new_node
@@ -98,13 +99,16 @@ class Cardtec::CypherNodesController < ApplicationController
     end
 
 
-
     def prepend_current_app_as_view_path
       prepend_view_path(Rails.root.join('app/views', controller_path.split('/').first))
     end
 
     def neo4j_query
       Neo4j::Session.query
+    end
+
+    def neo_node_to_param(neo_node)
+      neo_node.neo_id
     end
 
 end

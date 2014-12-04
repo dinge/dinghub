@@ -61,4 +61,8 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
       model_klass_name.split('::').first
     end
 
+    def neo_node_to_param(neo_node)
+      neo_node.to_param
+    end
+
 end
