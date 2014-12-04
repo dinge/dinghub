@@ -9,7 +9,7 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     end
 
     def init_node
-      @node = model_klass.find_by_neo_id(params[:id])
+      @node = model_klass.find(params[:id])
     end
 
     def init_new_node
