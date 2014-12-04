@@ -1,4 +1,4 @@
 .card.tiny-card
   %h5
-    = link_to(current_show_path(node.neo_id)) do
+    = link_to(current_show_path(node)) do
       = (node.title rescue node.neo_id)

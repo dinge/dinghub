@@ -18,8 +18,8 @@ class Cardtec::CypherNodesController < ApplicationController
   def create
     create_node
     respond_to do |format|
-      format.html { redirect_to current_show_path(@node.neo_id) }
-      format.js   { render js: "window.location.pathname = '#{current_show_path(@node.neo_id)}'"}
+      format.html { redirect_to current_show_path(@node) }
+      format.js   { render js: "window.location.pathname = '#{current_show_path(@node)}'"}
     end
   end
 
@@ -32,8 +32,8 @@ class Cardtec::CypherNodesController < ApplicationController
     init_node
     update_node
     respond_to do |format|
-      format.html { redirect_to current_show_path(@node.neo_id) }
-      format.js { render js: "window.location.pathname = '#{current_show_path(@node.neo_id)}'"}
+      format.html { redirect_to current_show_path(@node) }
+      format.js { render js: "window.location.pathname = '#{current_show_path(@node)}'"}
     end
   end
 
@@ -62,7 +62,7 @@ class Cardtec::CypherNodesController < ApplicationController
       @node = Neo4j::Node.load(params[:id])
     end
 
-    def init_new_mode
+    def init_new_node
       @node = Cardtec::Node.new
     end
 

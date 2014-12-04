@@ -5,6 +5,10 @@ module CypherNodeExtension
   end
   alias :ctn :to_cardtec_node
 
+  def to_param
+    neo_id
+  end
+
 end
 
 
