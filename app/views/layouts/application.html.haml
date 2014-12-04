@@ -5,16 +5,14 @@
 
   %body
     = render 'layouts/navigation'
-    .row
-      .columns.small-12
-        = render 'sub_navigation'
+    = render 'sub_navigation'
     .row.spacer
       .row{"data-equalizer" => ""}
         .columns.hashgrid-e4
           = render 'side_navigation'
         .columns.hashgrid-focus{"data-equalizer-watch" => ""}
           = yield
-        .columns.hashgrid-e2
+        .columns.hashgrid-e2{"data-equalizer-watch" => ""}
           = render 'node_controls'
 
   = javascript_include_tag 'application'

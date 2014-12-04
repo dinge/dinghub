@@ -31,6 +31,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    browser (0.8.0)
     builder (3.2.2)
     capistrano (3.3.3)
       capistrano-stats (~> 1.0.3)
@@ -56,7 +57,7 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     colorize (0.7.3)
-    configatron (4.4.0)
+    configatron (4.4.1)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.2)
@@ -212,6 +213,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  browser
   capistrano-bundler
   capistrano-rails
   capistrano-rvm

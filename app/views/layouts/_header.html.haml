@@ -1,2 +1,3 @@
-%header.contain-to-grid
-  = render 'layouts/navigation'
+- unless browser.mobile?
+  %header.contain-to-grid
+    = render 'layouts/navigation'

@@ -6,8 +6,10 @@ class Cardtec::TextDecoder::HtmlDecoder
 
   def to_hash
     props = {}
-    Nokogiri::HTML.fragment(@data).elements.to_a.in_groups_of(2).map do |e|
-      props[e.first.text] = e.last.text.presence
+    Nokogiri::HTML.fragment(@data).css('.cardtec_property').each do |property|
+      property_name = property.css('.cardtec_property_name').first.text.presence
+      property_value = property.css('.cardtec_property_value').first.text.presence
+      props[property_name] = property_value if property_name
     end
     props.with_indifferent_access
   end

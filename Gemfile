@@ -50,8 +50,9 @@ gem 'haml-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'nokogiri'
+# gem 'unicorn'
+gem 'browser' # allows filtering for user agent
 gem 'configatron', require: false
-
 
 
 group :test, :development do

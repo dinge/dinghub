@@ -1,3 +1,19 @@
+.cardtec_property
+  @extend .row
+
+.cardtec_property_name
+  height: 1.7rem
+  font-weight: bold
+  &:after
+    content: ':'
+  @extend .small-4
+  @extend .columns
+.cardtec_property_value
+  height: 1.7rem
+  @extend .small-7
+  @extend .columns
+
+
 %card-horizontal-definition-list
   dl
     margin: 10px 0

@@ -17,7 +17,11 @@ class Cardtec::CypherNodesController < ApplicationController
 
   def create
     @node = create_node
-    redirect_to current_show_path(@node.neo_id)
+
+    respond_to do |format|
+      format.html { redirect_to current_show_path(@node.neo_id) }
+      format.js   { render js: "window.location.pathname = '#{current_show_path(@node.neo_id)}'"}
+    end
   end
 
   def show
@@ -28,7 +32,10 @@ class Cardtec::CypherNodesController < ApplicationController
   def update
     init_node
     update_node
-    redirect_to current_show_path(@node.neo_id)
+    respond_to do |format|
+      format.html { redirect_to current_show_path(@node.neo_id) }
+      format.js { render js: "window.location.pathname = '#{current_show_path(@node.neo_id)}'"}
+    end
   end
 
   def destroy
