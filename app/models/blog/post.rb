@@ -1,20 +1,5 @@
 class Blog::Post < Blog
 
-  property  :title,       type: String
-  property  :body,        type: String
-  property  :image_url,   type: String
-  property  :ident,       type: String
-  property  :created_at
-  property  :updated_at
-
-
-  class << self
-    def to_cardtec_node
-      Cardtec::Node::ActiveNodeClassMethodProxy.new(self)
-    end
-    alias :ctn :to_cardtec_node
-  end
-
 
 end
 

@@ -1,3 +1,3 @@
 class Blog
-  include Neo4j::ActiveNode
+  include Cardtec::ActiveNode
 end

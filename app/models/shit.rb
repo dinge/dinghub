@@ -1,5 +1,3 @@
 module Shit
-  def self.table_name_prefix
-    'shit_'
-  end
+  include Cardtec::ActiveNode
 end
