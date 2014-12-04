@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'modix/concepts#index'
-  # root 'raw_node/nodes#index'
 
   namespace :blog do
     resources :posts do
@@ -15,7 +14,7 @@ Rails.application.routes.draw do
   end
 
 
-  get '/modix', to: redirect('/modix/conceps')
+  get '/modix', to: redirect('/modix/concepts')
   namespace :modix do
     resources :concepts do
       get 'by_container/:container', on: :collection, action: :by_container, as: :by_container
