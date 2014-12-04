@@ -1,0 +1,7 @@
+set :branch, 'master'
+set :rack_env, 'production'
+set :rails_env, 'production'
+
+set :repo_url, 'REPO_URL'
+
+server 'localhost', user: 'live', port: 2222, roles: %w{web app db}
