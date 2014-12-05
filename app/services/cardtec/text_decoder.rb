@@ -50,3 +50,7 @@ class Cardtec::TextDecoder
   # end
 
 end
+
+
+# Hash["a:1, b:2".split(',').map{|x| x.split(':').map(&:strip) }]
+# {"a"=>"1", "b"=>"2"}
