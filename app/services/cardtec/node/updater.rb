@@ -17,7 +17,9 @@ module Cardtec::Node::Updater
     labels = new_props.delete(:labels)
     neo_id = new_props.delete(:neo_id)
 
-    neo_node.props = new_props
+    new_and_old_props = neo_node.props.slice(*Cardtec::Node::PROPERTIES_TO_KEEP).merge(new_props.symbolize_keys)
+
+    neo_node.props = new_and_old_props
     neo_node.set_label(*labels) if labels.present?
   end
 

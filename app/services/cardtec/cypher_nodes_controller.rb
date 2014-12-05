@@ -1,7 +1,5 @@
 class Cardtec::CypherNodesController < ApplicationController
   include ControllerExtensions::PathExtension
-
-  # skip_before_action :verify_authenticity_token # TODO: remove
   before_action :prepend_current_app_as_view_path
 
 

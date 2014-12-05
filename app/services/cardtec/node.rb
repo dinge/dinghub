@@ -20,11 +20,12 @@ class Cardtec::Node
   SYSTEM_PROPERTIES =
     [ :labels,
       :neo_id,
-      :app,
       :uuid,
       :created_at,
       :updated_at,
       :_classname ]
+
+  PROPERTIES_TO_KEEP = PROPERTIES# - [:updated_at, :created_at]
 
 
   delegate :to_yaml, :to_html, :to_param, :to_editable_html, :to_hash, :to_json, to: :text_encoder_instance

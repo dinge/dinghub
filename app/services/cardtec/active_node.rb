@@ -13,6 +13,12 @@ module Cardtec::ActiveNode
     property  :updated_at
   end
 
+  def to_cardtec_node
+    node = persisted? ? neo4j_obj : Cardtec::Node::NullNode.new
+    @cardtec_node ||= Cardtec::Node.new(node, self.class)
+  end
+  alias :ctn :to_cardtec_node
+
 
 
   module ClassMethods
