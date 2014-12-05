@@ -1,5 +1,5 @@
 class Cardtec::CypherNodesController < ApplicationController
-  include ControllerExtensions::PathExtension
+  include CurrentPath
   before_action :prepend_current_app_as_view_path
 
 

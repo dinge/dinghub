@@ -1,4 +1,4 @@
-module ControllerExtensions::PathExtension
+module CurrentPath
   extend ActiveSupport::Concern
 
   included do
