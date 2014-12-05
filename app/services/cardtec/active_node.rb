@@ -1,5 +1,6 @@
 module Cardtec::ActiveNode
   extend ActiveSupport::Concern
+  include GlobalID::Identification
 
   included do
     include Neo4j::ActiveNode

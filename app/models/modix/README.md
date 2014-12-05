@@ -1,73 +1,120 @@
-class Franky
-  has_one  :creator
-  has_many :in_bundles
+class Me::App
+  include Me::NodeTie
+end
+
+module Me::NodeTie
+  include ActiveSupport::Concern
+  included do
+    has_many :contributions
+    # has_many :contributors
+  end
 end
 
 
-class Me
-
+class Me::Actor < Me::App # (Subject) Me
+  has_many :contributions
 end
 
+# class Me::Human < Me::Actor # the
+# end
 
-class Me::Actor # (Subject) Me
-  has_many :creations
-end
+# class Me::Org < Me::Actor # the
+# end
 
-class Me::Org
-end
+# class Me::Bot < Me::Actor # the
+# end
 
-
-
-class Me::Action # (Verb) what can I do
-end
-
-class Me::Statement # (Triple) the stuff I actually do
+class Me::Contribution
   has_one   :actor
-  has_many  :actions
-  has_many  :items
+  has_one   :thing
 end
 
 
+## -----------------------------------------
 
 
 
-class Concept # (Object Concepts)
-  has_many :properties
+class Stater::App
+  # include Maker::NodeTie
+  include Me::NodeTie
+end
+
+
+# module Maker::NodeTie
+#   include ActiveSupport::Concern
+#   # included do
+#   #   has_many :contributors
+#   # end
+# end
+
+
+class Stater::Action < Stater::App  # (Verb) what I possibly can do
+  has_many :statements
+end
+
+class Stater::Statement < Stater::App # (Triple) the stuff I actually do
+  has_one   :actor
+  has_one   :action
+  has_one   :thing
+
+  has_one   :replies_to # statement
+end
+
+## -----------------------------------------
+
+
+class Maker::App
+  Me::NodeTie
+end
+
+class Maker::Concept < Maker::App # (Object Concepts)
+  has_many :traits
   has_many :methods
-  has_many :parents
+  has_many :items
 
-  has_many :item
+  has_many :parents
 end
 
-class Trait # (Property)
+class Maker::Trait # (Property)
   has_many :used_by
 end
 
-class Method # (active Verb from Item) what can the Item do?
+class Maker::Method # (active Verb from Item) what can the Item do?
   has_many :used_by
 end
 
   #- consists_of / is_part_of
 
-class TraitValue # (Propertyvalue)
+class Maker::TraitValue < Maker::App # (Propertyvalue)
 end
 
 
-class Item # () / Thing
+class Maker::Item < Maker::App # () / Thing
   has_many :concepts
 end
 
 
+class Maker::Bundle < Maker::App
+
+end
 
 
 
+class Bundler::App
+    include ActiveSupport::Concern
+    included do
+      has_many :contributors
+    end
+  end
 
-class Bundle
+  include NodeTie
+end
+
+
+class Bundler::Bag < Bundler::App
   has_many :parts
 end
 
-class Facets
-end
 
 
 # Relationships

@@ -1,2 +1,2 @@
-class Blog::Post < Blog
+class Blog::Post < Blog::App
 end

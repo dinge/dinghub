@@ -1,3 +1,3 @@
-class Blog
-  include Cardtec::ActiveNode
+module Blog
+
 end
