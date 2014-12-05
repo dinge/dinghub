@@ -1,7 +1,7 @@
 class Modix::ThingsController < Cardtec::ActiveNodesController
 
-  def index
-    @nodes = Modix::Thing.all
+  def init_side_navigation_items
+    @side_navigation_items = Modix::Concept.all
   end
 
 end
