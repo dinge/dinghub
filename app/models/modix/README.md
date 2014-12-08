@@ -1,10 +1,15 @@
-module
+module App
+
 
 end
 
 module KlassCard
 
 end
+
+
+
+
 
 class Me::App
   include Me::NodeTie
@@ -20,7 +25,7 @@ end
 
 
 class Me::Actor < Me::App # (Subject) Me
-  has_many :contributions
+
 end
 
 # class Me::Human < Me::Actor # the

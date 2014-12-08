@@ -17,15 +17,20 @@
             = link_to 'Concepts', modix_concepts_path
           %li
             = link_to 'Things', modix_things_path
-      %li
-        = link_to 'Institute', blog_posts_path
-      %li
-        = link_to 'RSS', blog_posts_path
-      %li
-        = link_to 'Issues', blog_posts_path
-      %li
-        = link_to 'Ideas', blog_posts_path
-      %li
-        = link_to 'User', blog_posts_path
+      / %li
+      /   = link_to 'Institute', blog_posts_path
+      / %li
+      /   = link_to 'RSS', blog_posts_path
+      / %li
+      /   = link_to 'Issues', blog_posts_path
+      / %li
+      /   = link_to 'Ideas', blog_posts_path
+      %li.has-dropdown
+        = link_to 'Me', me_actors_path
+        %ul.dropdown
+          %li
+            = link_to 'Actors', me_actors_path
+          %li
+            = link_to 'Contributions', me_contributions_path
       %li
         = link_to 'RawNode', raw_node_nodes_path
