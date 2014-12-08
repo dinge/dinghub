@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   after_filter  :empty_current_actor
 
   def init_current_actor
-    Me.current = Me::Actor.first
+    Me.current = Me::Actor.first || Me::Actor.create(title: 'system actor')
   end
 
   def empty_current_actor

@@ -1,2 +1,0 @@
-module Modix::ThingsHelper
-end

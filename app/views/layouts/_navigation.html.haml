@@ -8,8 +8,35 @@
         = link_to "dinghub #{controller.controller_path}", root_path
   %section.top-bar-section
     %ul.right
-      %li
-        = link_to 'Blog', blog_posts_path
+      / %li
+      /   = link_to 'Blog', blog_posts_path
+
+      %li.has-dropdown
+        = link_to 'Maker', maker_concepts_path
+        %ul.dropdown
+          %li
+            = link_to 'Concepts', maker_concepts_path
+          %li
+            = link_to 'Traits', maker_traits_path
+          %li
+            = link_to 'Skills', maker_skills_path
+          %li
+            = link_to 'Bundles', maker_trait_values_path
+          %li
+            = link_to 'Items', maker_items_path
+          %li
+            = link_to 'TraitValue', maker_trait_values_path
+
+
+      %li.has-dropdown
+        = link_to 'Me', me_actors_path
+        %ul.dropdown
+          %li
+            = link_to 'Actors', me_actors_path
+          %li
+            = link_to 'Contributions', me_contributions_path
+
+
       %li.has-dropdown
         = link_to 'Modix', modix_concepts_path
         %ul.dropdown
@@ -25,12 +52,5 @@
       /   = link_to 'Issues', blog_posts_path
       / %li
       /   = link_to 'Ideas', blog_posts_path
-      %li.has-dropdown
-        = link_to 'Me', me_actors_path
-        %ul.dropdown
-          %li
-            = link_to 'Actors', me_actors_path
-          %li
-            = link_to 'Contributions', me_contributions_path
       %li
         = link_to 'RawNode', raw_node_nodes_path

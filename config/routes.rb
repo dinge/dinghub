@@ -19,6 +19,29 @@ Rails.application.routes.draw do
   end
 
 
+  get '/maker', to: redirect('/maker/concepts')
+  namespace :maker do
+    resources :concepts do
+      get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
+    end
+    resources :traits do
+      get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
+    end
+    resources :skills do
+      get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
+    end
+    resources :bundles do
+      get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
+    end
+    resources :items do
+      get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
+    end
+    resources :trait_values do
+      get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
+    end
+  end
+
+
 
 
   get '/modix', to: redirect('/modix/concepts')

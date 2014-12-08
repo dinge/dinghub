@@ -1,2 +1,0 @@
-module Modix::ConceptsHelper
-end
