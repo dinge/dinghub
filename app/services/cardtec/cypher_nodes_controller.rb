@@ -17,7 +17,7 @@ class Cardtec::CypherNodesController < ApplicationController
     create_node
     respond_to do |format|
       format.html { redirect_to current_show_path(@node) }
-      format.js   { render js: "window.location.pathname = '#{current_show_path(@node)}'"}
+      format.js
     end
   end
 
@@ -31,7 +31,7 @@ class Cardtec::CypherNodesController < ApplicationController
     update_node
     respond_to do |format|
       format.html { redirect_to current_show_path(@node) }
-      format.js { render js: "window.location.pathname = '#{current_show_path(@node)}'"}
+      format.js
     end
   end
 

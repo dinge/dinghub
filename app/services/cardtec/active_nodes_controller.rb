@@ -1,5 +1,5 @@
 class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
-
+  helper_method :model_klass_name, :model_klass, :model_klass_name_space
 
 
   private
