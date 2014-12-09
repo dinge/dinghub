@@ -1,6 +1,7 @@
-- unless browser.mobile?
-  %ul.sub-nav.right
-    %li
-      %a{:href => modix_things_path} Things
-    %li
-      %a{:href => modix_concepts_path} Concepts
+- unless browser.mobile? || browser.tablet?
+  .expand.clearfix
+    %ul.cardtec_subnav.right
+      %li
+        %a{:href => modix_things_path} Things
+      %li
+        %a{:href => modix_concepts_path} Concepts

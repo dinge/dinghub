@@ -1,6 +1,7 @@
 class Cardtec::CypherNodesController < ApplicationController
   include CurrentPath
   before_action :prepend_current_app_as_view_path
+  before_filter :init_main_navigation_items
 
 
   def index
@@ -88,6 +89,53 @@ class Cardtec::CypherNodesController < ApplicationController
 
     def destroy_node
       @node.del
+    end
+
+    def init_main_navigation_items
+      @main_navigation_items = [
+        {
+          title: "Blog",
+          controller: Blog::PostsController
+        },
+        {
+          title: "Modix",
+          controller: Modix::ConceptsController,
+          children: [
+            {
+              title: "Concepts",
+              controller: Modix::ConceptsController
+            },
+            {
+              title: "Things",
+              controller: Modix::ThingsController
+            }
+          ]
+        },
+        {
+          title: "Institute",
+          controller: Blog::PostsController
+        },
+        {
+          title: "RSS",
+          controller: Blog::PostsController
+        },
+        {
+          title: "Issues",
+          controller: Blog::PostsController
+        },
+        {
+          title: "Ideas",
+          controller: Blog::PostsController
+        },
+        {
+          title: "User",
+          controller: Blog::PostsController
+        },
+        {
+          title: "RawNode",
+          controller: RawNode::NodesController
+        }
+      ]
     end
 
 

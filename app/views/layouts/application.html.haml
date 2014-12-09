@@ -6,11 +6,11 @@
   %body
     = render 'layouts/navigation'
     = render 'sub_navigation'
-    .row.spacer
+    .row
       .row{"data-equalizer" => ""}
         .columns.hashgrid-e4
           = render 'side_navigation'
-        .columns.hashgrid-focus{"data-equalizer-watch" => ""}
+        .columns.hashgrid-focus.content{"data-equalizer-watch" => ""}
           = yield
         .columns.hashgrid-e2{"data-equalizer-watch" => ""}
           = render 'node_controls'

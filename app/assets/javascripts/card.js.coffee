@@ -1,5 +1,5 @@
 observe_card_contenteditable_save = () ->
-  $(document).on 'click touchend', '.update-editable-html', ->
+  $(document).on 'click', '.update-editable-html', ->
     html_to_save = $('#cardtec_card_html')
     if html_to_save
       path         = window.location.pathname
@@ -8,7 +8,7 @@ observe_card_contenteditable_save = () ->
         data: { cardtec_node: { html: html_to_save.html() } }
         type: 'PUT'
 
-  $(document).on 'click touchend', '.create-editable-html', ->
+  $(document).on 'click', '.create-editable-html', ->
     html_to_save = $('#cardtec_card_html')
     path_elements = window.location.pathname.split('/')
     path_elements.pop()
@@ -19,14 +19,16 @@ observe_card_contenteditable_save = () ->
         data: { cardtec_node: { html: html_to_save.html() } }
         type: 'POST'
 
-  $(document).on 'click touchend', '.add-editable-html', ->
+  $(document).on 'click', '.add-editable-html', (event)->
+    alert(event.type)
+    alert("Add Button touched at "+Date.now())
     current_property = $(this).closest('.cardtec_property')
     new_property = current_property.clone()
     $('.cardtec_property_name', new_property).html("")
     $('.cardtec_property_value', new_property).html("")
     current_property.after(new_property)
 
-  $(document).on 'click touchend', '.remove-editable-html', ->
+  $(document).on 'click', '.remove-editable-html', ->
     $(this).closest('.cardtec_property').remove()
 
   add_button = () ->

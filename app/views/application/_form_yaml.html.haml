@@ -3,7 +3,7 @@
 
 = simple_form_for :cardtec_node, form_options do |f|
   .panel.cardtec_node_actions.expand
-    = f.button :submit, 'save', class: 'success radius'
+    = cardtec_node_actions(nil, nil, (f.button :submit, 'save', class: 'success radius right'))
   = f.text_area :yaml, value: node.ctn.to_yaml, rows: 18, cols: 80
   .panel.cardtec_node_actions.expand
-    = f.button :submit, 'save', class: 'success radius'
+    = cardtec_node_actions(nil, nil, (f.button :submit, 'save', class: 'success radius right'))
