@@ -1,8 +1,8 @@
 - parent_active = item[:children].map{ |c| c[:controller] }.include?(controller.class) ? "active" : ""
 %li.has-dropdown{class: parent_active}
-  = link_to item[:title], controller: class_to_path(item[:controller]), action: (item[:action] || :index).to_s
+  = link_to item[:title], controller: controller_klass_to_path(item[:controller]), action: (item[:action] || :index).to_s
   %ul.dropdown
     - item[:children].each do |child|
       - child_active = child[:controller] == controller.class ? "active" : ""
       %li{class: child_active}
-        = link_to child[:title], controller: class_to_path(child[:controller]), action: (child[:action] || :index).to_s
+        = link_to child[:title], controller: controller_klass_to_path(child[:controller]), action: (child[:action] || :index).to_s
