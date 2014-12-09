@@ -1,5 +1,15 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+
+  before_filter :init_current_actor
+  after_filter  :empty_current_actor
+
+  def init_current_actor
+    Me.current = Me::Actor.first || Me::Actor.create(title: 'system actor')
+  end
+
+  def empty_current_actor
+    Me.current = nil
+  end
+
 end

@@ -1,3 +1,16 @@
+module App
+
+
+end
+
+module KlassCard
+
+end
+
+
+
+
+
 class Me::App
   include Me::NodeTie
 end
@@ -12,7 +25,7 @@ end
 
 
 class Me::Actor < Me::App # (Subject) Me
-  has_many :contributions
+
 end
 
 # class Me::Human < Me::Actor # the
@@ -35,7 +48,6 @@ end
 
 
 class Stater::App
-  # include Maker::NodeTie
   include Me::NodeTie
 end
 
@@ -63,9 +75,20 @@ end
 ## -----------------------------------------
 
 
+
 class Maker::App
-  Me::NodeTie
+  include Maker::NodeTie
+  include Me::NodeTie
 end
+
+
+module Maker::NodeTie
+  include ActiveSupport::Concern
+  included do
+    has_many :bundled_by
+  end
+end
+
 
 class Maker::Concept < Maker::App # (Object Concepts)
   has_many :traits
@@ -74,6 +97,7 @@ class Maker::Concept < Maker::App # (Object Concepts)
 
   has_many :parents
 end
+
 
 class Maker::Trait # (Property)
   has_many :used_by
@@ -86,6 +110,7 @@ end
   #- consists_of / is_part_of
 
 class Maker::TraitValue < Maker::App # (Propertyvalue)
+
 end
 
 
@@ -95,25 +120,26 @@ end
 
 
 class Maker::Bundle < Maker::App
-
+  has_many :things
 end
 
 
 
-class Bundler::App
-    include ActiveSupport::Concern
-    included do
-      has_many :contributors
-    end
-  end
 
-  include NodeTie
-end
+# class Bundler::App
+#     include ActiveSupport::Concern
+#     included do
+#       has_many :contributors
+#     end
+#   end
+
+#   include NodeTie
+# end
 
 
-class Bundler::Bag < Bundler::App
-  has_many :parts
-end
+# class Bundler::Bag < Bundler::App
+#   has_many :parts
+# end
 
 
 

@@ -1,0 +1,10 @@
+= link_to(current_show_path(node)) do
+  %small.left
+    = node.concepts.first.try(:title) || node.labels.last
+    =# node.labels.join(', ')
+  %small.right
+    = node.neo_id
+  %br
+  = (node.ctn.title rescue node.neo_id )
+  %br
+  %small= node.ident rescue ''

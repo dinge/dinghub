@@ -18,7 +18,7 @@ class Cardtec::CypherNodesController < ApplicationController
     create_node
     respond_to do |format|
       format.html { redirect_to current_show_path(@node) }
-      format.js   { render js: "window.location.pathname = '#{current_show_path(@node)}'"}
+      format.js
     end
   end
 
@@ -32,7 +32,7 @@ class Cardtec::CypherNodesController < ApplicationController
     update_node
     respond_to do |format|
       format.html { redirect_to current_show_path(@node) }
-      format.js { render js: "window.location.pathname = '#{current_show_path(@node)}'"}
+      format.js
     end
   end
 
@@ -55,6 +55,8 @@ class Cardtec::CypherNodesController < ApplicationController
 
     def init_nodes
       @nodes = neo4j_query.match(:n).return(:n).map(&:n)
+    rescue NameError
+      @nodes = neo4j_query.match(:n).where("NOT (HAS (n._classname))").return(:n).map(&:n)
     end
 
     def init_node
@@ -94,8 +96,52 @@ class Cardtec::CypherNodesController < ApplicationController
     def init_main_navigation_items
       @main_navigation_items = [
         {
-          title: "Blog",
-          controller: Blog::PostsController
+          title: "Maker",
+          controller: Maker::ConceptsController,
+          children: [
+            {
+              title: "Topics",
+              controller: Maker::TopicsController
+            },
+            {
+              title: "Concepts",
+              controller: Maker::ConceptsController
+            },
+            {
+              title: "Traits",
+              controller: Maker::TraitsController
+            },
+            {
+              title: "Skills",
+              controller: Maker::SkillsController
+            },
+            {
+              title: "Bundles",
+              controller: Maker::BundlesController
+            },
+            {
+              title: "Items",
+              controller: Maker::ItemsController
+            },
+            {
+              title: "TraitValue",
+              controller: Maker::TraitValuesController
+            }
+          ]
+        },
+        {
+          title: "Me",
+          controller: Me::ActorsController,
+          children: [
+            {
+              title: "Actors",
+              controller: Me::ActorsController
+            },
+            {
+              title: "Contributions",
+              controller: Me::ContributionsController
+            }
+          ]
         },
         {
           title: "Modix",
@@ -110,26 +156,6 @@ class Cardtec::CypherNodesController < ApplicationController
               controller: Modix::ThingsController
             }
           ]
-        },
-        {
-          title: "Institute",
-          controller: Blog::PostsController
-        },
-        {
-          title: "RSS",
-          controller: Blog::PostsController
-        },
-        {
-          title: "Issues",
-          controller: Blog::PostsController
-        },
-        {
-          title: "Ideas",
-          controller: Blog::PostsController
-        },
-        {
-          title: "User",
-          controller: Blog::PostsController
         },
         {
           title: "RawNode",

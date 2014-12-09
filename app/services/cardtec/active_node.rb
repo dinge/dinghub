@@ -22,6 +22,22 @@ module Cardtec::ActiveNode
 
 
 
+
+  def relationship_methods
+    methods.grep(/_rels$/)
+  end
+
+  def related_methods
+    relationship_methods.map { |m| m.to_s.gsub(/_rels$/,'').to_sym }
+  end
+
+  def related_nodes
+    Struct.new(*related_methods).new(*related_methods.map { |m| send(m).to_a } )
+  end
+
+
+
+
   module ClassMethods
     def to_cardtec_node
       Cardtec::Node::ActiveNodeClassMethodProxy.new(self)

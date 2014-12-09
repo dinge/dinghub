@@ -19,7 +19,7 @@
 //= require_tree .
 
 $(document).ready(function() {
-    $(document).foundation();
+  $(document).foundation();
 });
 
 
