@@ -1,9 +1,9 @@
 module Cardtec::ActiveNode
   extend  ActiveSupport::Concern
-  include GlobalID::Identification
 
   included do
     include Neo4j::ActiveNode
+    include GlobalID::Identification
     extend ClassMethods
 
     property  :title,       type: String
@@ -12,6 +12,8 @@ module Cardtec::ActiveNode
     property  :ident,       type: String
     property  :created_at
     property  :updated_at
+
+    delegate :relationship_methods, :association_methods, :core_relationship_types, to: :class
   end
 
 
@@ -23,16 +25,6 @@ module Cardtec::ActiveNode
 
 
 
-
-  def relationship_methods
-    # methods.grep(/_rels$/)
-    self.class.associations.keys.map { |a| "#{a}_rels".to_sym }
-  end
-
-  def association_methods
-    # relationship_methods.map { |m| m.to_s.gsub(/_rels$/,'').to_sym }
-    self.class.associations.keys
-  end
 
   def all_related_nodes
     # replace with with cypher query
@@ -47,6 +39,20 @@ module Cardtec::ActiveNode
       Cardtec::Node::ActiveNodeClassMethodProxy.new(self)
     end
     alias :ctn :to_cardtec_node
+
+
+    def relationship_methods
+      associations.keys.map { |a| "#{a}_rels".to_sym }
+    end
+
+    def association_methods
+      associations.keys
+    end
+
+    def core_relationship_types
+      associations.values.map { |a| a.relationship_type }
+    end
+
   end
 
 end
