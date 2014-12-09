@@ -1,10 +1,10 @@
 namespace :test do
   desc "Setup Test Database"
   task setup_test_db: :environment do
-    Rake::Task["neo4j:install"].invoke("community-2.1.5,test")
-    Rake::Task["neo4j:config"].invoke("test,7475")
-    ENV['RAILS_ENV'] = 'test'
-    Rake::Task["neo4j:start"].invoke
+    unless Dir.exists?([Rails.root, "db", "neo4j", "test"].join("/"))
+      Rake::Task["neo4j:install"].invoke("community-2.1.5","test")
+      Rake::Task["neo4j:config"].invoke("test","7475")
+    end
   end
 
   desc "clean test db"

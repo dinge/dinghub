@@ -5,8 +5,6 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
-desc "Run all tests on an empty db"
-task spec: ["test:clean_test_db"] do
+Rake::Task[:spec].enhance ["test:clean_test_db"]
   # this prepends the task "test:clean_test_db" to the spec task
   # see http://www.dan-manges.com/blog/modifying-rake-tasks
-end
