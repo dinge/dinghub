@@ -14,6 +14,7 @@ gem 'spring',        group: :development
 gem 'bcrypt', '~> 3.1.7'
 gem 'foundation-rails'
 gem 'neo4j'
+# gem 'neo4j-cypher'
 gem 'haml-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
