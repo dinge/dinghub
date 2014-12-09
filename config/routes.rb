@@ -21,6 +21,9 @@ Rails.application.routes.draw do
 
   get '/maker', to: redirect('/maker/concepts')
   namespace :maker do
+    resources :topics do
+      get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
+    end
     resources :concepts do
       get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
     end
