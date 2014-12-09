@@ -16,9 +16,6 @@ annotates
 defines
 uses
 
-contributed_to
-contributed
-
 
 -----------
 

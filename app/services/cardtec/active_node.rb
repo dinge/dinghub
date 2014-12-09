@@ -1,5 +1,5 @@
 module Cardtec::ActiveNode
-  extend ActiveSupport::Concern
+  extend  ActiveSupport::Concern
   include GlobalID::Identification
 
   included do
@@ -14,6 +14,7 @@ module Cardtec::ActiveNode
     property  :updated_at
   end
 
+
   def to_cardtec_node
     node = persisted? ? neo4j_obj : Cardtec::Node::NullNode.new
     @cardtec_node ||= Cardtec::Node.new(node, self.class)
@@ -24,15 +25,18 @@ module Cardtec::ActiveNode
 
 
   def relationship_methods
-    methods.grep(/_rels$/)
+    # methods.grep(/_rels$/)
+    self.class.associations.keys.map { |a| "#{a}_rels".to_sym }
   end
 
-  def related_methods
-    relationship_methods.map { |m| m.to_s.gsub(/_rels$/,'').to_sym }
+  def association_methods
+    # relationship_methods.map { |m| m.to_s.gsub(/_rels$/,'').to_sym }
+    self.class.associations.keys
   end
 
-  def related_nodes
-    Struct.new(*related_methods).new(*related_methods.map { |m| send(m).to_a } )
+  def all_related_nodes
+    # replace with with cypher query
+    Struct.new(*association_methods).new(*association_methods.map { |m| send(m).to_a } )
   end
 
 
