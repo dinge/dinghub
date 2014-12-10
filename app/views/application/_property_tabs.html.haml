@@ -1,0 +1,26 @@
+%ul.tabs{"data-tab" => ""}
+  %li.tab-title.active
+    %a{:href => "#edit"}
+      %span.button.radius
+        = fa_icon :columns, text: 'edit'
+  %li.tab-title
+    %a{:href => "#yaml"}
+      %span.button.radius
+        = fa_icon 'file-text-o', text: 'yaml'
+  %li.tab-title
+    %a{:href => "#delete"}
+      %span.button.radius
+        = fa_icon :trash, text: 'delete'
+
+
+.tabs-content
+  #edit.content.active
+    %button.success.radius.right.update-editable-html
+      save
+    %hr
+    = node.ctn.to_editable_html
+  #yaml.content
+    = render 'yaml_form', node: node
+  #delete.content
+    #span.text-center
+      = link_to 'sure?', current_show_path(node), method: :delete, class: 'button alert radius'

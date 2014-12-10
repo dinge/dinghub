@@ -78,11 +78,11 @@ module Cardtec::ActiveNode
 
 
   module ClassMethods
+
     def to_cardtec_node
       Cardtec::Node::ActiveNodeClassMethodProxy.new(self)
     end
     alias :ctn :to_cardtec_node
-
 
     def relationship_methods
       associations.keys.map { |a| "#{a}_rels".to_sym }

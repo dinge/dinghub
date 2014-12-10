@@ -1,4 +1,7 @@
-= link_to(current_show_path(node)) do
+:ruby
+  link_path ||= current_show_path(node)
+
+= link_to(link_path) do
   %small.left
     = node.labels.last
   %small.right

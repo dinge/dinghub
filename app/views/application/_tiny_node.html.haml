@@ -1,4 +1,7 @@
+:ruby
+  link_path ||= current_show_path(node)
+
 .card.tiny-card
   %h5
-    = link_to(current_show_path(node)) do
+    = link_to(link_path) do
       = (node.title rescue node.neo_id)
