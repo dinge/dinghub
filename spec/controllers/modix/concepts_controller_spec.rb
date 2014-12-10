@@ -32,7 +32,7 @@ RSpec.describe Modix::ConceptsController, :type => :controller do
 
   describe "GET show" do
     before do
-      @node =  Cardtec::Node.create_from_html(valid_data)
+      @node =  FactoryGirl.create(:node)
     end
     it "shows a previously created node" do
 
