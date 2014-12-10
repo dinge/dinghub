@@ -1,7 +1,7 @@
 class Cardtec::CypherNodesController < ApplicationController
   include CurrentPath
   before_action :prepend_current_app_as_view_path
-  before_filter :init_main_navigation_items
+  before_action :init_main_navigation_items
 
 
   def index
@@ -56,7 +56,7 @@ class Cardtec::CypherNodesController < ApplicationController
     def init_nodes
       @nodes = neo4j_query.match(:n).return(:n).map(&:n)
     rescue NameError
-      @nodes = neo4j_query.match(:n).where("NOT (HAS (n._classname))").return(:n).map(&:n)
+      @nodes = neo4j_query.match(:n).where('NOT (HAS (n._classname))').return(:n).map(&:n)
     end
 
     def init_node

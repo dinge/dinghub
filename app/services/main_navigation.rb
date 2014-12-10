@@ -2,55 +2,55 @@ class MainNavigation
 
   ITEMS = [
     {
-      title: "Maker",
+      title: 'Maker',
       controller: Maker::ConceptsController,
       children: [
         {
-          title: "Topics",
+          title: 'Topics',
           controller: Maker::TopicsController
         },
         {
-          title: "Concepts",
+          title: 'Concepts',
           controller: Maker::ConceptsController
         },
         {
-          title: "Traits",
+          title: 'Traits',
           controller: Maker::TraitsController
         },
         {
-          title: "Skills",
+          title: 'Skills',
           controller: Maker::SkillsController
         },
         {
-          title: "Bundles",
+          title: 'Bundles',
           controller: Maker::BundlesController
         },
         {
-          title: "Items",
+          title: 'Items',
           controller: Maker::ItemsController
         },
         {
-          title: "TraitValue",
+          title: 'TraitValue',
           controller: Maker::TraitValuesController
         }
       ]
     },
     {
-      title: "Me",
+      title: 'Me',
       controller: Me::ActorsController,
       children: [
         {
-          title: "Actors",
+          title: 'Actors',
           controller: Me::ActorsController
         },
         {
-          title: "Contributions",
+          title: 'Contributions',
           controller: Me::ContributionsController
         }
       ]
     },
     {
-      title: "RawNode",
+      title: 'RawNode',
       controller: RawNode::NodesController
     }
   ]

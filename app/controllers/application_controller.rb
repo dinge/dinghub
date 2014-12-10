@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_filter :init_current_actor
-  after_filter  :empty_current_actor
+  before_action :init_current_actor
+  after_action  :empty_current_actor
 
   def init_current_actor
     Me.current = Me::Actor.first || Me::Actor.create(title: 'system actor')
