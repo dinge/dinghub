@@ -20,8 +20,8 @@ observe_card_contenteditable_save = () ->
         type: 'POST'
 
   $(document).on 'click', '.add-editable-html', (event)->
-    alert(event.type)
-    alert("Add Button touched at "+Date.now())
+    # alert(event.type)
+    # alert("Add Button touched at "+Date.now())
     current_property = $(this).closest('.cardtec_property')
     new_property = current_property.clone()
     $('.cardtec_property_name', new_property).html("")
