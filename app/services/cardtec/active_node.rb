@@ -55,6 +55,10 @@ module Cardtec::ActiveNode
   end
 
 
+  def human_title
+    ctn.title rescue neo_id
+  end
+
 
   module ClassMethods
 

@@ -37,6 +37,12 @@ class Cardtec::Node
     @neo_node, @neo_ruby_klass = neo_node, neo_ruby_klass
   end
 
+
+  def human_title
+    title rescue neo_id
+  end
+
+
   def text_encoder_instance
     Cardtec::TextEncoder.new(neo_node, self)
   end

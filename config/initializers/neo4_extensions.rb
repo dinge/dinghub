@@ -9,6 +9,11 @@ module CypherNodeExtension
     neo_id
   end
 
+  def human_title
+    ctn.title rescue neo_id
+  end
+
+
 end
 
 
