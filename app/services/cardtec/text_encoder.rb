@@ -1,5 +1,4 @@
 class Cardtec::TextEncoder
-
   attr_reader :neo_node, :props
 
   def initialize(neo_node, cardtec_node)
@@ -49,20 +48,3 @@ class Cardtec::TextEncoder
   end
 
 end
-
-
-
-=begin # ouput
----
-labels:
-- :Item
-neo_id: 22
-app: sause
-title: Kerze
-ident: item-44
-uuid: xyz
-color: rot
-height: 35
-weight: 240
-
-=end

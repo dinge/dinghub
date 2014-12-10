@@ -8,10 +8,10 @@ class NodeMock
   end
 
   def props
-    { app:      'sause',
-      title:    'Kerze',
+    { title:    'Kerze',
       ident:    'item-44',
       uuid:     'xyz',
+      body:     'ist aus Wachs',
 
       image_url: 'http://image.url',
       created_at: DateTime.parse('2014-11-24 13:11:22').to_s,

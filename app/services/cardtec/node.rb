@@ -1,5 +1,5 @@
 class Cardtec::Node
-  extend Cardtec::Node::Creater
+  extend  Cardtec::Node::Creater
   include Cardtec::Node::Updater
 
   attr_reader :neo_node, :neo_ruby_klass
