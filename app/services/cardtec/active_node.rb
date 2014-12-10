@@ -47,12 +47,13 @@ module Cardtec::ActiveNode
 
   def prepare_results(query)
     columns = query.response.columns.map(&:to_sym)
-    Struct.new(*columns).new(*columns.map { |c| query.map(&c).compact.uniq } )
+    Struct.new(*columns).new(*columns.map { |c| query.map(&c).compact.uniq })
   end
 
   def notify_to_after_save_listeners
     broadcast(:node_saved, self, Me.current)
   end
+
 
 
   module ClassMethods
@@ -81,11 +82,6 @@ module Cardtec::ActiveNode
   end
 
 end
-
-
-
-
-
 
 
   # def all_related_nodes
