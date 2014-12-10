@@ -1,6 +1,7 @@
 class Cardtec::Node
   extend  Cardtec::Node::Creater
   include Cardtec::Node::Updater
+  include Wisper::Publisher
 
   attr_reader :neo_node, :neo_ruby_klass
 
@@ -44,6 +45,10 @@ class Cardtec::Node
     Cardtec::TextDecoder.new(self)
   end
 
+
+  def notify_to_after_save_listeners
+    broadcast(:node_saved, self, Me.current)
+  end
 
 
   def method_missing(method, *args)

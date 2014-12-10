@@ -4,7 +4,8 @@ module Cardtec::ActiveNode
   included do
     include Neo4j::ActiveNode
     include GlobalID::Identification
-    extend ClassMethods
+    include Wisper::Publisher
+    extend  ClassMethods
 
     property  :title,       type: String
     property  :body,        type: String
@@ -14,6 +15,8 @@ module Cardtec::ActiveNode
     property  :updated_at
 
     delegate :relationship_methods, :association_methods, :core_relationship_types, to: :class
+
+    after_save :notify_to_after_save_listeners
   end
 
 
@@ -29,13 +32,7 @@ module Cardtec::ActiveNode
   end
 
 
-
-  # def all_related_nodes
-  #   # replace with with cypher query
-  #   Struct.new(*association_methods).new(*association_methods.map { |m| send(m).to_a } )
-  # end
-
-
+  # ....
   def all_related_nodes
     related_nodes_matchers = self.class.associations.values.map.with_index
     return_columns = association_methods
@@ -53,28 +50,9 @@ module Cardtec::ActiveNode
     Struct.new(*columns).new(*columns.map { |c| query.map(&c).compact.uniq } )
   end
 
-
- # Maker::Concept.first.toast.send(:clauses).select{|c| c.is_a?(Neo4j::Core::QueryClauses::ReturnClause)}.map{|c| c.instance_variable_get(:@arg) }
-
-  # def toast
-  #   q = neo4j_query.match(n: self.class.name).where(n: { neo_id: neo_id })
-  #   self.class.associations.values.map.with_index do |a, i|
-  #    q = q.break.optional_match("(n)-[r#{i}:#{a.relationship_type}]-(#{a.name})")
-  #   end
-  #   q.return(*[:n, association_methods])
-  # end
-
-  # def toast
-  #   key = self.class.name_without_namespace.downcase.to_sym
-  #   q = neo4j_query.match({key => self.class.name})
-  #   self.class.associations.values.map.with_index do |a, i|
-  #    q = q.break.optional_match("(#{key})-[r#{i}:#{a.relationship_type}]-(#{a.name})")
-  #   end
-  #   q = q.where("ID(#{key}) = {neo_id}")
-  #   q.return(*[key,association_methods].flatten).params(neo_id: neo_id)
-  # end
-
-
+  def notify_to_after_save_listeners
+    broadcast(:node_saved, self, Me.current)
+  end
 
 
   module ClassMethods
@@ -108,6 +86,32 @@ end
 
 
 
+
+
+  # def all_related_nodes
+  #   # replace with with cypher query
+  #   Struct.new(*association_methods).new(*association_methods.map { |m| send(m).to_a } )
+  # end
+
+ # Maker::Concept.first.toast.send(:clauses).select{|c| c.is_a?(Neo4j::Core::QueryClauses::ReturnClause)}.map{|c| c.instance_variable_get(:@arg) }
+
+  # def toast
+  #   q = neo4j_query.match(n: self.class.name).where(n: { neo_id: neo_id })
+  #   self.class.associations.values.map.with_index do |a, i|
+  #    q = q.break.optional_match("(n)-[r#{i}:#{a.relationship_type}]-(#{a.name})")
+  #   end
+  #   q.return(*[:n, association_methods])
+  # end
+
+  # def toast
+  #   key = self.class.name_without_namespace.downcase.to_sym
+  #   q = neo4j_query.match({key => self.class.name})
+  #   self.class.associations.values.map.with_index do |a, i|
+  #    q = q.break.optional_match("(#{key})-[r#{i}:#{a.relationship_type}]-(#{a.name})")
+  #   end
+  #   q = q.where("ID(#{key}) = {neo_id}")
+  #   q.return(*[key,association_methods].flatten).params(neo_id: neo_id)
+  # end
 
 
 

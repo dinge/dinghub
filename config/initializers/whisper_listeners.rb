@@ -1,0 +1,1 @@
+Wisper.subscribe(Me::CreateContributionListener.new)

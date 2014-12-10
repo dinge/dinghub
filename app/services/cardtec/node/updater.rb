@@ -21,6 +21,7 @@ module Cardtec::Node::Updater
 
     neo_node.props = new_and_old_props
     neo_node.set_label(*labels) if labels.present?
+    notify_to_after_save_listeners
   end
 
 

@@ -22,15 +22,15 @@ gem 'nokogiri'
 # gem 'unicorn'
 gem 'browser' # allows filtering for user agent
 #gem 'configatron', require: false
-gem 'globalid'
-
+gem 'wisper'
+# gem 'wisper-activejob'
 
 group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
+  gem 'quiet_assets'
 end
-
 
 group :test, :development do
   gem "factory_girl_rails"

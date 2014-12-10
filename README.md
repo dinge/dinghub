@@ -11,3 +11,11 @@ testing with rspec
 - initially run rake test:setup_test_db to setup the test database
 - run rake neo4j:start[test] to startup the test database, it runs on port 7475
 
+
+
+
+
+
+
+
+Nodify
