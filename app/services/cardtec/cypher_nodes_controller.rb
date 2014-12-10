@@ -94,74 +94,7 @@ class Cardtec::CypherNodesController < ApplicationController
     end
 
     def init_main_navigation_items
-      @main_navigation_items = [
-        {
-          title: "Maker",
-          controller: Maker::ConceptsController,
-          children: [
-            {
-              title: "Topics",
-              controller: Maker::TopicsController
-            },
-            {
-              title: "Concepts",
-              controller: Maker::ConceptsController
-            },
-            {
-              title: "Traits",
-              controller: Maker::TraitsController
-            },
-            {
-              title: "Skills",
-              controller: Maker::SkillsController
-            },
-            {
-              title: "Bundles",
-              controller: Maker::BundlesController
-            },
-            {
-              title: "Items",
-              controller: Maker::ItemsController
-            },
-            {
-              title: "TraitValue",
-              controller: Maker::TraitValuesController
-            }
-          ]
-        },
-        {
-          title: "Me",
-          controller: Me::ActorsController,
-          children: [
-            {
-              title: "Actors",
-              controller: Me::ActorsController
-            },
-            {
-              title: "Contributions",
-              controller: Me::ContributionsController
-            }
-          ]
-        },
-        {
-          title: "Modix",
-          controller: Modix::ConceptsController,
-          children: [
-            {
-              title: "Concepts",
-              controller: Modix::ConceptsController
-            },
-            {
-              title: "Things",
-              controller: Modix::ThingsController
-            }
-          ]
-        },
-        {
-          title: "RawNode",
-          controller: RawNode::NodesController
-        }
-      ]
+      @main_navigation_items = MainNavigation.items
     end
 
 
