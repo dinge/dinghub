@@ -1,3 +1,6 @@
+:ruby
+  all_related_nodes = node.all_related_nodes
+
 %ul.tabs{"data-tab" => ""}
   - node.association_methods.each do |am|
     %li.tab-title
@@ -8,6 +11,6 @@
   - node.association_methods.each do |am|
     .content{id: "related_#{am}"}
       %ul.inline-list
-        - node.all_related_nodes[am].each do |related_node|
+        - all_related_nodes[am].each do |related_node|
           %li
             = render 'small_node', node: related_node, link_path: url_for(related_node)
