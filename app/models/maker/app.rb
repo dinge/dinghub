@@ -5,7 +5,7 @@ class Maker::App
   module Tie
     extend ActiveSupport::Concern
     included do
-      has_many :in, :bundles, model_class: Maker::Bundle, origin: :things
+      has_many :in, :bundles, model_class: 'Maker::Bundle', origin: :things
     end
   end
 
