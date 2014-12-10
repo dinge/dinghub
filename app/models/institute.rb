@@ -1,4 +1,4 @@
-class Institute
-  include Cardtec::ActiveNode
+module Institute
+
 end
 

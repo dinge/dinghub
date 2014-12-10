@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
-  root 'modix/concepts#index'
+  root 'maker/concepts#index'
 
   namespace :raw_node do
+    root 'nodes#index'
     resources :nodes do
       get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
     end
   end
 
 
-  get '/me', to: redirect('/me/actors')
   namespace :me do
+    root 'actors#index'
     resources :actors do
       get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
     end
@@ -18,9 +19,8 @@ Rails.application.routes.draw do
     end
   end
 
-
-  get '/maker', to: redirect('/maker/concepts')
   namespace :maker do
+    root 'concepts#index'
     resources :topics do
       get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
     end
@@ -45,20 +45,8 @@ Rails.application.routes.draw do
   end
 
 
-
-
-  get '/modix', to: redirect('/modix/concepts')
-  namespace :modix do
-    resources :concepts do
-      get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
-    end
-    resources :things do
-      get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
-    end
-  end
-
-  get '/blog', to: redirect('/blog/posts')
   namespace :blog do
+    root 'posts#index'
     resources :posts do
       get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
     end

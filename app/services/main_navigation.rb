@@ -50,20 +50,6 @@ class MainNavigation
       ]
     },
     {
-      title: "Modix",
-      controller: Modix::ConceptsController,
-      children: [
-        {
-          title: "Concepts",
-          controller: Modix::ConceptsController
-        },
-        {
-          title: "Things",
-          controller: Modix::ThingsController
-        }
-      ]
-    },
-    {
       title: "RawNode",
       controller: RawNode::NodesController
     }

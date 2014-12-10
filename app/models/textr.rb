@@ -1,3 +1,2 @@
-class Textr
-  include Cardtec::ActiveNode
+module Textr
 end
