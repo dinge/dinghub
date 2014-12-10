@@ -1,6 +1,10 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
+require 'active_model/railtie'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'action_view/railtie'
+require 'sprockets/railtie'
 require 'neo4j/railtie'
 
 # Require the gems listed in Gemfile, including any gems
@@ -21,9 +25,17 @@ module Dinghub
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.generators do |g|
+      g.orm :neo4j
+    end
+
+
     config.neo4j.session_type = :server_db
     config.neo4j.session_path = 'http://localhost:7474'
 
-    config.autoload_paths += %W(#{config.root}/app #{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/app)
   end
 end
+
+
+

@@ -26,4 +26,8 @@ module CurrentPath
     klass.to_s.underscore.gsub(/_controller/, '')
   end
 
+  # def show_node_path(node)
+  #   node.class.name.pluralize.parameterize('_') << '_path'
+  # end
+
 end

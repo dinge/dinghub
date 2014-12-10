@@ -1,9 +1,9 @@
 module Cardtec::ActiveNode
-  extend ActiveSupport::Concern
-  include GlobalID::Identification
+  extend  ActiveSupport::Concern
 
   included do
     include Neo4j::ActiveNode
+    include GlobalID::Identification
     extend ClassMethods
 
     property  :title,       type: String
@@ -12,7 +12,10 @@ module Cardtec::ActiveNode
     property  :ident,       type: String
     property  :created_at
     property  :updated_at
+
+    delegate :relationship_methods, :association_methods, :core_relationship_types, to: :class
   end
+
 
   def to_cardtec_node
     node = persisted? ? neo4j_obj : Cardtec::Node::NullNode.new
@@ -21,28 +24,82 @@ module Cardtec::ActiveNode
   alias :ctn :to_cardtec_node
 
 
-
-
-  def relationship_methods
-    methods.grep(/_rels$/)
+  def neo4j_query
+    Neo4j::Session.query
   end
 
-  def related_methods
-    relationship_methods.map { |m| m.to_s.gsub(/_rels$/,'').to_sym }
+
+
+  # def all_related_nodes
+  #   # replace with with cypher query
+  #   Struct.new(*association_methods).new(*association_methods.map { |m| send(m).to_a } )
+  # end
+
+
+  def all_related_nodes
+    related_nodes_matchers = self.class.associations.values.map.with_index
+    return_columns = association_methods
+
+    q = neo4j_query.match(n: self.class.name).where(n: { neo_id: neo_id })
+    related_nodes_matchers.each do |a, i|
+     q = q.break.optional_match("(n)-[r#{i}:#{a.relationship_type}]-(#{a.name})")
+    end
+    q = q.return(*[:n, return_columns])
+    prepare_results(q)
   end
 
-  def related_nodes
-    Struct.new(*related_methods).new(*related_methods.map { |m| send(m).to_a } )
+  def prepare_results(query)
+    columns = query.response.columns.map(&:to_sym)
+    Struct.new(*columns).new(*columns.map { |c| query.map(&c).compact.uniq } )
   end
+
+
+ # Maker::Concept.first.toast.send(:clauses).select{|c| c.is_a?(Neo4j::Core::QueryClauses::ReturnClause)}.map{|c| c.instance_variable_get(:@arg) }
+
+  # def toast
+  #   q = neo4j_query.match(n: self.class.name).where(n: { neo_id: neo_id })
+  #   self.class.associations.values.map.with_index do |a, i|
+  #    q = q.break.optional_match("(n)-[r#{i}:#{a.relationship_type}]-(#{a.name})")
+  #   end
+  #   q.return(*[:n, association_methods])
+  # end
+
+  # def toast
+  #   key = self.class.name_without_namespace.downcase.to_sym
+  #   q = neo4j_query.match({key => self.class.name})
+  #   self.class.associations.values.map.with_index do |a, i|
+  #    q = q.break.optional_match("(#{key})-[r#{i}:#{a.relationship_type}]-(#{a.name})")
+  #   end
+  #   q = q.where("ID(#{key}) = {neo_id}")
+  #   q.return(*[key,association_methods].flatten).params(neo_id: neo_id)
+  # end
 
 
 
 
   module ClassMethods
+
     def to_cardtec_node
       Cardtec::Node::ActiveNodeClassMethodProxy.new(self)
     end
     alias :ctn :to_cardtec_node
+
+    def relationship_methods
+      associations.keys.map { |a| "#{a}_rels".to_sym }
+    end
+
+    def association_methods
+      associations.keys
+    end
+
+    def core_relationship_types
+      associations.values.map { |a| a.relationship_type }
+    end
+
+    def name_without_namespace
+      name.split('::').last
+    end
+
   end
 
 end
