@@ -7,5 +7,4 @@ class Me::Contribution < Me::App
     "#{contributor.human_title} contributes to #{thing.human_title}"
   end
 
-
 end

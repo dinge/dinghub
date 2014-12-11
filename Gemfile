@@ -8,7 +8,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',     group: :doc
-gem 'spring',               group: :development
 gem 'bcrypt', '~> 3.1.7'
 gem 'foundation-rails'
 gem 'neo4j'
@@ -22,6 +21,8 @@ gem 'browser'
 #gem 'configatron', require: false
 gem 'wisper'
 # gem 'wisper-activejob'
+gem 'actor_bot_adapters', git: 'git@github.com:megorei/actor_bot_adapters.git'
+gem 'spawno', github: 'megorei/spawno'
 
 group :development do
   gem 'capistrano-rails'
@@ -34,4 +35,5 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'pry-rails'
   gem 'rspec-rails'
+  # gem 'spring'
 end

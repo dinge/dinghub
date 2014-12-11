@@ -60,6 +60,8 @@ module Cardtec::ActiveNode
   end
 
 
+
+
   module ClassMethods
 
     def to_cardtec_node
