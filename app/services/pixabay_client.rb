@@ -8,7 +8,8 @@ class PixabayClient
   end
 
   def self.configuration
-    @configuration ||= CONFIGURATION.new
+    @configuration ||=
+      CONFIGURATION.new(Rails.application.secrets.pixabay['key'], Rails.application.secrets.pixabay['secret'])
   end
 
   def initialize

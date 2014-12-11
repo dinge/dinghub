@@ -7,5 +7,7 @@
     = render 'property_tabs', node: node
     = render 'related_nodes_tabs', node: node
     - if node.image?
-      = image_tag(node.image.url)
+      %span.th
+        = image_tag(node.image.url)
+
 
