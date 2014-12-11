@@ -1,12 +1,17 @@
 :ruby
   link_path ||= current_show_path(node)
 
-.card.small-card
+.card.small-card{class: dom_class(node, :card)}
   .card-header
     %h5
       = render 'small_node_header', node: node, link_path: link_path
   .card-body
-    - if node.image?
-      = link_to(link_path, class: :th) do
-        = image_tag(node.image.url(:small))
-
+    .small-card-image
+      - if node.image?
+        = link_to(link_path, class: :th) do
+          = image_tag(node.image.url(:small))
+  .card-footer
+    %small.left
+      = node.labels.last
+    %small.right
+      = node.neo_id
