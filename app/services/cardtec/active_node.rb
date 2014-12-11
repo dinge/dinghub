@@ -5,7 +5,10 @@ module Cardtec::ActiveNode
     include Neo4j::ActiveNode
     include GlobalID::Identification
     include Wisper::Publisher
+    include Neo4jrb::Paperclip
+    # extend  CarrierWave::Neo4j
     extend  ClassMethods
+
 
     property  :title,       type: String
     property  :body,        type: String
@@ -14,9 +17,15 @@ module Cardtec::ActiveNode
     property  :created_at
     property  :updated_at
 
+
+    has_neo4jrb_attached_file         :image, styles: { small: '80x100' }
+    validates_attachment_content_type :image, content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
+    # mount_uploader :image, ImageUploader
+
     delegate :relationship_methods, :association_methods, :core_relationship_types, to: :class
 
-    after_save :notify_to_after_save_listeners
+    before_create  :set_ident
+    after_save     :notify_to_after_save_listeners
   end
 
 
@@ -48,6 +57,14 @@ module Cardtec::ActiveNode
   def prepare_results(query)
     columns = query.response.columns.map(&:to_sym)
     Struct.new(*columns).new(*columns.map { |c| query.map(&c).compact.uniq })
+  end
+
+  def set_ident
+    self.ident = ident_format
+  end
+
+  def ident_format
+    [self.class, human_title, Time.now.utc.to_f].join('_').parameterize('_')
   end
 
   def notify_to_after_save_listeners

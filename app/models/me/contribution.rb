@@ -3,8 +3,8 @@ class Me::Contribution < Me::App
   has_one :out, :thing, type: :produces, model_class: false
 
 
-  def human_title
-    "#{contributor.human_title} contributes to #{thing.human_title}"
-  end
+  # def human_title
+  #   "#{contributor.human_title} contributes to #{thing.human_title}"
+  # end
 
 end

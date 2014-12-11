@@ -7,4 +7,6 @@
       = render 'small_node_header', node: node, link_path: link_path
     %hr
   .card-body
+    - if node.image?
+      = image_tag(node.image.url(:small), height: 80, width: 110)
 

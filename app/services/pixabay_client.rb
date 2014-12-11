@@ -112,7 +112,7 @@ class PixabayClient
       { username:       PixabayClient.configuration.username,
         key:            PixabayClient.configuration.key,
         search_term:    search_term,
-        image_type:     'all', # "all", "photo", "clipart", "vector"
+        image_type:     'all', # "all", "photo", "clipart", "vector", "illustration"
         min_width:      nil,
         min_height:     nil,
         editors_choice: false,
