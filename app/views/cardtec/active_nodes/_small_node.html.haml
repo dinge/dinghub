@@ -6,9 +6,9 @@
     %h5
       = render 'small_node_header', node: node, link_path: link_path
   .card-body
-    .small-card-image
-      - if node.image?
-        = link_to(link_path, class: :th) do
+    - if node.image?
+      .small-card-image.th
+        = link_to(link_path) do
           = image_tag(node.image.url(:small))
   .card-footer
     %small.left

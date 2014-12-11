@@ -70,23 +70,34 @@
   width:  120px
   padding: 5px
   h5
-    font-size: 0.9em
+    font-size: 0.7em
     text-align: center
 
+.small-card-body
+
+
 .small-card-image
-  @extend .radius
+  position: relative
   width:    110px
-  height:   100px
+  height:   82px
   overflow: hidden
+  // use clip for this
   img
-    width: 100%
+    position: absolute
+    left: 50%
+    top:  50%
+    height: 100%
+    width:  auto
+    -webkit-transform: translate(-50%,-50%)
+    -ms-transform: translate(-50%,-50%)
+    transform: translate(-50%,-50%)
 
 
 .normal-card
-  h5
-    text-align: center
   height: 200px
   width:  150px
+  h5
+    text-align: center
 
 // .large-card
 
@@ -97,12 +108,18 @@
 
 
 .card_maker_concept
-  // background-color: $color-secondary-1-3
-  background-color: $color-secondary-1-2
+  background-color: fade-out($color-secondary-1-2, 0.4)
+  .card-body
+    // background-color: $color-secondary-1-3
+    background-color: $color-secondary-1-2
 
 .card_me_actor
-  background-color: $color-primary-2
+  background-color: fade-out($color-primary-2, 0.4)
+  .card-body
+    background-color: $color-primary-2
 
 .card_me_contribution
-  background-color: $color-complement-0
+  background-color: fade-out($color-complement-0, 0.4)
+  .card-body
+    background-color: $color-complement-0
 
