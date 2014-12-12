@@ -1,7 +1,7 @@
 namespace :test do
   desc "Setup Test Database"
   task setup_test_db: :environment do
-    unless Dir.exists?([Rails.root, "db", "neo4j", "test"].join("/"))
+    unless Dir.exists?(Rails.root.join("db", "neo4j", "test"))
       Rake::Task["neo4j:install"].invoke("community-2.1.5","test")
       Rake::Task["neo4j:config"].invoke("test","7475")
     end

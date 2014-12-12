@@ -5,4 +5,4 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
-Rake::Task[:spec].enhance ["test:clean_test_db"]
+# Rake::Task[:spec].enhance ["test:clean_test_db"]

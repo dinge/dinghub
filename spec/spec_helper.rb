@@ -14,6 +14,11 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+require 'rails_helper'
+require 'support/helpers'
+
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -82,4 +87,15 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  config.before(:suite) do
+    # start_neo4j_test_database
+  end
+
+  config.after(:suite) do
+    stop_neo4j_test_database
+    reset_neo4j_test_database
+    start_neo4j_test_database
+  end
+
 end
