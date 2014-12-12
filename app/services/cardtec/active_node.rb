@@ -43,8 +43,11 @@ module Cardtec::ActiveNode
 
 
   def all_related_nodes
-    # replace with with cypher query
-    Struct.new(*association_methods).new(*association_methods.map { |m| send(m).to_a } )
+    data_arrays = association_methods.map do |m|
+      value = send(m)
+      value.try(:to_a) || [value]
+    end
+    Struct.new(*association_methods).new(*data_arrays)
   end
 
   # ....
