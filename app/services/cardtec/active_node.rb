@@ -29,6 +29,7 @@ module Cardtec::ActiveNode
   end
 
 
+
   def to_cardtec_node
     node = persisted? ? neo4j_obj : Cardtec::Node::NullNode.new
     @cardtec_node ||= Cardtec::Node.new(node, self.class)

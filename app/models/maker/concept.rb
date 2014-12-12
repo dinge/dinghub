@@ -5,4 +5,5 @@ class Maker::Concept < Maker::App
   has_many :in,  :items,  model_class: Maker::Item,  origin: :concepts
 
   # has_many :parents
+
 end
