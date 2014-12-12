@@ -5,7 +5,7 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
   private
 
     def init_nodes
-      @nodes = model_klass.all
+      @nodes = model_klass.all.order('n.updated_at DESC')
     end
 
     def init_node
