@@ -4,7 +4,7 @@
 .card.small-card{class: dom_class(node, :card)}
   .card-header
     %h5
-      = render 'small_node_header', node: node, link_path: link_path
+      = render 'small_card_header', node: node, link_path: link_path
   .card-body
     - if node.image?
       .small-card-image.th

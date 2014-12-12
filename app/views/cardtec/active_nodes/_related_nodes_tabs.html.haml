@@ -16,10 +16,10 @@
     %ul.inline-list
       - all_related_nodes.values.flatten.each do |related_node|
         %li
-          = render 'small_node', node: related_node, link_path: url_for(related_node)
+          = render 'small_card', node: related_node, link_path: url_for(related_node)
   - node.association_methods.each do |am|
     .content{id: "related_#{am}"}
       %ul.inline-list
         - all_related_nodes[am].each do |related_node|
           %li
-            = render 'small_node', node: related_node, link_path: url_for(related_node)
+            = render 'small_card', node: related_node, link_path: url_for(related_node)
