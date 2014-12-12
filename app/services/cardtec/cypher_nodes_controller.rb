@@ -55,8 +55,8 @@ class Cardtec::CypherNodesController < ApplicationController
 
     def init_nodes
       @nodes = neo4j_query.match(:n).return(:n).map(&:n)
-    rescue NameError
-      @nodes = neo4j_query.match(:n).where('NOT (HAS (n._classname))').return(:n).map(&:n)
+    # rescue NameError
+    #   @nodes = neo4j_query.match(:n).where('NOT (HAS (n._classname))').return(:n).map(&:n)
     end
 
     def init_node
