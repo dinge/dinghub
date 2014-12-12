@@ -2,7 +2,7 @@
   side_navigation_items ||= @side_navigation_items
 
 %ul.side-nav
-  - if side_navigation_items.present?
+  - if side_navigation_items.map.present?
     - side_navigation_items.each do |item|
       %li
         %a.button.radius.expand{href: current_show_path(item)}

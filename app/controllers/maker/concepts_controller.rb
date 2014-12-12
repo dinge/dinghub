@@ -1,7 +1,9 @@
 class Maker::ConceptsController < Cardtec::ActiveNodesController
 
   def init_side_navigation_items
-    @side_navigation_items = Maker::Concept.all
+    # binding.pry
+    # @side_navigation_items = model_klass.all.order('n.updated_at DESC')
+    @side_navigation_items = model_klass.all.order('n.title DESC')
   end
 
   # def init_filtered_nodes
