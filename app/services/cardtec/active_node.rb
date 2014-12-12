@@ -22,7 +22,7 @@ module Cardtec::ActiveNode
     validates_attachment_content_type :image, content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
     # mount_uploader :image, ImageUploader
 
-    delegate :relationship_methods, :association_methods, :core_relationship_types, to: :class
+    delegate :relationship_methods, :association_methods, :raw_relationship_types, to: :class
 
     before_create  :set_ident
     after_save     :notify_to_after_save_listeners
@@ -103,7 +103,7 @@ module Cardtec::ActiveNode
       associations.keys
     end
 
-    def core_relationship_types
+    def raw_relationship_types
       associations.values.map { |a| a.relationship_type }
     end
 
