@@ -4,6 +4,6 @@ class Maker::Concept < Maker::App
 
   has_many :in,  :items,  model_class: Maker::Item,  origin: :concepts
 
-  # has_many :parents
-
+  has_many :out, :parents,  model_class: Maker::Concept, type: :is_a
+  has_many :in,  :children, model_class: Maker::Concept, origin: :parents
 end

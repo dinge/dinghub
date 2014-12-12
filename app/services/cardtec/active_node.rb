@@ -42,23 +42,28 @@ module Cardtec::ActiveNode
   end
 
 
-  # ....
   def all_related_nodes
-    related_nodes_matchers = self.class.associations.values.map.with_index
-    return_columns = association_methods
-
-    q = neo4j_query.match(n: self.class.name).where(n: { neo_id: neo_id })
-    related_nodes_matchers.each do |a, i|
-     q = q.break.optional_match("(n)-[r#{i}:#{a.relationship_type}]-(#{a.name})")
-    end
-    q = q.return(*[:n, return_columns])
-    prepare_results(q)
+    # replace with with cypher query
+    Struct.new(*association_methods).new(*association_methods.map { |m| send(m).to_a } )
   end
 
-  def prepare_results(query)
-    columns = query.response.columns.map(&:to_sym)
-    Struct.new(*columns).new(*columns.map { |c| query.map(&c).compact.uniq })
-  end
+  # ....
+  # def all_related_nodes
+  #   related_nodes_matchers = self.class.associations.values.map.with_index
+  #   return_columns = association_methods
+
+  #   q = neo4j_query.match(n: self.class.name).where(n: { neo_id: neo_id })
+  #   related_nodes_matchers.each do |a, i|
+  #    q = q.break.optional_match("(n)-[r#{i}:#{a.relationship_type}]-(#{a.name})")
+  #   end
+  #   q = q.return(*[:n, return_columns])
+  #   prepare_results(q)
+  # end
+
+  # def prepare_results(query)
+  #   columns = query.response.columns.map(&:to_sym)
+  #   Struct.new(*columns).new(*columns.map { |c| query.map(&c).compact.uniq })
+  # end
 
   def set_ident
     self.ident = ident_format
