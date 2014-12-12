@@ -1,0 +1,14 @@
+:ruby
+  link_path ||= current_show_path(node)
+
+.card.tiny-card{class: dom_class(node, :card)}
+  .card-header
+    %h5
+      = link_to(link_path) do
+        = node.human_title
+  .card-body
+    - if node.image?
+      .tiny-card-image
+        = link_to(link_path) do
+          = image_tag(node.image.url(:tiny))
+

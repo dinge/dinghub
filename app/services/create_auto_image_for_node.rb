@@ -2,7 +2,7 @@ class CreateAutoImageForNode
 
   def node_saved(node, me_current)
     node_klass = node.try(:neo_ruby_klass) || node.class
-    if node_klass == Maker::Concept && node.respond_to?(:image) && !node.image?
+    if node.is_a?(Maker::App) && node.respond_to?(:image) && !node.image?
       if (result = PixabayClient.new.request(node.title, per_page: 100)).valid?
         if result.images.present?
           node.image = result.images.shuffle.first.webformat_url
@@ -19,11 +19,11 @@ class CreateAutoImageForNode
       if (result = PixabayClient.new.request(node.title, per_page: 100)).valid?
         if result.images.present?
           node.image = result.images.shuffle.first.webformat_url
-          puts node.image
           node.save
         end
       end
     end
+    nil
   end
 
 end

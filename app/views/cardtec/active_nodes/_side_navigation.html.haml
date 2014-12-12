@@ -1,9 +1,8 @@
 :ruby
   side_navigation_items ||= @side_navigation_items
 
-%ul.side-nav
+%ul.inline-list.cards
   - if side_navigation_items.map.present?
-    - side_navigation_items.each do |item|
+    - side_navigation_items.each do |node|
       %li
-        %a.button.radius.expand{href: current_show_path(item)}
-          = item.human_title
+        = render 'tiny_card', node: node

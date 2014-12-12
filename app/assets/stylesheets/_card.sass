@@ -45,24 +45,43 @@
     outline: 1px dotted $primary-color
 
 
+.cards
+  li
+    margin-left: 0.7rem
+
 .card
   background-color: $white
-
   @extend .panel
   @extend .radius
+  border-radius: 5px
   // @extend %card-horizontal-definition-list
   @extend %card-contenteditable
   border 30px
 
 .tiny-card
-  height: 20px
-  width:  80px
+  height:     80px
+  min-width:  50px
   padding: 5px
   h5
     font-size: 0.5em
     text-align: center
+    margin-bottom: 0.2rem
 
 
+.tiny-card-image
+  position: relative
+  // width:    110px
+  height:   40px
+  overflow: hidden
+  img
+    position: absolute
+    left: 50%
+    top:  50%
+    height: 100%
+    width:  auto
+    -webkit-transform:  translate(-50%,-50%)
+    -ms-transform:      translate(-50%,-50%)
+    transform:          translate(-50%,-50%)
 
 
 .small-card
@@ -74,7 +93,6 @@
     text-align: center
 
 .small-card-body
-
 
 .small-card-image
   position: relative
@@ -88,10 +106,9 @@
     top:  50%
     height: 100%
     width:  auto
-    -webkit-transform: translate(-50%,-50%)
-    -ms-transform: translate(-50%,-50%)
-    transform: translate(-50%,-50%)
-
+    -webkit-transform:  translate(-50%,-50%)
+    -ms-transform:      translate(-50%,-50%)
+    transform:          translate(-50%,-50%)
 
 .normal-card
   height: 200px
@@ -110,7 +127,6 @@
 .card_maker_concept
   background-color: fade-out($color-secondary-1-2, 0.4)
   .card-body
-    // background-color: $color-secondary-1-3
     background-color: $color-secondary-1-2
 
 .card_me_actor
