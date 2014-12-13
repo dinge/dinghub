@@ -46,10 +46,15 @@ ul.cards
   // @extend %card-horizontal-definition-list
   @extend %card-contenteditable
   border 30px
+  .card-header
+    @extend .radius
+  .card-body
+    @extend .radius
+  .card-footer
+    @extend .radius
   img
     @extend .th
     @extend .radius
-
   .tabs
     .tab-title
       a
@@ -114,6 +119,10 @@ ul.cards
 
 .card_maker_concept
   background-color: $color-secondary-1-2
+  // .card-header
+  //   background-color: $color-secondary-1-2
+  // .card-body
+  //   background-color: $color-secondary-1-2
 
 .card_me_actor
   background-color: $color-primary-2

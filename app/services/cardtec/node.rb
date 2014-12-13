@@ -34,7 +34,7 @@ class Cardtec::Node
       :image_file_size,
       :image_updated_at ]
 
-  PROPERTIES_TO_KEEP = PROPERTIES# - [:updated_at, :created_at]
+  PROPERTIES_TO_KEEP = SYSTEM_PROPERTIES# - [:updated_at, :created_at]
 
 
   delegate :to_yaml, :to_html, :to_param, :to_editable_html, :to_hash, :to_json, to: :text_encoder_instance
