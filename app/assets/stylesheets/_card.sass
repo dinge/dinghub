@@ -3,6 +3,7 @@
     padding: 2px
     outline: 1px dotted $gainsboro
 
+
   [contenteditable="true"]:hover
     outline: 1px dotted $primary-color
 
@@ -17,7 +18,7 @@
 %crop-image // maybe use clip for this
   @extend .th
   @extend .radius
-  border-width: 5px
+  border-width: 1px
 
   position: absolute
   left:     50%
@@ -39,18 +40,19 @@ ul.cards
 
 
 .card
-  background-color: $white
+  // background-color: $white
   @extend .panel
   @extend .radius
   // @extend %card-horizontal-definition-list
   @extend %card-contenteditable
-  border 30px
   .card-header
     @extend .radius
   .card-body
     @extend .radius
   .card-footer
     @extend .radius
+  a
+    color: $black
   img
     @extend .th
     @extend .radius
@@ -65,8 +67,10 @@ ul.cards
   min-width:  50px
   padding:    2px 4px
   margin:     2px
+  border-radius: 3px
   h5
     font-size: 0.5em
+    font-weight: 900
     text-align: center
     margin-bottom: 0.2rem
   .main-image
@@ -74,25 +78,25 @@ ul.cards
     // width:    110px
     height:   40px
     .th
-      border-width: 2px
-
+      border-width: 1px
+      border-radius: 3px
 
 
 .small-card
   // @include inset-shadow()
-
   height: 150px
   width:  120px
   padding: 5px
   h5
-    font-size: 0.7em
+    font-size: 0.8em
+    font-weight: 900
     text-align: center
   .main-image
     @extend %crop-image-container
     width:    110px
     height:   82px
     .th
-      border-width: 3px
+      border-width: 1px
 
 
 
@@ -104,6 +108,9 @@ ul.cards
 
 
 .large-card
+  h3
+    font-size: 3em
+    font-weight: 900
   .card-header
   .main-image
     @extend %crop-image-container
@@ -120,6 +127,7 @@ ul.cards
 
 .card_maker_concept
   background-color: $color6
+
   // .card-header
   //   background-color: $color-secondary-1-2
   // .card-body
@@ -135,13 +143,11 @@ ul.cards
 
 
 .cardtec_property
+  @extend .radius
   // @extend .row
 
 .cardtec_property_name
-  min-height: 1.7rem
   font-weight: bold
-  // &:after
-  //   content: ':'
   @extend .small-4
   @extend .columns
 
