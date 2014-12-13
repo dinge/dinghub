@@ -1,12 +1,6 @@
 :ruby
   form_options = node.persisted? ? { method: :put } : { method: :post, url: raw_node_nodes_path }
 
-
 = simple_form_for :cardtec_node, form_options do |f|
-  .panel.cardtec_node_actions.expand
-    = cardtec_node_actions(nil, nil, (f.button :submit, 'save', class: 'success radius right'))
-
+  = trio_panel('edit yaml', nil, f.button(:submit, 'save', class: 'success radius right'))
   = f.text_area :yaml, value: node.ctn.to_yaml, rows: 18, cols: 80
-
-  .panel.cardtec_node_actions.expand
-    = cardtec_node_actions(nil, nil, (f.button :submit, 'save', class: 'success radius right'))

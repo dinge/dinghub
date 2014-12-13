@@ -1,7 +1,18 @@
 module ApplicationHelper
 
-  def cardtec_node_actions(left = nil, center = nil, right = nil)
-    render 'node_actions', left: left, center: center, right: right
+  def trio_panel(left = nil, center = nil, right = nil)
+    content_tag(:div, class: :trio_panel) do
+      content_tag(:div, left,   class: :left) <<
+      content_tag(:div, center, class: :center) <<
+      content_tag(:div, right,  class: :right)
+    end
+  end
+
+  def duo_panel(left = nil, right = nil)
+    content_tag(:div, class: :duo_panel) do
+      content_tag(:div, left,   class: :left) <<
+      content_tag(:div, right,  class: :right)
+    end
   end
 
   def only_on_desktop_screen(&block)
@@ -9,43 +20,3 @@ module ApplicationHelper
   end
 
 end
-
-
-
-# first_action do
-
-
-# end.second_action do
-
-
-# end.third_action do
-
-
-# end
-
-
-
-
-
-    # = panel do |p|
-    #   = (f.button :submit, 'save', class: 'success radius right')
-    #   - p.split
-
-
-# - first_action do
-#   #search
-
-# - second_action do
-#   #paginator
-
-# - third_action do
-#   #actions
-
-
-
-# .columns.small-4
-#   = left if left.present?
-# .columns.small-4
-#   = center if center.present?
-# .columns.small-4
-#   = right if right.present?

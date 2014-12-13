@@ -1,41 +1,3 @@
-.cardtec_property
-  @extend .row
-
-.cardtec_property_name
-  min-height: 1.7rem
-  font-weight: bold
-  // &:after
-  //   content: ':'
-  @extend .small-4
-  @extend .columns
-.cardtec_property_value
-  min-height: 1.7rem
-  @extend .small-6
-  @extend .columns
-.cardtec_property_actions
-  @extend .small-2
-  @extend .columns
-  .button
-    margin: 0 0.2rem
-    background-color: fade-out($primary-color, 0.8)
-    &:hover
-      background-color: $primary-color
-
-// currently not in use
-// %card-horizontal-definition-list
-//   dl
-//     margin: 10px 0
-//   dt
-//     margin: 0 0 0px 0
-//     float: left
-//     clear: left
-//     width: 39%
-//   dd
-//     float: left
-//     width: 59%
-//     margin: 0 0 0px 0
-
-
 %card-contenteditable
   [contenteditable="true"]
     padding: 2px
@@ -45,9 +7,24 @@
     outline: 1px dotted $primary-color
 
 
+%crop-image // maybe use clip for this
+  position: absolute
+  left:     50%
+  top:      50%
+  height:   100%
+  width:    auto
+  -webkit-transform:  translate(-50%,-50%)
+  -ms-transform:      translate(-50%,-50%)
+  transform:          translate(-50%,-50%)
+
+
 .cards
   li
-    margin-left: 0.7rem
+    margin: 0.2rem
+
+ul.cards
+  margin-left: 0.8rem
+
 
 .card
   background-color: $white
@@ -67,7 +44,7 @@
   height:     65px
   min-width:  50px
   padding:    2px 4px
-  margin:    2px
+  margin:     2px
   h5
     font-size: 0.5em
     text-align: center
@@ -80,14 +57,7 @@
   height:   40px
   overflow: hidden
   img
-    position: absolute
-    left: 50%
-    top:  50%
-    height: 100%
-    width:  auto
-    -webkit-transform:  translate(-50%,-50%)
-    -ms-transform:      translate(-50%,-50%)
-    transform:          translate(-50%,-50%)
+    @extend %crop-image
 
 
 .small-card
@@ -98,23 +68,18 @@
     font-size: 0.7em
     text-align: center
 
+
 .small-card-body
+
 
 .small-card-image
   position: relative
   width:    110px
   height:   82px
   overflow: hidden
-  // use clip for this
   img
-    position: absolute
-    left: 50%
-    top:  50%
-    height: 100%
-    width:  auto
-    -webkit-transform:  translate(-50%,-50%)
-    -ms-transform:      translate(-50%,-50%)
-    transform:          translate(-50%,-50%)
+    @extend %crop-image
+
 
 .normal-card
   height: 200px
@@ -131,17 +96,58 @@
 
 
 .card_maker_concept
-  background-color: fade-out($color-secondary-1-2, 0.4)
-  .card-body
-    background-color: $color-secondary-1-2
+  background-color: $color-secondary-1-2
 
 .card_me_actor
-  background-color: fade-out($color-primary-2, 0.4)
-  .card-body
-    background-color: $color-primary-2
+  background-color: $color-primary-2
 
 .card_me_contribution
-  background-color: fade-out($color-complement-0, 0.4)
-  .card-body
-    background-color: $color-complement-0
+  background-color: $color-complement-0
+
+
+
+
+.cardtec_property
+  // @extend .row
+
+.cardtec_property_name
+  min-height: 1.7rem
+  font-weight: bold
+  // &:after
+  //   content: ':'
+  @extend .small-4
+  @extend .columns
+
+.cardtec_property_value
+  min-height: 1.7rem
+  @extend .small-6
+  @extend .columns
+
+.cardtec_property_actions
+  @extend .small-2
+  @extend .columns
+  .button
+    margin: 0 0.2rem
+    background-color: fade-out($primary-color, 0.8)
+    &:hover
+      background-color: $primary-color
+
+
+
+
+
+
+// currently not in use
+// %card-horizontal-definition-list
+//   dl
+//     margin: 10px 0
+//   dt
+//     margin: 0 0 0px 0
+//     float: left
+//     clear: left
+//     width: 39%
+//   dd
+//     float: left
+//     width: 59%
+//     margin: 0 0 0px 0
 

@@ -1,15 +1,52 @@
 .spacer
   margin-top: 0.3rem
 
-.cardtec_node_actions
-  padding: 0.3rem
-  margin-bottom: 0.5rem !important
-  @extend .row
-  @extend .clearfix
 
 .content
   padding-top: rem-calc(14)
-.cardtec_subnav
+
+
+.sub_navigation
   margin-bottom: rem-calc(-14)
   @extend .sub-nav
 
+// .inline-list
+  // margin-left: 1.22222rem
+
+
+.trio_panel
+  @extend .panel
+  @extend .expand
+  padding: 0.3rem
+  margin-bottom: 0.5rem !important
+  // @extend .row
+  @extend .clearfix
+  .left
+    text-align: left
+    @extend .columns
+    @extend .small-4
+  .center
+    text-align: center
+    @extend .columns
+    @extend .small-4
+  .right
+    text-align: right
+    @extend .columns
+    @extend .small-4
+
+
+.duo_panel
+  @extend .panel
+  @extend .expand
+  padding: 0.3rem
+  margin-bottom: 0.5rem !important
+  // @extend .row
+  @extend .clearfix
+  .left
+    text-align: left
+    @extend .columns
+    @extend .small-6
+  .right
+    text-align: right
+    @extend .columns
+    @extend .small-6

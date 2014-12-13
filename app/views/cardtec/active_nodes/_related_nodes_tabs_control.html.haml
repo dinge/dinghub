@@ -1,0 +1,9 @@
+%ul.side-nav{'data-tab' => ''}
+  %li.active
+    %a.button.radius.expand{:href => '#all_related'}
+      %strong
+        related nodes
+  - @node.association_methods.each do |am|
+    %li
+      %a.button.radius.expand{:href => "#related_#{am}"}
+        = am

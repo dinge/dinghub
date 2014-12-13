@@ -4,5 +4,4 @@ class Me::ContributionsController < Cardtec::ActiveNodesController
     @side_navigation_items = []
   end
 
-
 end

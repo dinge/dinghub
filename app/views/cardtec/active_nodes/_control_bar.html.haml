@@ -1,0 +1,9 @@
+= render 'card_controls'
+- if @node && @node.persisted?
+  = render 'property_tabs_control'
+  = render 'related_nodes_tabs_control'
+
+  %ul.side-nav{'data-tab' => ''}
+    %li
+      %a.button.radius.expand{:href => '#images'}
+        images

@@ -1,0 +1,23 @@
+:ruby
+  link_path ||= current_show_path(node)
+
+%small.left
+  = node.labels.join(', ')
+%small.right
+  = node.neo_id
+%br
+
+.duo_panel
+  .left
+    %h3
+      = node.human_title
+    %ul.no-bullet
+      %li
+        %small= node.ident
+      %li
+        %small= node.created_at
+      %li
+        %small= node.updated_at
+
+  .right
+    = image_tag(node.image.url(:larger), class: :th) if node.image?

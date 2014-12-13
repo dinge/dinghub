@@ -1,13 +1,10 @@
-.card.large-card
+.card.large-card{class: dom_class(node, :card)}
   .card-header
-    %h2
-      = render 'card_header', node: node
+    = render 'large_card_header', node: node
     %hr
   .card-body
-    = render 'property_tabs', node: node
-    = render 'related_nodes_tabs', node: node
-    - if node.image?
-      %span.th
-        = image_tag(node.image.url)
-
+    .tabs-content
+      = render 'property_tabs', node: node
+      = render 'related_nodes_tabs', node: node
+      = render 'images_tab', node: node
 
