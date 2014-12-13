@@ -7,7 +7,18 @@
     outline: 1px dotted $primary-color
 
 
+
+%crop-image-container
+  position: relative
+  overflow: hidden
+  img
+    @extend %crop-image
+
 %crop-image // maybe use clip for this
+  @extend .th
+  @extend .radius
+  border-width: 5px
+
   position: absolute
   left:     50%
   top:      50%
@@ -16,6 +27,7 @@
   -webkit-transform:  translate(-50%,-50%)
   -ms-transform:      translate(-50%,-50%)
   transform:          translate(-50%,-50%)
+
 
 
 .cards
@@ -30,10 +42,14 @@ ul.cards
   background-color: $white
   @extend .panel
   @extend .radius
-  border-radius: 5px
+  border-radius: 3px
   // @extend %card-horizontal-definition-list
   @extend %card-contenteditable
   border 30px
+  img
+    @extend .th
+    @extend .radius
+
   .tabs
     .tab-title
       a
@@ -49,15 +65,13 @@ ul.cards
     font-size: 0.5em
     text-align: center
     margin-bottom: 0.2rem
+  .main-image
+    @extend %crop-image-container
+    // width:    110px
+    height:   40px
+    .th
+      border-width: 2px
 
-
-.tiny-card-image
-  position: relative
-  // width:    110px
-  height:   40px
-  overflow: hidden
-  img
-    @extend %crop-image
 
 
 .small-card
@@ -67,18 +81,13 @@ ul.cards
   h5
     font-size: 0.7em
     text-align: center
+  .main-image
+    @extend %crop-image-container
+    width:    110px
+    height:   82px
+    .th
+      border-width: 3px
 
-
-.small-card-body
-
-
-.small-card-image
-  position: relative
-  width:    110px
-  height:   82px
-  overflow: hidden
-  img
-    @extend %crop-image
 
 
 .normal-card
@@ -87,14 +96,17 @@ ul.cards
   h5
     text-align: center
 
-.large-card
 
+.large-card
   .card-header
-    img
-      max-height: 300px
+  .main-image
+    @extend %crop-image-container
+    width:    300px
+    height:   240px
 
 
 // .huge-card
+
 
 
 

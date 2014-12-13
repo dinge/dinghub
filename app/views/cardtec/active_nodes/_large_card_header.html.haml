@@ -1,10 +1,11 @@
 :ruby
   link_path ||= current_show_path(node)
 
-%small.left
-  = node.labels.join(', ')
-%small.right
-  = node.neo_id
+.info-line
+  %small.left
+    = node.labels.join(', ')
+  %small.right
+    = node.neo_id
 %br
 
 .duo_panel
@@ -19,5 +20,5 @@
       %li
         %small= node.updated_at
 
-  .right
-    = image_tag(node.image.url(:larger), class: :th) if node.image?
+  .right.main-image
+    = image_tag(node.image.url(:larger)) if node.image?
