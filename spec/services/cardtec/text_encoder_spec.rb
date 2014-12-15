@@ -23,7 +23,6 @@ body: ist aus Wachs
 image_url: http://image.url
 created_at: '2014-11-24T13:11:22+00:00'
 updated_at: '2014-11-24T13:11:22+00:00'
-_classname: Bang
 height: 35
 weight: 240
 color: rot
@@ -42,7 +41,6 @@ TEXT
         image_url: 'http://image.url',
         created_at: '2014-11-24T13:11:22+00:00',
         updated_at: '2014-11-24T13:11:22+00:00',
-        _classname: 'Bang',
 
         height:   35,
         weight:   240,
