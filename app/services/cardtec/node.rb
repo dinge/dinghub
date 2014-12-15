@@ -14,8 +14,7 @@ class Cardtec::Node
       :body,
       :image_url,
       :created_at,
-      :updated_at,
-      :_classname ]
+      :updated_at ]
 
 
   SYSTEM_PROPERTIES =
@@ -24,8 +23,6 @@ class Cardtec::Node
       :uuid,
       :created_at,
       :updated_at,
-      :_classname,
-
       :ident,
 
       :image_url,
