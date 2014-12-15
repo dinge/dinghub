@@ -10,5 +10,5 @@
     - if node.image?
       .main-image
         = link_to(link_path) do
-          = image_tag(node.image.url(:tiny))
+          = image_tag(node.image.tiny.url)
 

@@ -29,5 +29,4 @@ class Cardtec::TextEncoder::HtmlEncoder
     end
   end
 
-
 end

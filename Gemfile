@@ -23,13 +23,14 @@ gem 'browser'
 gem 'wisper'
 # gem 'wisper-activejob'
 gem 'actor_bot_adapters', git: 'git@github.com:megorei/actor_bot_adapters.git'
-gem 'spawno', github: 'megorei/spawno'
+# gem 'spawno', github: 'megorei/spawno'
 gem 'jquery-ui-rails'
 
-gem 'neo4jrb-paperclip', github: 'subvertallchris/neo4jrb-paperclip', require: 'neo4jrb_paperclip'
-# gem 'carrierwave-neo4j', require: 'carrierwave/neo4j', github: 'dpisarewski/carrierwave-neo4j'
+gem 'carrierwave-neo4j', require: 'carrierwave/neo4j', github: 'dpisarewski/carrierwave-neo4j'
 
 gem 'patron'
+gem 'mini_magick'
+
 
 group :development do
   gem 'capistrano-rails'

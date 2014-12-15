@@ -21,4 +21,4 @@
         %small= node.updated_at
 
   .right.main-image
-    = image_tag(node.image.url(:larger)) if node.image?
+    = image_tag(node.image.larger.url) if node.image?

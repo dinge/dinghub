@@ -5,8 +5,7 @@ module Cardtec::ActiveNode
     include Neo4j::ActiveNode
     include GlobalID::Identification
     include Wisper::Publisher
-    include Neo4jrb::Paperclip
-    # extend  CarrierWave::Neo4j
+    extend  CarrierWave::Neo4j
     extend  ClassMethods
 
 
@@ -17,11 +16,9 @@ module Cardtec::ActiveNode
     property  :created_at
     property  :updated_at
 
+    property  :image,       type: String
 
-    has_neo4jrb_attached_file         :image, styles: { small: '200x', tiny: '40x', larger: '400x' }
-    validates_attachment_content_type :image, content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
-
-    # mount_uploader :image, ImageUploader
+    mount_uploader :image, ImageUploader
 
     delegate :relationship_methods, :association_methods, :raw_relationship_types, to: :class
 

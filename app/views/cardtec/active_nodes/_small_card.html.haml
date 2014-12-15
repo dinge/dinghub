@@ -10,7 +10,7 @@
     .main-image
       - if node.image?
         = link_to(link_path) do
-          = image_tag(node.image.url(:small))
+          = image_tag(node.image.small.url)
   .card-footer
     %small.left
       = node.labels.last

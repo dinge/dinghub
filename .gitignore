@@ -29,8 +29,9 @@ config/secrets.yml
 
 .capistrano
 .capistrano/*
-
 config/deploy/vagrant.rb
+
+public/uploads
 
 # if using bower-rails ignore default bower_components path bower.json files
 /vendor/assets/bower_components

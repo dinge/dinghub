@@ -5,8 +5,8 @@ class CreateAutoImageForNode
     if node.is_a?(Maker::App) && node.respond_to?(:image) && !node.image?
       if (result = PixabayClient.new.request(node.title, per_page: 100)).valid?
         if result.images.present?
-          node.image = result.images.shuffle.first.webformat_url
-          puts node.image
+          node.remote_image_url = result.images.shuffle.first.webformat_url
+          node.image_will_change!
           node.save
         end
       end
@@ -18,12 +18,16 @@ class CreateAutoImageForNode
     Maker::Concept.all.each do |node|
       if (result = PixabayClient.new.request(node.title, per_page: 100)).valid?
         if result.images.present?
-          node.image = result.images.shuffle.first.webformat_url
+          node.remote_image_url = result.images.shuffle.first.webformat_url
+          node.image_will_change!
           node.save
+          puts node.image.to_s
         end
       end
     end
     nil
   end
+
+# Maker::Concept.all.each { |c| c.image.recreate_versions! rescue next  }
 
 end
