@@ -1,3 +1,5 @@
-- active = controller.class == item[:controller] ? "active" : ""
-%li{class: active}
+:ruby
+  dom_class = controller.class == item[:controller] ? "active card_#{controller_path_to_dom_class(controller.class)}" : ''
+
+%li{class: dom_class}
   = link_to item[:title], controller: controller_klass_to_path(item[:controller]), action: (item[:action] || :index).to_s

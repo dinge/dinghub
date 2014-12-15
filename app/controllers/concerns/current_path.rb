@@ -2,7 +2,8 @@ module CurrentPath
   extend ActiveSupport::Concern
 
   included do
-    helper_method :current_index_path, :current_new_path, :current_show_path, :current_path_for_action, :controller_klass_to_path
+    helper_method :current_index_path, :current_new_path, :current_show_path,
+                  :current_path_for_action, :controller_klass_to_path, :controller_path_to_dom_class
   end
 
   def current_index_path
@@ -23,7 +24,11 @@ module CurrentPath
   end
 
   def controller_klass_to_path(klass)
-    klass.to_s.underscore.gsub(/_controller/, '')
+    klass.name.underscore.gsub(/_controller/, '')
+  end
+
+  def controller_path_to_dom_class(klass)
+    klass.name.gsub(/Controller$/, '').parameterize('_').singularize
   end
 
   # def show_node_path(node)

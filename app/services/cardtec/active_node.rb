@@ -20,6 +20,7 @@ module Cardtec::ActiveNode
 
     has_neo4jrb_attached_file         :image, styles: { small: '200x', tiny: '40x', larger: '400x' }
     validates_attachment_content_type :image, content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
+
     # mount_uploader :image, ImageUploader
 
     delegate :relationship_methods, :association_methods, :raw_relationship_types, to: :class
