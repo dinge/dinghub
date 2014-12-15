@@ -1,7 +1,7 @@
 class Cardtec::CypherNodesController < ApplicationController
   include CurrentPath
   before_action :prepend_current_app_as_view_path
-  before_action :init_main_navigation_items
+  before_action :init_main_navigation_items, except: [:create, :update, :destroy]
 
 
   def index
