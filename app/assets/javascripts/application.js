@@ -30,4 +30,4 @@ $(document).ready(function() {
 });
 
 
-$( ".card" ).draggable();
+// $( ".card" ).draggable();
