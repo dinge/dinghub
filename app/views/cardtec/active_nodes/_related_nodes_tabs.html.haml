@@ -14,4 +14,4 @@
     %ul.inline-list
       - all_related_nodes[am].each do |related_node|
         %li
-          = render 'small_card', node: related_node, link_path: url_for(related_node)
+          = render 'tiny_card', node: related_node, link_path: url_for(related_node)

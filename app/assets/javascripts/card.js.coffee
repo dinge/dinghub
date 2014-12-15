@@ -2,7 +2,7 @@ observe_card_contenteditable_save = () ->
   $(document).on 'click', '.update-editable-html', ->
     html_to_save = $('#cardtec_card_html')
     if html_to_save
-      path         = window.location.pathname
+      path = window.location.pathname
       $.ajax
         url:  path + '.js'
         data: { cardtec_node: { html: html_to_save.html() } }
@@ -31,6 +31,7 @@ observe_card_contenteditable_save = () ->
   $(document).on 'click', '.remove-editable-html', ->
     $(this).closest('.cardtec_property').remove()
 
+
   add_button = () ->
     $('<button>').attr(class: 'button radius add-editable-html').append(
       $('<i>').attr(class: "fa fa-plus-circle")
@@ -40,6 +41,7 @@ observe_card_contenteditable_save = () ->
     $('<button>').attr(class: 'button radius remove-editable-html').append(
       $('<i>').attr(class: "fa fa-minus-circle")
     )
+
   button_wrapper = () ->
     $('<div>').attr(class: 'cardtec_property_actions')
 
@@ -55,6 +57,7 @@ observe_card_contenteditable_save = () ->
 observe_card_contenteditable_save()
 
 
+# $('.card.card_maker_concept a').attr('data-reveal-id', 'operations_dialog').attr('data-reveal-ajax','true')
 
 
 # Place all the behaviors and hooks related to the matching controller here.

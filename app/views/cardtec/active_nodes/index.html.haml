@@ -1,0 +1,12 @@
+
+
+/ %a{ href: me_root_path, 'data-reveal-id' => :dialog, 'data-reveal-ajax' => 'true' }
+/   dialog
+
+#dialog.reveal-modal{'data-reveal' => true}
+
+#operations_control
+  hallo
+
+%ul.inline-list.cards
+  = render 'cards', nodes: @nodes

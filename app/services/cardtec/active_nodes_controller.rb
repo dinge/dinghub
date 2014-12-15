@@ -1,5 +1,7 @@
 class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
   helper_method :model_klass_name, :model_klass, :model_klass_name_space
+  layout :init_layout
+
 
 
   private
@@ -52,6 +54,12 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
       @side_navigation_items = model_klass.all.order('n.title')
     end
 
+
+    def init_layout
+      request.xhr? || params[:layout] == 'false' ?
+      false :
+      'application'
+    end
 
 
     def model_klass_name
