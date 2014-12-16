@@ -16,9 +16,11 @@
       %li
         %small= node.ident
       %li
-        %small= node.created_at
+        %small= node.uuid
       %li
-        %small= node.updated_at
+        %small= I18n.l(node.created_at.to_time.localtime)
+        &nbsp;&nbsp;&nbsp;
+        %small= I18n.l(node.updated_at.to_time.localtime)
 
   .right.main-image
     = image_tag(node.image.larger.url) if node.image?

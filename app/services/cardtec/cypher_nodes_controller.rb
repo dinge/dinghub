@@ -16,10 +16,7 @@ class Cardtec::CypherNodesController < ApplicationController
 
   def create
     create_node
-    respond_to do |format|
-      format.html { redirect_to current_show_path(@node) }
-      format.js
-    end
+    render_create
   end
 
   def show
@@ -30,22 +27,19 @@ class Cardtec::CypherNodesController < ApplicationController
   def update
     init_node
     update_node
-    respond_to do |format|
-      format.html { redirect_to current_show_path(@node) }
-      format.js
-    end
+    render_update
   end
 
   def destroy
     init_node
     destroy_node
-    redirect_to current_index_path
+    render_destroy
   end
 
   def filtered
     init_filtered_nodes
     init_side_navigation_items
-    render :index
+    render_filtered
   end
 
 
@@ -71,6 +65,7 @@ class Cardtec::CypherNodesController < ApplicationController
     end
 
 
+
     def create_node
       @node = if yaml = params[:cardtec_node][:yaml]
         Cardtec::Node.create_from_yaml(yaml)
@@ -90,6 +85,32 @@ class Cardtec::CypherNodesController < ApplicationController
     def destroy_node
       @node.del
     end
+
+
+
+    def render_create
+      respond_to do |format|
+        format.js
+        format.html { redirect_to current_show_path(@node) }
+      end
+    end
+
+    def render_update
+      respond_to do |format|
+        format.html { redirect_to current_show_path(@node) }
+        format.js
+      end
+    end
+
+    def render_destroy
+      redirect_to current_index_path
+    end
+
+    def render_filtered
+      render :index
+    end
+
+
 
     def init_main_navigation_items
       @main_navigation_items = MainNavigation.items

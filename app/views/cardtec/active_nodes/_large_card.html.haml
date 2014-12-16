@@ -1,7 +1,7 @@
 :ruby
   link_path ||= current_show_path(node)
 
-.card.large-card{class: dom_class(node, :card)}
+.card.large-card{class: dom_class(node, :card), 'data-card-path' => current_show_path(node, :show_list => true)}
   .card-header
     = render 'large_card_header', node: node
     %hr

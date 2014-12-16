@@ -14,8 +14,10 @@ module CurrentPath
     current_path_for_action(:new)
   end
 
-  def current_show_path(id)
-    current_path_for_action(nil, id)
+  def current_show_path(id, params = {})
+    current_path_for_action(nil, id).tap do |p|
+      p << '?' << params.to_param if params.present?
+    end
   end
 
   def current_path_for_action(action, id = nil, params = {})

@@ -1,31 +1,33 @@
 observe_card_contenteditable_save = () ->
   $(document).on 'click', '.update-editable-html', ->
+    console.log 'A'
     html_to_save = $('#cardtec_card_html')
     if html_to_save
-      path = window.location.pathname
+      path = $('*[data-card-path]:first').data('card-path') || window.location.pathname
       $.ajax
-        url:  path + '.js'
+        url:  path
         data: { cardtec_node: { html: html_to_save.html() } }
         type: 'PUT'
+        dataType: 'script'
+
 
   $(document).on 'click', '.create-editable-html', ->
     html_to_save = $('#cardtec_card_html')
     path_elements = window.location.pathname.split('/')
     path_elements.pop()
     path = path_elements.join('/')
-    path += '.js'
     if html_to_save && path
       $.ajax path,
         data: { cardtec_node: { html: html_to_save.html() } }
         type: 'POST'
+        dataType: 'script'
+
 
   $(document).on 'click', '.add-editable-html', (event)->
-    # alert(event.type)
-    # alert("Add Button touched at "+Date.now())
     current_property = $(this).closest('.cardtec_property')
     new_property = current_property.clone()
-    $('.cardtec_property_name', new_property).html("")
-    $('.cardtec_property_value', new_property).html("")
+    $('.cardtec_property_name', new_property).html('')
+    $('.cardtec_property_value', new_property).html('')
     current_property.after(new_property)
 
   $(document).on 'click', '.remove-editable-html', ->
@@ -34,12 +36,12 @@ observe_card_contenteditable_save = () ->
 
   add_button = () ->
     $('<button>').attr(class: 'button radius add-editable-html').append(
-      $('<i>').attr(class: "fa fa-plus-circle")
+      $('<i>').attr(class: 'fa fa-plus-circle')
     )
 
   remove_button = () ->
     $('<button>').attr(class: 'button radius remove-editable-html').append(
-      $('<i>').attr(class: "fa fa-minus-circle")
+      $('<i>').attr(class: 'fa fa-minus-circle')
     )
 
   button_wrapper = () ->
