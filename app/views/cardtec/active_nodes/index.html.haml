@@ -22,3 +22,9 @@
 
 %ul.inline-list.cards
   = render 'cards', nodes: @nodes
+
+
+
+
+- content_for :javascript do
+  $('.card a').attr('data-reveal-id', 'dialog').attr('data-reveal-ajax','true')
