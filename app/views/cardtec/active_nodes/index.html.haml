@@ -5,8 +5,20 @@
 
 #dialog.reveal-modal{'data-reveal' => true}
 
+/ #operations_control
+/   %ul.inline-list.cards
+/     - @nodes.map.first(5).each do |n|
+/       %li
+/         = render 'small_card', node: n
+
 #operations_control
-  hallo
+  .left
+    = render 'small_card', node: @nodes.first
+  .center
+    = render 'small_card', node: @nodes.first
+  .right
+    = render 'small_card', node: @nodes.first
+
 
 %ul.inline-list.cards
   = render 'cards', nodes: @nodes

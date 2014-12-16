@@ -5,12 +5,7 @@
   .card-header
     = render 'large_card_header', node: node
     %hr
-
   .card-body
-    .tabs-content
-      = render 'property_tabs', node: node
-      = render 'related_nodes_tabs', node: node
-      = render 'images_tab', node: node
-
+    = render 'large_card_body', node: node
   .card-footer
 
