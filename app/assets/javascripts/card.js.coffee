@@ -15,7 +15,7 @@ observe_card_contenteditable_save = () ->
     html_to_save = $('#cardtec_card_html')
     path_elements = window.location.pathname.split('/')
     path_elements.pop()
-    path = path_elements.join('/')
+    path = $('*[data-card-path]:first').data('card-path') || path_elements.join('/')
     if html_to_save && path
       $.ajax path,
         data: { cardtec_node: { html: html_to_save.html() } }
