@@ -2,6 +2,7 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
   helper_method :model_klass_name, :model_klass, :model_klass_name_space
   layout :init_layout
 
+  before_action :init_dingos
 
 
   private
@@ -56,9 +57,7 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
 
 
     def init_layout
-      request.xhr? || params[:layout] == 'false' ?
-      false :
-      'application'
+      request.xhr? || params[:layout] == 'false' ? false : 'application'
     end
 
 
@@ -77,5 +76,11 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     def neo_node_to_param(neo_node)
       neo_node.to_param
     end
+
+
+    def init_dingos
+      @dingos = Me.current.dingos
+    end
+
 
 end

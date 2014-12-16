@@ -2,3 +2,8 @@
   - navigation_items.each do |item|
     - type = item.has_key?(:children) ? 'nested' : 'single'
     = render "layouts/navigation/#{type}_item", item: item
+
+  %li
+    %span.label.round.secondary
+      = @dingos
+      Dingos

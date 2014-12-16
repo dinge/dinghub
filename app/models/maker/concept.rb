@@ -1,5 +1,5 @@
 class Maker::Concept < Maker::App
-  has_many :out, :parents,  model_class: Maker::Concept,  type: :is_a
+  has_many :out, :parents,  model_class: Maker::Concept,  type:   :is_a
   has_many :in,  :children, model_class: Maker::Concept,  origin: :parents
 
   has_many :out, :traits,   model_class: Maker::Trait,    type: :has_property
@@ -7,3 +7,8 @@ class Maker::Concept < Maker::App
 
   has_many :in,  :items,    model_class: Maker::Item,     origin: :concepts
 end
+
+
+
+# Mann benutzt Hammer
+# Hammer schlägt Nagel
