@@ -1,17 +1,18 @@
 class Cardtec::CypherNodesController < ApplicationController
   include CurrentPath
-  before_action :prepend_current_app_as_view_path
-  before_action :init_main_navigation_items, except: [:create, :update, :destroy]
-
 
   def index
     init_nodes
+    init_main_navigation_items
     init_side_navigation_items
+    render_index
   end
 
   def new
     init_new_node
+    init_main_navigation_items
     init_side_navigation_items
+    render_new
   end
 
   def create
@@ -21,7 +22,9 @@ class Cardtec::CypherNodesController < ApplicationController
 
   def show
     init_node
+    init_main_navigation_items
     init_side_navigation_items
+    render_show
   end
 
   def update
@@ -38,6 +41,7 @@ class Cardtec::CypherNodesController < ApplicationController
 
   def filtered
     init_filtered_nodes
+    init_main_navigation_items
     init_side_navigation_items
     render_filtered
   end
@@ -46,6 +50,8 @@ class Cardtec::CypherNodesController < ApplicationController
 
 
   private
+
+    # initializations
 
     def init_nodes
       @nodes = neo4j_query.match(:n).return(:n).map(&:n)
@@ -65,6 +71,7 @@ class Cardtec::CypherNodesController < ApplicationController
     end
 
 
+    # operations
 
     def create_node
       @node = if yaml = params[:cardtec_node][:yaml]
@@ -87,6 +94,11 @@ class Cardtec::CypherNodesController < ApplicationController
     end
 
 
+    # renderer
+
+    def render_index; end
+    def render_new  ; end
+    def render_show ; end
 
     def render_create
       respond_to do |format|
@@ -111,20 +123,15 @@ class Cardtec::CypherNodesController < ApplicationController
     end
 
 
+    # misc
 
     def init_main_navigation_items
       @main_navigation_items = MainNavigation.items
     end
 
-
     def init_side_navigation_items
       @side_navigation_items =
         neo4j_query.match(:n).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
-    end
-
-
-    def prepend_current_app_as_view_path
-      prepend_view_path(Rails.root.join('app/views', controller_path.split('/').first))
     end
 
     def neo4j_query

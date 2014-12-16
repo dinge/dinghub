@@ -1,11 +1,14 @@
 class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
-  helper_method :model_klass_name, :model_klass, :model_klass_name_space
+  include ModelKlassConversion
   layout :init_layout
 
+  before_action :prepend_current_app_as_view_path
   before_action :init_dingos
 
 
   private
+
+    # initializations
 
     def init_nodes
       @nodes = model_klass.all.order('n.updated_at DESC')
@@ -23,6 +26,8 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
       @nodes = neo4j_query.match(n: params[:filter]).where("n:`#{model_klass_name_space}`").return(:n).map(&:n)
     end
 
+
+    # operations
 
     def create_node
       @node = if yaml = params[:cardtec_node][:yaml]
@@ -45,14 +50,17 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     end
 
 
-    # def init_side_navigation_items
-    #   @side_navigation_items =
-    #     neo4j_query.match(n: model_klass_name_space).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
-    # end
-
+    # misc
 
     def init_side_navigation_items
+    #   @side_navigation_items =
+    #     neo4j_query.match(n: model_klass_name_space).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
       @side_navigation_items = model_klass.all.order('n.title')
+    end
+
+
+    def neo_node_to_param(neo_node)
+      neo_node.to_param
     end
 
 
@@ -60,27 +68,12 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
       request.xhr? || params[:layout] == 'false' ? false : 'application'
     end
 
-
-    def model_klass_name
-      controller_path.singularize.camelize
+    def prepend_current_app_as_view_path
+      prepend_view_path(Rails.root.join('app/views', controller_path.split('/').first))
     end
-
-    def model_klass
-      model_klass_name.constantize
-    end
-
-    def model_klass_name_space
-      model_klass_name.split('::').first
-    end
-
-    def neo_node_to_param(neo_node)
-      neo_node.to_param
-    end
-
 
     def init_dingos
       @dingos = Me.current.dingos
     end
-
 
 end

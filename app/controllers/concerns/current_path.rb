@@ -6,6 +6,7 @@ module CurrentPath
                   :current_path_for_action, :controller_klass_to_path, :controller_path_to_dom_class
   end
 
+
   def current_index_path
     '/' + controller_path
   end
