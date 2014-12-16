@@ -48,30 +48,13 @@ module Cardtec::ActiveNode
     Struct.new(*association_methods).new(*data_arrays)
   end
 
-  # ....
-  # def all_related_nodes
-  #   related_nodes_matchers = self.class.associations.values.map.with_index
-  #   return_columns = association_methods
-
-  #   q = neo4j_query.match(n: self.class.name).where(n: { neo_id: neo_id })
-  #   related_nodes_matchers.each do |a, i|
-  #    q = q.break.optional_match("(n)-[r#{i}:#{a.relationship_type}]-(#{a.name})")
-  #   end
-  #   q = q.return(*[:n, return_columns])
-  #   prepare_results(q)
-  # end
-
-  # def prepare_results(query)
-  #   columns = query.response.columns.map(&:to_sym)
-  #   Struct.new(*columns).new(*columns.map { |c| query.map(&c).compact.uniq })
-  # end
 
   def set_ident
     self.ident = ident_format
   end
 
   def ident_format
-    [self.class, human_title, Time.now.utc.to_f].join('_').parameterize('_')
+    [self.class, human_title, Time.now.utc.to_f].join('-').parameterize('-')
   end
 
   def notify_to_after_save_listeners
@@ -112,6 +95,26 @@ module Cardtec::ActiveNode
   end
 
 end
+
+
+
+  # ....
+  # def all_related_nodes
+  #   related_nodes_matchers = self.class.associations.values.map.with_index
+  #   return_columns = association_methods
+
+  #   q = neo4j_query.match(n: self.class.name).where(n: { neo_id: neo_id })
+  #   related_nodes_matchers.each do |a, i|
+  #    q = q.break.optional_match("(n)-[r#{i}:#{a.relationship_type}]-(#{a.name})")
+  #   end
+  #   q = q.return(*[:n, return_columns])
+  #   prepare_results(q)
+  # end
+
+  # def prepare_results(query)
+  #   columns = query.response.columns.map(&:to_sym)
+  #   Struct.new(*columns).new(*columns.map { |c| query.map(&c).compact.uniq })
+  # end
 
 
   # def all_related_nodes
