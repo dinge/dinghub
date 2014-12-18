@@ -1,4 +1,26 @@
+
+.content
+  padding-top: rem-calc(14)
+
+.sub_navigation
+  margin-bottom: rem-calc(-14)
+  @extend .sub-nav
+
+
+#control_bar
+  ul
+    margin-right: 15px
+    // margin-left: 10px
+
+
+
 #new_card_control
+  @extend .box_panel
+  @extend %card-contenteditable
+  background-color: $oil
+  font-color: $white
+
+#operations_control
   @extend .box_panel
   background-color: $oil
   font-color: $white
