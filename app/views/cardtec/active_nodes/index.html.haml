@@ -13,11 +13,11 @@
 
 #operations_control
   .left
-    = render 'small_card', node: @nodes.first
+    =# render 'small_card', node: @nodes.first
   .center
-    = render 'small_card', node: @nodes.first
+    =# render 'small_card', node: @nodes.first
   .right
-    = render 'small_card', node: @nodes.first
+    =# render 'small_card', node: @nodes.first
 
 
 %ul.inline-list.cards#main_card_list
@@ -26,5 +26,7 @@
 
 
 - content_for :javascript do
-  $('.card a').attr('data-reveal-id', 'dialog').attr('data-reveal-ajax','true');
-  $('.side-nav a:last').attr('data-reveal-id', 'dialog').attr('data-reveal-ajax', 'true');
+  new window.DH.Maker.OpenCardInDialog($('.card a'))
+
+  cc = new DH.Maker.CardConnector;
+  cc.add_listener('.cards .card')

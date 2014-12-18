@@ -3,7 +3,8 @@ module CurrentPath
 
   included do
     helper_method :current_index_path, :current_new_path, :current_show_path,
-                  :current_path_for_action, :controller_klass_to_path, :controller_path_to_dom_class
+                  :current_path_for_action, :controller_klass_to_path, :controller_path_to_dom_class,
+                  :current_coffeescript_path
   end
 
 
@@ -34,8 +35,9 @@ module CurrentPath
     klass.name.gsub(/Controller$/, '').parameterize('_').singularize
   end
 
-  # def show_node_path(node)
-  #   node.class.name.pluralize.parameterize('_') << '_path'
-  # end
+
+  def current_coffeescript_path(file = 'app')
+    file
+  end
 
 end

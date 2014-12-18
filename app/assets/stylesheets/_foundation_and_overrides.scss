@@ -1104,9 +1104,11 @@ $input-font-size: rem-calc(14*1.8);
 // We use these to control the style of the modal itself.
 // $reveal-modal-bg: $white;
 // $reveal-position-top: rem-calc(100);
+$reveal-position-top: rem-calc(20);
 // $reveal-default-width: 80%;
 // $reveal-max-width: $row-width;
 // $reveal-modal-padding: rem-calc(20);
+$reveal-modal-padding: rem-calc(0.3);
 // $reveal-box-shadow: 0 0 10px rgba($black,.4);
 
 // We use these to style the reveal close button

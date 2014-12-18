@@ -15,19 +15,20 @@
 //= require foundation
 // require turbolinks
 
-//= require jquery-ui/core
-//= require jquery-ui/widget
-//= require jquery-ui/mouse
-//= require jquery-ui/position
+// require jquery-ui/core
+// require jquery-ui/widget
+// require jquery-ui/mouse
+// require jquery-ui/position
 
-//= require jquery-ui/draggable
-//= require jquery-ui/droppable
+// require jquery-ui/draggable
+// require jquery-ui/droppable
 
-//= require_tree .
+//= require dinghub
+//= require card
+//= require maker
+
 
 $(document).ready(function() {
   $(document).foundation();
 });
 
-
-// $( ".card" ).draggable();

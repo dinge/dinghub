@@ -15,7 +15,10 @@
         .columns.hashgrid-e2{"data-equalizer-watch" => ""}
           = render 'control_bar'
 
+
   = javascript_include_tag 'application'
+
+  = render current_coffeescript_path
 
   = javascript_tag do
     $(document).ready(function(){#{yield(:javascript)}})
