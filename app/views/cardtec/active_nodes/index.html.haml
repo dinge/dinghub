@@ -23,10 +23,10 @@
 %ul.inline-list.cards#main_card_list
   = render 'cards', nodes: @nodes
 
-
-
 - content_for :javascript do
-  new window.DH.Maker.OpenCardInDialog($('.card a'))
 
   cc = new DH.Maker.CardConnector;
   cc.add_listener('.cards .card')
+
+  new window.DH.Maker.OpenCardInDialog($('.cards .card').find('a:first'))
+

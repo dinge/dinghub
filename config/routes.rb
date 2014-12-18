@@ -42,6 +42,11 @@ Rails.application.routes.draw do
     resources :trait_values do
       get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
     end
+
+    resources :relationships do
+      match 'between/:first_node/:second_node', action: :between, on: :collection, as: :between_nodes, via: [:get, :post]
+      get :related_nodes, action: :related_nodes, on: :member
+    end
   end
 
 
