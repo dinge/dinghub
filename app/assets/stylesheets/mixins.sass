@@ -1,0 +1,26 @@
+%crop-image-container
+  position: relative
+  overflow: hidden
+  img
+    @extend %crop-image
+
+%crop-image // maybe use clip for this
+  @extend .th
+  @extend .radius
+  border-width: 1px
+  position: absolute
+  left:     50%
+  top:      50%
+  height:   100%
+  width:    auto
+  -webkit-transform:  translate(-50%,-50%)
+  -ms-transform:      translate(-50%,-50%)
+  transform:          translate(-50%,-50%)
+
+
+
+%card-contenteditable
+  [contenteditable="true"]
+    outline: 1px dotted $primary-color
+  [contenteditable="true"]:hover
+    outline: 1px dotted $primary-color
