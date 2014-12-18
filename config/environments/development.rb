@@ -38,4 +38,6 @@ Rails.application.configure do
   # does not work:
   # config.assets.logger = false
 
+  config.version = DateTime.now.to_s(:db)
+
 end

@@ -75,4 +75,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   # config.active_record.dump_schema_after_migration = false
+
+  config.version = DateTime.parse(Rails.root.to_s.split('/').last).to_s(:db)
+
 end
