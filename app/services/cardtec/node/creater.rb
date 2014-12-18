@@ -18,7 +18,7 @@ module Cardtec::Node::Creater
     neo_id = new_props.delete(:neo_id)
 
     Neo4j::Node.create(new_props, *labels)
-    notify_to_after_save_listeners
+    # notify_to_after_save_listeners
   end
 
 end

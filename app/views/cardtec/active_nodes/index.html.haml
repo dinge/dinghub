@@ -11,22 +11,22 @@
 /       %li
 /         = render 'small_card', node: n
 
-#operations_control
+#operations_control.trio_panel
   .left
-    =# render 'small_card', node: @nodes.first
   .center
-    =# render 'small_card', node: @nodes.first
   .right
-    =# render 'small_card', node: @nodes.first
 
 
-%ul.inline-list.cards#main_card_list
-  = render 'cards', nodes: @nodes
+.trio_panel
+  %ul.inline-list.cards#main_card_list
+    = render 'cards', nodes: @nodes
 
-- content_for :javascript do
 
-  cc = new DH.Maker.CardConnector;
-  cc.add_listener('.cards .card')
 
-  new window.DH.Maker.OpenCardInDialog($('.cards .card').find('a:first'))
 
+
+/ new window.DH.Maker.OpenCardInDialog($('.cards .card').find('a:first'))
+/ new window.DH.Maker.OpenCardInDialog($('#control_bar').find('a:last'))
+
+
+-# content_for :javascript do

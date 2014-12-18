@@ -1,6 +1,6 @@
 window.DH.Maker = {}
 
-window.DH.Maker.CardConnector = class CardConnector
+window.DH.Maker.Mixer = class Mixer
   constructor: () ->
     @oc = $('#operations_control')
     @left_field   = @oc.find('.left')
@@ -57,7 +57,7 @@ window.DH.Maker.CardConnector = class CardConnector
 
 
 window.DH.Maker.OpenCardInDialog = class OpenCardInDialog
-  constructor: (selector) ->
+  add_listener: (selector) ->
     selector.attr('data-reveal-id', 'dialog').attr('data-reveal-ajax','true')
 
 

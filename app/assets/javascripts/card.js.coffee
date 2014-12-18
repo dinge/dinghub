@@ -1,6 +1,6 @@
 window.DH.Card = {}
 
-window.DH.Card.ObserveCardContenteditableSave = class OpenCardInDialog
+window.DH.Card.ObserveCardContenteditableSave = class ObserveCardContenteditableSave
   constructor: (selector) ->
     this.add_listener()
 
@@ -60,6 +60,9 @@ window.DH.Card.ObserveCardContenteditableSave = class OpenCardInDialog
       properties = $('#cardtec_card_html .cardtec_property')
       properties.append(property_buttons)
 
+
+
+new ObserveCardContenteditableSave
 
 
 # observe_card_contenteditable_save()
