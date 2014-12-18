@@ -7,27 +7,6 @@
 
 
 
-%crop-image-container
-  position: relative
-  overflow: hidden
-  img
-    @extend %crop-image
-
-%crop-image // maybe use clip for this
-  @extend .th
-  @extend .radius
-  border-width: 1px
-  position: absolute
-  left:     50%
-  top:      50%
-  height:   100%
-  width:    auto
-  -webkit-transform:  translate(-50%,-50%)
-  -ms-transform:      translate(-50%,-50%)
-  transform:          translate(-50%,-50%)
-
-
-
 .cards
   li
     margin: 0.2rem
@@ -120,26 +99,6 @@ ul.cards
     .th
       border-width: 1px
       border-radius: 3px
-
-
-
-
-
-
-
-.card_maker_concept
-  background-color: $color6
-
-  // .card-header
-  //   background-color: $color-secondary-1-2
-  // .card-body
-  //   background-color: $color-secondary-1-2
-
-.card_me_actor
-  background-color: $color4
-
-.card_me_contribution
-  background-color: $color7
 
 
 

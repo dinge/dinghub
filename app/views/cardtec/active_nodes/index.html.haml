@@ -11,7 +11,20 @@
 /       %li
 /         = render 'small_card', node: n
 
-#operations_control.trio_panel
+
+#new_card_control{'data-card-path' => current_index_path}
+  %h2
+    add your
+    = model_klass_name.titleize
+  %button.success.radius.right.create-editable-html
+    save
+  %hr
+  = model_klass.new.ctn.to_editable_html
+  %hr
+
+
+
+#operations_control
   .left
   .center
   .right
