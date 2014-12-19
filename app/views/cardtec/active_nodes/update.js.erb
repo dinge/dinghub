@@ -1,2 +1,5 @@
-$('#editor').html("<%= j render('new_in_editor') %>")
-$('#new_in_editor .cardtec_property_value:first').focus()
+$('#new_in_editor').replaceWith("<%= j render('new_in_editor') %>").show();
+$('#show_in_editor').html('').hide();
+
+pfe = new DH.Card.AddPropertyFieldEditor;
+pfe.focus_first_property_value();

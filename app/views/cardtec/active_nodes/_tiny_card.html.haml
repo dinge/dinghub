@@ -1,7 +1,7 @@
 :ruby
   link_path ||= current_show_path(node)
 
-.card.tiny-card{class: dom_class(node, :card)}
+.card.tiny-card{class: dom_class(node, :card), 'data-card-path' => current_show_path(node), 'data-card-uuid' => node.uuid}
   .card-header
     %h5
       = link_to(link_path) do

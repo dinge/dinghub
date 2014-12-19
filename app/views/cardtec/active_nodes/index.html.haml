@@ -3,7 +3,7 @@
 / %a{ href: me_root_path, 'data-reveal-id' => :dialog, 'data-reveal-ajax' => 'true' }
 /   dialog
 
-#dialog.reveal-modal{'data-reveal' => true}
+/ #dialog.reveal-modal{'data-reveal' => true}
 
 / #operations_control
 /   %ul.inline-list.cards
@@ -15,7 +15,7 @@
 
 #editor{'data-card-path' => current_index_path}
   = render 'new_in_editor'
-
+  #show_in_editor
 
 #mixer
   .left

@@ -1,6 +1,10 @@
 window.DH.Card = {}
 
 window.DH.Card.AddPropertyFieldEditor = class AddPropertyFieldEditor
+  init: () ->
+    this.add_listener()
+    this.focus_first_property_value()
+
   add_listener: () ->
     $(document).on 'click', '.add-editable-html', (event) ->
       current_property = $(this).closest('.cardtec_property')
@@ -28,6 +32,8 @@ window.DH.Card.AddPropertyFieldEditor = class AddPropertyFieldEditor
       properties = $('#cardtec_card_html .cardtec_property')
       properties.append(property_buttons)
 
+  focus_first_property_value: () ->
+    $('.cardtec_property_value:visible:first').focus()
 
 
 
@@ -38,7 +44,7 @@ window.DH.Card.ObserveSave = class ObserveSave
     $(document).on 'keypress', this.save_on_keypress
 
   create_card: () =>
-    html_to_save  = $('#cardtec_card_html')
+    html_to_save  = $('.cardtec_card_html:visible').first()
     path          = html_to_save.closest('[data-card-path]').data('card-path')
     if html_to_save && path
       $.ajax path,
@@ -47,8 +53,11 @@ window.DH.Card.ObserveSave = class ObserveSave
         dataType: 'script'
 
   update_card: () =>
-    html_to_save  = $('#cardtec_card_html')
+    html_to_save  = $('.cardtec_card_html:visible').first()
     path          = html_to_save.closest('[data-card-path]').data('card-path')
+
+    console.log path
+
     if html_to_save && path
       $.ajax
         url:  path
@@ -57,15 +66,15 @@ window.DH.Card.ObserveSave = class ObserveSave
         dataType: 'script'
 
   save_on_keypress: () =>
-      if event.which == 13 && event.ctrlKey
-        event.preventDefault()
-        if $('.create-editable-html').length == 1
-          this.create_card()
-        else if $('.update-editable-html').length == 1
-          this.update_card()
-        false
-      else
-        true
+    if event.which == 13 && event.ctrlKey
+      event.preventDefault()
+      if $('.update-editable-html:visible').length == 1
+        this.update_card()
+      else if $('.create-editable-html:visible').length == 1
+        this.create_card()
+      false
+    else
+      true
 
 
 
@@ -73,7 +82,7 @@ os = new ObserveSave
 os.add_listener()
 
 pfe = new AddPropertyFieldEditor
-pfe.add_listener()
+pfe.init()
 
 
 

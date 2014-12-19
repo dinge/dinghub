@@ -18,8 +18,9 @@ class Cardtec::TextEncoder::HtmlEncoder
   end
 
   def to_editable_html
+    node_uuid = @text_encoder.neo_node.ctn.uuid
     editable_properties = @text_encoder.to_hash.except(*Cardtec::Node::SYSTEM_PROPERTIES)
-    content_tag(:div, id: :cardtec_card_html, class: :cardtec_card) do
+    content_tag(:div, id: node_uuid, class: 'cardtec_card cardtec_card_html') do
       editable_properties.map do |k, v|
         content_tag(:div, class: :cardtec_property) do
           content_tag(:div, k, class: :cardtec_property_name, contenteditable: true) <<
@@ -30,3 +31,12 @@ class Cardtec::TextEncoder::HtmlEncoder
   end
 
 end
+
+
+# {:title=>"Wunder",
+#  :updated_at=>1419008187,
+#  :ident=>"maker-concept-1419008186-51369",
+#  :created_at=>1419008186,
+#  :image=>"wunder.jpg",
+#  :uuid=>"fc9f6f79-d339-47c6-9600-d97a6d55a546"}
+# [61] pry(main)> Maker::Concept.last.ctn.props

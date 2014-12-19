@@ -1,3 +1,6 @@
-$('#new_in_editor').replaceWith("<%= j render('new_in_editor') %>")
+$('#new_in_editor').replaceWith("<%= j render('new_in_editor') %>").show();
 $('#main_card_list ul').prepend("<%= j content_tag('li') { render('small_card', node: @node.reload) } %>");
-$('#new_in_editor .cardtec_property_value:first').focus()
+
+
+pfe = new DH.Card.AddPropertyFieldEditor;
+pfe.focus_first_property_value();

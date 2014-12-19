@@ -68,15 +68,16 @@ window.DH.Maker.Editor = class Mixer
     node_id = $(card).find('a').first().attr('href').split('/')[3]
 
     if @ed.find("[data-card-uuid='#{node_id}']").length
-      @ed.find('.large-card').remove()
+      $('#show_in_editor').hide()
       $('#new_in_editor').show()
     else
       $('#new_in_editor').hide()
       path = "/maker/concepts/#{node_id}/"
-      @ed.load path, ->
+      $('#show_in_editor').show().load path, ->
         $(document).foundation('tab', 'reflow');
         pfe = new DH.Card.AddPropertyFieldEditor
-        pfe.add_listener()
+        pfe.init()
+
 
 
 
