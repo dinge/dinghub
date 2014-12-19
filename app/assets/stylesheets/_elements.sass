@@ -9,19 +9,23 @@
   margin-top: 0.3rem
 
 
-.box_panel
+
+%common_panel
   @extend .panel
   @extend .radius
   @extend .expand
-  padding: 0.3rem
-  margin-bottom: 0.5rem !important
   @extend .clearfix
+  // padding: 0.3rem
+  // margin-bottom: 0.5rem !important
   background-color: inherit
   // @extend .row
 
 
+.box_panel
+  @extend %common_panel
+
 .trio_panel
-  @extend .box-panel
+  @extend %common_panel
   .left
     text-align: left
     @extend .columns
@@ -36,7 +40,7 @@
     @extend .small-4
 
 .duo_panel
-  @extend .box-panel
+  @extend %common_panel
   .left
     text-align: left
     @extend .columns

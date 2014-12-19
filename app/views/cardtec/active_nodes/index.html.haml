@@ -13,25 +13,25 @@
 
 
 #new_card_control{'data-card-path' => current_index_path}
-  %h2
-    add your
+  %h3
+    create your
     = model_klass_name.titleize
   %button.success.radius.right.create-editable-html
     save
   %hr
   = model_klass.new.ctn.to_editable_html
-  %hr
 
 
 
-#operations_control
+#mixer
   .left
   .center
   .right
 
+%hr
 
-.trio_panel
-  %ul.inline-list.cards#main_card_list
+#main_card_list
+  %ul.cards
     = render 'cards', nodes: @nodes
 
 

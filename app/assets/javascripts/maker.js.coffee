@@ -2,7 +2,7 @@ window.DH.Maker = {}
 
 window.DH.Maker.Mixer = class Mixer
   constructor: () ->
-    @oc = $('#operations_control')
+    @oc = $('#mixer')
     @left_field   = @oc.find('.left')
     @center_field = @oc.find('.center')
     @right_field  = @oc.find('.right')
