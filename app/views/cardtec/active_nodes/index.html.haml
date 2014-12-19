@@ -14,19 +14,14 @@
 
 
 #editor{'data-card-path' => current_index_path}
-  %h3
-    create your
-    = model_klass_name.titleize
-    %button.success.radius.right.create-editable-html
-      save
-  %hr
-  = model_klass.new.ctn.to_editable_html
+  = render 'new_in_editor'
 
 
 #mixer
   .left
   .center
   .right
+
 
 #main_card_list
   %ul.cards
@@ -36,8 +31,7 @@
 
 
 
-/ new window.DH.Maker.OpenCardInDialog($('.cards .card').find('a:first'))
-/ new window.DH.Maker.OpenCardInDialog($('#control_bar').find('a:last'))
+
 
 
 -# content_for :javascript do

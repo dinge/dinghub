@@ -6,7 +6,6 @@ window.DH.Card.ObserveCardContenteditableSave = class ObserveCardContenteditable
 
   add_listener: () ->
     $(document).on 'click', '.update-editable-html', ->
-      console.log 'A'
       html_to_save = $('#cardtec_card_html')
       if html_to_save
         path = $('*[data-card-path]:first').data('card-path') || window.location.pathname
@@ -38,7 +37,6 @@ window.DH.Card.ObserveCardContenteditableSave = class ObserveCardContenteditable
 
     $(document).on 'click', '.remove-editable-html', ->
       $(this).closest('.cardtec_property').remove()
-
 
     add_button = () ->
       $('<button>').attr(class: 'button radius add-editable-html').append(
