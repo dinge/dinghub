@@ -39,7 +39,6 @@ window.DH.Maker.Mixer = class Mixer
     path = "/maker/relationships/#{node_id}/related_nodes"
     @cf.load(path)
 
-
   display_relations_to_other_node: (first_node_id, second_node_id) ->
     path = "/maker/relationships/between/#{first_node_id}/#{second_node_id}"
     @cf.load(path)
@@ -76,8 +75,8 @@ window.DH.Maker.Editor = class Mixer
       path = "/maker/concepts/#{node_id}/"
       @ed.load path, ->
         $(document).foundation('tab', 'reflow');
-        new DH.Card.ObserveCardContenteditableSave
-
+        pfe = new DH.Card.AddPropertyFieldEditor
+        pfe.add_listener()
 
 
 

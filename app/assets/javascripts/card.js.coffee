@@ -1,34 +1,8 @@
 window.DH.Card = {}
 
-window.DH.Card.ObserveCardContenteditableSave = class ObserveCardContenteditableSave
-  constructor: (selector) ->
-    this.add_listener()
-
+window.DH.Card.AddPropertyFieldEditor = class AddPropertyFieldEditor
   add_listener: () ->
-    $(document).on 'click', '.update-editable-html', ->
-      html_to_save = $('#cardtec_card_html')
-      if html_to_save
-        path = $('*[data-card-path]:first').data('card-path') || window.location.pathname
-        $.ajax
-          url:  path
-          data: { cardtec_node: { html: html_to_save.html() } }
-          type: 'PUT'
-          dataType: 'script'
-
-
-    $(document).on 'click', '.create-editable-html', ->
-      html_to_save = $('#cardtec_card_html')
-      path_elements = window.location.pathname.split('/')
-      path_elements.pop()
-      path = $('*[data-card-path]:first').data('card-path') || path_elements.join('/')
-      if html_to_save && path
-        $.ajax path,
-          data: { cardtec_node: { html: html_to_save.html() } }
-          type: 'POST'
-          dataType: 'script'
-
-
-    $(document).on 'click', '.add-editable-html', (event)->
+    $(document).on 'click', '.add-editable-html', (event) ->
       current_property = $(this).closest('.cardtec_property')
       new_property = current_property.clone()
       $('.cardtec_property_name', new_property).html('')
@@ -39,14 +13,10 @@ window.DH.Card.ObserveCardContenteditableSave = class ObserveCardContenteditable
       $(this).closest('.cardtec_property').remove()
 
     add_button = () ->
-      $('<button>').attr(class: 'button radius add-editable-html').append(
-        $('<i>').attr(class: 'fa fa-plus-circle')
-      )
+      $('<button>').attr(class: 'button radius add-editable-html').append($('<i>').attr(class: 'fa fa-plus-circle'))
 
     remove_button = () ->
-      $('<button>').attr(class: 'button radius remove-editable-html').append(
-        $('<i>').attr(class: 'fa fa-minus-circle')
-      )
+      $('<button>').attr(class: 'button radius remove-editable-html').append($('<i>').attr(class: 'fa fa-minus-circle'))
 
     button_wrapper = () ->
       $('<div>').attr(class: 'cardtec_property_actions')
@@ -60,19 +30,56 @@ window.DH.Card.ObserveCardContenteditableSave = class ObserveCardContenteditable
 
 
 
-new ObserveCardContenteditableSave
+
+window.DH.Card.ObserveSave = class ObserveSave
+  add_listener: () ->
+    $(document).on 'click', '.create-editable-html', this.create_card
+    $(document).on 'click', '.update-editable-html', this.update_card
+    $(document).on 'keypress', this.save_on_keypress
+
+  create_card: () =>
+    html_to_save  = $('#cardtec_card_html')
+    path          = html_to_save.closest('[data-card-path]').data('card-path')
+    if html_to_save && path
+      $.ajax path,
+        data: { cardtec_node: { html: html_to_save.html() } }
+        type: 'POST'
+        dataType: 'script'
+
+  update_card: () =>
+    html_to_save  = $('#cardtec_card_html')
+    path          = html_to_save.closest('[data-card-path]').data('card-path')
+    if html_to_save && path
+      $.ajax
+        url:  path
+        data: { cardtec_node: { html: html_to_save.html() } }
+        type: 'PUT'
+        dataType: 'script'
+
+  save_on_keypress: () =>
+      if event.which == 13 && event.ctrlKey
+        event.preventDefault()
+        if $('.create-editable-html').length == 1
+          this.create_card()
+        else if $('.update-editable-html').length == 1
+          this.update_card()
+        false
+      else
+        true
 
 
-# observe_card_contenteditable_save()
+
+os = new ObserveSave
+os.add_listener()
+
+pfe = new AddPropertyFieldEditor
+pfe.add_listener()
+
+
+
 
 
 # $('.card.card_maker_concept a').attr('data-reveal-id', 'operations_dialog').attr('data-reveal-ajax','true')
-
-
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
 
 
 # load_content_in_element = (element, url) ->
@@ -92,9 +99,6 @@ new ObserveCardContenteditableSave
 #     destination_element = $('.' + $(this).data('destination-element'))
 #     if destination_element && (destination_url = $(this).data('destination-url'))
 #       load_content_in_element(destination_element, destination_url)
-
-
-# window.load_contents = initial_load_contents
 
 
 # initial_load_contents()

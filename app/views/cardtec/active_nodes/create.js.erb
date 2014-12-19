@@ -1,2 +1,3 @@
-$('#dialog').foundation('reveal', 'close');
+$('#new_in_editor').replaceWith("<%= j render('new_in_editor') %>")
 $('#main_card_list ul').prepend("<%= j content_tag('li') { render('small_card', node: @node.reload) } %>");
+$('#new_in_editor .cardtec_property_value:first').focus()
