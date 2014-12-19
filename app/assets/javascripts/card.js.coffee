@@ -55,9 +55,6 @@ window.DH.Card.ObserveSave = class ObserveSave
   update_card: () =>
     html_to_save  = $('.cardtec_card_html:visible').first()
     path          = html_to_save.closest('[data-card-path]').data('card-path')
-
-    console.log path
-
     if html_to_save && path
       $.ajax
         url:  path
