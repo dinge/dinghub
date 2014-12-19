@@ -21,7 +21,13 @@
 
 %card-contenteditable
   [contenteditable="true"]
-    background-color: $charcoal
+    // background-color: $charcoal
+    // outline: 0px solid transparent
+    box-shadow: 0px 0px 0px 1px $steel inset
+    border-radius: 3px
+
     // outline: 1px dotted $primary-color
   [contenteditable="true"]:hover
     // outline: 1px dotted $primary-color
+  [contenteditable="true"]:focus
+    outline: none

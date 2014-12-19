@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',     group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'foundation-rails'
+gem 'compass-rails'
 gem 'neo4j', git: 'git@github.com:neo4jrb/neo4j.git'
 # gem 'neo4j', github: 'neo4jrb/neo4j', tag: '4.0.0.rc.1'
 # gem 'neo4j-cypher'

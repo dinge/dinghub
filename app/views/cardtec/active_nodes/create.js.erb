@@ -1,2 +1,2 @@
 $('#dialog').foundation('reveal', 'close');
-$('#main_card_list').prepend("<li><%= j render 'small_card', node: @node.reload %></li>");
+$('#main_card_list ul').prepend("<%= j content_tag('li') { render('small_card', node: @node.reload) } %>");

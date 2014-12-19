@@ -12,15 +12,15 @@
 /         = render 'small_card', node: n
 
 
-#new_card_control{'data-card-path' => current_index_path}
+
+#editor{'data-card-path' => current_index_path}
   %h3
     create your
     = model_klass_name.titleize
-  %button.success.radius.right.create-editable-html
-    save
+    %button.success.radius.right.create-editable-html
+      save
   %hr
   = model_klass.new.ctn.to_editable_html
-
 
 
 #mixer
