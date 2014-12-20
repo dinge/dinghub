@@ -4,7 +4,20 @@
 .card.small-card
   .card-header
     %h5
-      = render 'small_card_header', node: node, link_path: link_path
+      = link_to(link_path) do
+        %small.left
+          = node.labels.last
+        %small.right
+          = node.neo_id
+        %br
+        = node.human_title
     %hr
   .card-body
+
+
+
+
+
+
+  .card-footer
 

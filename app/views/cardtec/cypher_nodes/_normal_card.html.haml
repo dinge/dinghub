@@ -1,7 +1,18 @@
+:ruby
+  link_path ||= current_show_path(node)
+
 .card.normal-card
   .card-header
     %h5
-      = render 'card_header', node: node
+      = link_to(link_path) do
+        %small.left
+          = node.labels.join(', ')
+        %small.right
+          = node.neo_id
+        %br
+        = node.human_title
+        %br
+        %small= node.ident rescue ''
     %hr
   .card-body
 

@@ -1,11 +1,25 @@
 
-.cards
-  li
-    margin: 0.2rem
+// .cards
+//   li
+//     margin: 0.1rem
+
+// ul.cards
+//   @extend .inline-list
+//   margin-left: 0.2rem
+
+// .inline-list > li, ul.cards > li {
+//   list-style: none;
+//   float: left;
+//   margin-left: 1.22222rem;
+//   display: block;
+// }
+
 
 ul.cards
   @extend .inline-list
-  margin-left: 0.8rem
+  margin-left: 0.2rem
+  li
+    margin: 0.1rem
 
 
 .card
@@ -22,6 +36,9 @@ ul.cards
     @extend .radius
   a
     color: $black
+  hr
+    margin: 0.3rem
+    // border: dotted 1px
   img
     @extend .th
     @extend .radius
@@ -49,8 +66,8 @@ ul.cards
   .card-header
   .main-image
     @extend %crop-image-container
-    width:    300px
-    height:   240px
+    width:    240px
+    height:   192px
 
 
 // .huge-card

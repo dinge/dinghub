@@ -4,13 +4,21 @@
 .card.small-card{class: dom_class(node, :card), 'data-card-path' => current_show_path(node), 'data-card-uuid' => node.uuid}
   .card-header
     %h5
-      = render 'small_card_header', node: node, link_path: link_path
+      = link_to(link_path) do
+        = node.human_title
+
+
+
+
+
 
   .card-body
-    .main-image
-      - if node.image?
+    %hr
+    - if node.image?
+      .main-image
         = link_to(link_path) do
           = image_tag(node.image.small.url)
+
   .card-footer
     %small.left
       = node.labels.last
