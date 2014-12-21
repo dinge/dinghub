@@ -11,7 +11,7 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     # initializations
 
     def init_nodes
-      @nodes = model_klass.all.order('n.updated_at DESC').limit(40)
+      @nodes = model_klass.all.order('n.updated_at DESC') #.limit(40)
     end
 
     def init_node
