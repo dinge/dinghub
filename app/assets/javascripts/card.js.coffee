@@ -29,7 +29,7 @@ window.DH.Card.AddPropertyFieldEditor = class AddPropertyFieldEditor
       button_wrapper().append(add_button()).append(remove_button())
 
     $(document).ready ->
-      properties = $('#cardtec_card_html .cardtec_property')
+      properties = $('.cardtec_card_html .cardtec_property')
       properties.append(property_buttons)
 
   focus_first_property_value: () ->
