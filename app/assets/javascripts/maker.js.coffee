@@ -77,7 +77,7 @@ window.DH.Maker.Editor = class Mixer
         $('#show_in_editor').fadeIn(100)
         $(document).foundation('tab', 'reflow');
         pfe = new DH.Card.AddPropertyFieldEditor
-        pfe.init()
+        pfe.add_control_fields()
 
 
 
