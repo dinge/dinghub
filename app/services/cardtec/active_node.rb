@@ -5,7 +5,6 @@ module Cardtec::ActiveNode
     include Neo4j::ActiveNode
     include GlobalID::Identification
     include Wisper::Publisher
-    extend  CarrierWave::Neo4j
     extend  ClassMethods
 
 
@@ -15,10 +14,13 @@ module Cardtec::ActiveNode
     property  :ident,       type: String
     property  :created_at
     property  :updated_at
+    property :image
 
     property  :image,       type: String
 
     mount_uploader :image, ImageUploader
+
+    # mount_uploader :image, ImageUploader
 
     delegate :relationship_methods, :association_methods, :raw_relationship_types, to: :class
 

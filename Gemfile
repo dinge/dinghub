@@ -9,30 +9,29 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',     group: :doc
 gem 'bcrypt', '~> 3.1.7'
-gem 'foundation-rails'
 gem 'compass-rails'
+gem 'foundation-rails', '~> 5.4.5'
 gem 'neo4j', git: 'git@github.com:neo4jrb/neo4j.git'
-# gem 'neo4j', github: 'neo4jrb/neo4j', tag: '4.0.0.rc.1'
-# gem 'neo4j-cypher'
+gem 'neo4j-community'
 gem 'haml-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'nokogiri'
-gem 'unicorn'
+gem 'puma'
 gem 'browser'
-#gem 'configatron', require: false
 gem 'wisper'
-# gem 'wisper-activejob'
 gem 'actor_bot_adapters', git: 'git@github.com:megorei/actor_bot_adapters.git'
 # gem 'spawno', github: 'megorei/spawno'
 gem 'jquery-ui-rails'
 
 gem 'carrierwave-neo4j', require: 'carrierwave/neo4j', github: 'dpisarewski/carrierwave-neo4j'
 gem 'kaminari', github: 'dpisarewski/kaminari', branch: 'neo4j'
-
-gem 'patron'
 gem 'mini_magick'
 
+platforms :jruby do
+  gem 'therubyrhino'
+  gem 'bouncy-castle-java'
+end
 
 group :development do
   gem 'capistrano-rails'

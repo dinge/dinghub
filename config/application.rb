@@ -30,8 +30,11 @@ module Dinghub
     end
 
 
-    config.neo4j.session_type = :server_db
-    config.neo4j.session_path = 'http://localhost:7474'
+    #config.neo4j.session_type = :server_db
+    #config.neo4j.session_path = 'http://localhost:7474'
+
+    config.neo4j.session_type = :embedded_db
+    config.neo4j.session_path = Rails.root.join('db', 'neo4j', Rails.env).to_s
 
     config.autoload_paths += %W(#{config.root}/app)
   end
