@@ -1,2 +1,0 @@
-module Maker::RelationshipsHelper
-end

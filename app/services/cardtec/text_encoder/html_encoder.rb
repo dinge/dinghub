@@ -24,7 +24,7 @@ class Cardtec::TextEncoder::HtmlEncoder
       editable_properties.map do |k, v|
         content_tag(:div, class: :cardtec_property) do
           content_tag(:div, k, class: :cardtec_property_name, contenteditable: true) <<
-          content_tag(:div, v, class: :cardtec_property_value, contenteditable: true)
+          content_tag(:div, v, class: :cardtec_property_value, contenteditable: true, itemprop: k)
         end
       end.join.html_safe
     end

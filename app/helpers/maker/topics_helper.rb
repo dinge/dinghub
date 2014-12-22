@@ -1,2 +1,0 @@
-module Maker::TopicsHelper
-end

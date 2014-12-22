@@ -1,7 +1,9 @@
 :ruby
   link_path ||= current_show_path(node)
 
-.card.large-card{class: dom_class(node, :card), 'data-card-path' => current_show_path(node), 'data-card-uuid' => node.uuid}
+.card.large-card{card_props(node)}
+  .cardtec-header.hide
+    = cardtec_header(node)
   .card-header
     .info-line
       %small.left
