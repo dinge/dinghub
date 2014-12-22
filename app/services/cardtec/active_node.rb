@@ -18,8 +18,6 @@ module Cardtec::ActiveNode
 
     mount_uploader :image, ImageUploader
 
-    # mount_uploader :image, ImageUploader
-
     delegate :relationship_methods, :association_methods, :raw_relationship_types, to: :class
 
     before_create  :set_ident
