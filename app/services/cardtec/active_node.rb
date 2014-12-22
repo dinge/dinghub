@@ -16,8 +16,6 @@ module Cardtec::ActiveNode
     property  :updated_at
     property :image
 
-    property  :image,       type: String
-
     mount_uploader :image, ImageUploader
 
     # mount_uploader :image, ImageUploader
