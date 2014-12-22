@@ -8,6 +8,15 @@ GIT
       neo4j (>= 1.1)
 
 GIT
+  remote: git://github.com/dpisarewski/kaminari.git
+  revision: dfd1b5251b040c809d0809e47d4510a02a55c5bf
+  branch: neo4j
+  specs:
+    kaminari (1.0.0.alpha)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
+GIT
   remote: git@github.com:megorei/actor_bot_adapters.git
   revision: 670ffd1b40c127aae6ad13f7f64720c2d791af1e
   specs:
@@ -397,6 +406,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
+  kaminari!
   mini_magick
   neo4j!
   nokogiri

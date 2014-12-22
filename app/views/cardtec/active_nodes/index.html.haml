@@ -1,5 +1,3 @@
-
-
 / %a{ href: me_root_path, 'data-reveal-id' => :dialog, 'data-reveal-ajax' => 'true' }
 /   dialog
 
@@ -24,6 +22,10 @@
 
 
 #main_card_list
+  .duo_field
+    .left
+    .right
+      = paginate @nodes
   %ul.cards
     = render 'cards', nodes: @nodes
 
