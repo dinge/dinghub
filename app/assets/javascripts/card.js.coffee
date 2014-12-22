@@ -28,9 +28,6 @@ window.DH.Card.AddPropertyFieldEditor = class AddPropertyFieldEditor
     property_buttons = () ->
       button_wrapper().append(add_button()).append(remove_button())
 
-    # properties = $('.cardtec_card_html .cardtec_property')
-    # if properties.find('.add-editable-html').length == 0
-    properties = $('.cardtec_card_html .cardtec_property:not(:has(div.cardtec_property_actions))')
     properties.append(property_buttons)
 
 
