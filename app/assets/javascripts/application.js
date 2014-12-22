@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require jquery.microdata
 // require turbolinks
 
 // require jquery-ui/core
