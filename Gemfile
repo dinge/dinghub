@@ -27,7 +27,7 @@ gem 'actor_bot_adapters', git: 'git@github.com:megorei/actor_bot_adapters.git'
 # gem 'spawno', github: 'megorei/spawno'
 gem 'jquery-ui-rails'
 
-gem 'carrierwave-neo4j', require: 'carrierwave/neo4j', github: 'dpisarewski/carrierwave-neo4j'
+gem 'carrierwave-neo4j'
 gem 'kaminari', github: 'dpisarewski/kaminari', branch: 'neo4j'
 
 gem 'patron'
