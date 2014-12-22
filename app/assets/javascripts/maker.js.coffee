@@ -68,10 +68,10 @@ window.DH.Maker.Editor = class Mixer
     node_id = $(card).find('a').first().attr('href').split('/')[3]
 
     if @ed.find("[data-card-uuid='#{node_id}']").length
-      $('#show_in_editor').html('').hide()
-      $('#new_in_editor').fadeIn(200)
+      $('#show_in_editor').hide().html('')
+      $('#new_in_editor').fadeIn(100)
     else
-      $('#new_in_editor').fadeOut(200)
+      $('#new_in_editor').hide()
       path = "/maker/concepts/#{node_id}/"
       $('#show_in_editor').load path, ->
         $('#show_in_editor').fadeIn(100)
