@@ -6,6 +6,7 @@ require 'action_mailer/railtie'
 require 'action_view/railtie'
 require 'sprockets/railtie'
 require 'neo4j/railtie'
+# require 'neo4j-admin/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -30,8 +31,11 @@ module Dinghub
     end
 
 
-    config.neo4j.session_type = :server_db
-    config.neo4j.session_path = 'http://localhost:7474'
+    #config.neo4j.session_type = :server_db
+    #config.neo4j.session_path = 'http://localhost:7474'
+
+    config.neo4j.session_type = :embedded_db
+    config.neo4j.session_path = Rails.root.join('db', 'neo4j', Rails.env).to_s
 
     config.autoload_paths += %W(#{config.root}/app)
   end
