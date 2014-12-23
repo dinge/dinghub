@@ -32,7 +32,6 @@ window.DH.Card.AddPropertyFieldEditor = class AddPropertyFieldEditor
     properties.append(property_buttons)
 
 
-
   focus_first_property_value: () ->
     $('.cardtec_property_value:visible:first').focus()
 
@@ -45,21 +44,23 @@ window.DH.Card.ObserveSave = class ObserveSave
     $(document).on 'keypress', this.save_on_keypress
 
   create_card: () =>
-    html_to_save  = $('.cardtec_card_html:visible').first()
-    path          = html_to_save.closest('[data-card-path]').data('card-path')
-    if html_to_save && path
+    card_to_save  = $('#new_in_editor > .card:visible:first')
+    path          = card_to_save.microdata('path')
+
+    if card_to_save && path
       $.ajax path,
-        data: { cardtec_node: { html: html_to_save.html() } }
+        data: { cardtec_node: { html: card_to_save.html() } }
         type: 'POST'
         dataType: 'script'
 
   update_card: () =>
-    html_to_save  = $('.cardtec_card_html:visible').first()
-    path          = html_to_save.closest('[data-card-path]').data('card-path')
-    if html_to_save && path
+    card_to_save  = $('#show_in_editor > .card:visible:first')
+    path          = card_to_save.microdata('path')
+
+    if card_to_save && path
       $.ajax
         url:  path
-        data: { cardtec_node: { html: html_to_save.html() } }
+        data: { cardtec_node: { html: card_to_save.html() } }
         type: 'PUT'
         dataType: 'script'
 

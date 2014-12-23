@@ -1,17 +1,4 @@
-/ %a{ href: me_root_path, 'data-reveal-id' => :dialog, 'data-reveal-ajax' => 'true' }
-/   dialog
-
-/ #dialog.reveal-modal{'data-reveal' => true}
-
-/ #operations_control
-/   %ul.inline-list.cards
-/     - @nodes.map.first(5).each do |n|
-/       %li
-/         = render 'small_card', node: n
-
-
-
-#editor{'data-card-path' => current_index_path}
+#editor
   = render 'new_in_editor'
   #show_in_editor
 
@@ -22,7 +9,7 @@
 
 
 #main_card_list
-  .duo_field
+  .control
     .left
     .right
       = paginate @nodes

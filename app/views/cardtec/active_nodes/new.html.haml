@@ -1,12 +1,1 @@
-.card.large-card{class: dom_class(@node, :card), 'data-card-path' => current_index_path}
-  .card-header
-    %h2
-      add your
-      = model_klass_name.titleize
-    %hr
-  .card-body
-    %button.success.radius.right.create-editable-html
-      save
-    %hr
-    = @node.ctn.to_editable_html
-    %hr
+= render 'new', node: model_klass.new

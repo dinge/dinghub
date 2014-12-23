@@ -1,11 +1,2 @@
-#new_in_editor{'data-card-path' => current_index_path}
-  .cardtec-header.hide
-    = cardtec_header(model_klass.new.ctn)
-
-  %h3
-    create your
-    = model_klass_name.titleize
-    %button.success.radius.right.create-editable-html
-      save
-  %hr
-  = model_klass.new.ctn.to_editable_html
+#new_in_editor
+  = render 'new', node: model_klass.new

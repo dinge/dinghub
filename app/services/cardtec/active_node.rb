@@ -66,6 +66,9 @@ module Cardtec::ActiveNode
     ctn.title rescue neo_id
   end
 
+  def path
+    ['', self.class.name.tableize, to_param].compact.join('/')
+  end
 
 
 
