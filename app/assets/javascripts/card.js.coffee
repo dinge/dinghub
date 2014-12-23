@@ -46,7 +46,6 @@ window.DH.Card.ObserveSave = class ObserveSave
   create_card: () =>
     card_to_save  = $('#new_in_editor > .card:visible:first')
     path          = card_to_save.microdata('path')
-
     if card_to_save && path
       $.ajax path,
         data: { cardtec_node: { html: card_to_save.html() } }
@@ -56,7 +55,6 @@ window.DH.Card.ObserveSave = class ObserveSave
   update_card: () =>
     card_to_save  = $('#show_in_editor > .card:visible:first')
     path          = card_to_save.microdata('path')
-
     if card_to_save && path
       $.ajax
         url:  path

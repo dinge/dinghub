@@ -1,4 +1,4 @@
-$('#new_in_editor').replaceWith("<%= j render('new_in_editor') %>").show();
+$('#new_in_editor').html("<%= j render('new_card') %>").show();
 $('#show_in_editor').html('').hide();
 
 pfe = new DH.Card.AddPropertyFieldEditor;
