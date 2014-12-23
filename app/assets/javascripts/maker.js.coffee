@@ -71,18 +71,23 @@ window.DH.Maker.Editor = class Mixer
     large_card  = $('#show_in_editor .large-card:first')
 
     if large_card.length && large_card.microdata('uuid') == node_uuid
-      $('#show_in_editor').hide().html('')
-      $('#new_in_editor').fadeIn(100)
+      this.close()
     else
-      $('#new_in_editor').hide()
-      path = card.microdata('path')
-      $('#show_in_editor').load path, ->
-        $('#show_in_editor').fadeIn(100)
-        $(document).foundation('tab', 'reflow');
-        pfe = new DH.Card.AddPropertyFieldEditor
-        pfe.add_control_fields()
+      this.open(card)
 
+  close: () ->
+    $('#show_in_editor').hide().html('')
+    $('#new_in_editor').fadeIn(100)
 
+  open: (card) ->
+    path = card.microdata('path')
+    $('html, body').animate({scrollTop:0}, 'fast');
+    $('#new_in_editor').hide()
+    $('#show_in_editor').load path, ->
+      $('#show_in_editor').fadeIn(100)
+      $(document).foundation('tab', 'reflow');
+      pfe = new DH.Card.AddPropertyFieldEditor
+      pfe.add_control_fields()
 
 
 
