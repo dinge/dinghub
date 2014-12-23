@@ -16,6 +16,8 @@ ul.cards
   // @extend %card-horizontal-definition-list
   @extend %card-contenteditable
   @extend .clearfix
+  .cardtec-header
+    @extend .hide
   .card-header
     @extend .radius
   .card-body
@@ -74,24 +76,23 @@ ul.cards
     font-size: 0.8em
   .main-image
     @extend %crop-image-container
-    width:    100px
-    height:   74px
+    // width:    100px
+    height:  80px
     .th
       border-width: 1px
 
 
 .tiny-card
-  height:     65px
-  min-width:  50px
-  max-width:  55px
-  padding:    2px 4px
-  margin:     2px
+  height:   70px
+  width:    55px
+  padding:  2px 4px
+  margin:   1px
   border-radius: 3px
   h5
     font-size: 0.5em
   .main-image
     @extend %crop-image-container
-    // width:    110px
+    // width:    40px
     height:   40px
     .th
       border-width: 1px
