@@ -1,5 +1,5 @@
 $('#new_in_editor').html("<%= j render('new_card') %>").show();
-$('#main_card_list ul').prepend("<%= j content_tag('li') { render('small_card', node: @node.reload) } %>");
+$('#main_card_list ul').prepend("<%= j content_tag('li') { render('small_card', node: @node) } %>");
 
 pfe = new DH.Card.AddPropertyFieldEditor;
 pfe.focus_first_property_value();
