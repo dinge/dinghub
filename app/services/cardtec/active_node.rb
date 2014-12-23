@@ -63,7 +63,7 @@ module Cardtec::ActiveNode
 
 
   def human_title
-    ctn.title rescue neo_id
+    title rescue neo_id
   end
 
   def path
