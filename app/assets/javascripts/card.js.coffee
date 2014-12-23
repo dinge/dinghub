@@ -82,31 +82,3 @@ os.add_listener()
 pfe = new AddPropertyFieldEditor
 pfe.init()
 
-
-
-
-
-# $('.card.card_maker_concept a').attr('data-reveal-id', 'operations_dialog').attr('data-reveal-ajax','true')
-
-
-# load_content_in_element = (element, url) ->
-#   $(element).load url, (response, status) ->
-#     $(element).addClass('alert-box alert') if status == 'error'
-
-
-
-
-# initial_load_contents = () ->
-#   for element in $('*[data-initial-remote-url]')
-#     load_content_in_element($(element), $(element).data('initial-remote-url'))
-
-
-# observe_load_content_clicks = () ->
-#   $(document).on 'click touchend', '*[data-destination-element]', ->
-#     destination_element = $('.' + $(this).data('destination-element'))
-#     if destination_element && (destination_url = $(this).data('destination-url'))
-#       load_content_in_element(destination_element, destination_url)
-
-
-# initial_load_contents()
-# observe_load_content_clicks()

@@ -30,6 +30,8 @@ window.DH.Maker.Mixer = class Mixer
 
     $(event.currentTarget).clone().appendTo(empty_field)
 
+    # card_uuid = microdata('uuid')
+
     if this.field_content(@lf) && !this.field_content(@rf)
       this.display_related_nodes(this.node_id_from_card(@lf))
     else if this.field_content(@lf) && this.field_content(@rf)
@@ -64,15 +66,16 @@ window.DH.Maker.Editor = class Mixer
     event.stopImmediatePropagation()
     event.preventDefault()
 
-    card = $(event.currentTarget)
-    node_id = $(card).find('a').first().attr('href').split('/')[3]
+    card        = $(event.currentTarget)
+    node_uuid   = $(card).microdata('uuid')
+    large_card  = $('#show_in_editor .large-card:first')
 
-    if @ed.find("[data-card-uuid='#{node_id}']").length
+    if large_card.length && large_card.microdata('uuid') == node_uuid
       $('#show_in_editor').hide().html('')
       $('#new_in_editor').fadeIn(100)
     else
       $('#new_in_editor').hide()
-      path = "/maker/concepts/#{node_id}/"
+      path = card.microdata('path')
       $('#show_in_editor').load path, ->
         $('#show_in_editor').fadeIn(100)
         $(document).foundation('tab', 'reflow');

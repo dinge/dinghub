@@ -1,4 +1,8 @@
-#yaml.content.active
+#edit.content.active
+  = trio_panel('edit properties', nil, button_tag(:submit, class: 'success radius update-editable-html'){'save'} )
+  = node.ctn.to_editable_html
+
+#yaml.content
   = render 'yaml_form', node: node
 
 #delete.content

@@ -4,7 +4,6 @@ module CardHelper
   def card_props(node)
     { class: dom_class(node, :card),
       'data-card-path' => current_show_path(node),
-      'data-card-uuid' => node.uuid,
       itemscope:  '',
       itemtype:   'http://schema.org/Thing',
       itemid:     node.uuid }
