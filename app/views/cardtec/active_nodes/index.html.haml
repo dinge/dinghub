@@ -8,14 +8,8 @@
   .center
   .right
 
-
 #main_card_list
-  .control
-    .left
-    .right
-      = paginate @nodes
-  %ul.cards
-    = render 'cards', nodes: @nodes
+  = render 'main_card_list', nodes: @nodes
 
 
 

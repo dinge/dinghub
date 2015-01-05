@@ -50,6 +50,16 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     end
 
 
+    # renderer
+
+    def render_index
+      respond_to do |format|
+        format.js
+        format.html
+      end
+    end
+
+
     # misc
 
     def init_side_navigation_items

@@ -30,8 +30,6 @@ window.DH.Maker.Mixer = class Mixer
 
     $(event.currentTarget).clone().appendTo(empty_field)
 
-    # card_uuid = microdata('uuid')
-
     if this.field_content(@lf) && !this.field_content(@rf)
       this.display_related_nodes(this.node_id_from_card(@lf))
     else if this.field_content(@lf) && this.field_content(@rf)

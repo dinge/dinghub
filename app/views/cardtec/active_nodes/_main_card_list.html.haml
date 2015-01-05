@@ -1,0 +1,7 @@
+.control
+  .left
+  .right
+    = paginate @nodes, remote: true
+%ul.cards
+  = render 'cards', nodes: @nodes
+
