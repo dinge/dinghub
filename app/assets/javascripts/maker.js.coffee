@@ -75,7 +75,7 @@ window.DH.Maker.Editor = class Mixer
     else
       this.open(card)
 
-  close: () ->
+  close: () =>
     $('#show_in_editor').hide().html('')
     $('#new_in_editor').fadeIn(100)
 
@@ -88,7 +88,9 @@ window.DH.Maker.Editor = class Mixer
       $(document).foundation('tab', 'reflow');
       pfe = new DH.Card.AddPropertyFieldEditor
       pfe.add_control_fields()
-
+      $('#show_in_editor .close_button').on 'click', ->
+        ed = new DH.Maker.Editor
+        ed.close()
 
 
 window.DH.Maker.OpenCardInDialog = class OpenCardInDialog
