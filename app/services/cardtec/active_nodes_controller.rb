@@ -30,7 +30,7 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
       @search_term = params[:search_term].to_s.strip
       if @search_term.present?
         @nodes = model_klass.all.where('n.title =~ "(?i)%s.*"' % @search_term).
-          order('n.updated_at DESC').limit(100)
+          order('n.updated_at DESC').page(params[:page])
       else
         init_nodes
       end

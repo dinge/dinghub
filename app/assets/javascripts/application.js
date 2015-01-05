@@ -33,3 +33,12 @@ $(document).ready(function() {
   $(document).foundation();
 });
 
+
+$.ajaxSetup({
+  beforeSend:function(){
+    $("#spinner").addClass('fa-spin');
+  },
+  complete:function(){
+    $("#spinner").removeClass('fa-spin');
+  }
+});
