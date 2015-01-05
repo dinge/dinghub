@@ -96,7 +96,13 @@ class Cardtec::CypherNodesController < ApplicationController
 
     # renderer
 
-    def render_index; end
+    def render_index
+      respond_to do |format|
+        format.js
+        format.html
+      end
+    end
+
     def render_new  ; end
     def render_show ; end
 
