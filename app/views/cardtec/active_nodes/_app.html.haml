@@ -1,12 +1,14 @@
 :coffeescript
 
-  m = new DH.Maker.Editor('#editor')
-  m.add_listener '.cards .card'
+  # m = new DH.Maker.Editor('#editor')
+  # m.add_listener '.cards .card'
   # m.add_listener $('.cards .card').find('a:first')
 
-  # m = new DH.Maker.Mixer('#mixer')
-  # m.add_listener '.cards .card'
+  m = new DH.Maker.Mixer('#mixer')
+  m.add_listener '.cards .card'
 
+
+  search = new DH.Maker.SearchField('#search')
 
 
   # dialog = new window.DH.Maker.OpenCardInDialog

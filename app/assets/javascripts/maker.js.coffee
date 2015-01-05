@@ -36,11 +36,11 @@ window.DH.Maker.Mixer = class Mixer
       this.display_relations_to_other_node(this.node_id_from_card(@lf), this.node_id_from_card(@rf))
 
   display_related_nodes: (node_id) ->
-    path = "/maker/relationships/#{node_id}/related_nodes"
+    path = "/maker/mixers/#{node_id}/related_nodes"
     @cf.load(path)
 
   display_relations_to_other_node: (first_node_id, second_node_id) ->
-    path = "/maker/relationships/between/#{first_node_id}/#{second_node_id}"
+    path = "/maker/mixers/#{first_node_id}/nodes_between/#{second_node_id}"
     @cf.load(path)
 
 
@@ -53,7 +53,7 @@ window.DH.Maker.Mixer = class Mixer
 
 
 
-window.DH.Maker.Editor = class Mixer
+window.DH.Maker.Editor = class Editor
   constructor: (editor_element) ->
     @ed = $(editor_element)
 
@@ -91,9 +91,23 @@ window.DH.Maker.Editor = class Mixer
         ed.close()
 
 
+
 window.DH.Maker.OpenCardInDialog = class OpenCardInDialog
   add_listener: (selector) ->
-    selector.attr('data-reveal-id', 'dialog').attr('data-reveal-ajax','true')
+    selector.attr('data-reveal-id', 'dialog').attr('data-reveal-ajax', 'true')
 
 
 
+window.DH.Maker.SearchField = class SearchField
+  constructor: (selector) ->
+    @search_field_element = $(selector)
+    this.add_listener()
+
+  add_listener: () ->
+    @search_field_element.on 'input', ->
+      search_term = $(this).val()
+      $.get "/maker/concepts/search?search_term=#{search_term}"
+
+    # # for delay look:
+    # http://stackoverflow.com/questions/1909441/jquery-keyup-delay
+    # https://github.com/narfdotpl/jquery-typing

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   concern :filterable do
     get 'filtered/:filter', on: :collection, action: :filtered, as: :filtered
+    get :search, on: :collection, action: :search, as: :search
   end
+
 
   namespace :raw_node do
     root 'nodes#index'
@@ -27,9 +29,9 @@ Rails.application.routes.draw do
     resources :items, concerns: [:filterable]
     resources :trait_values, concerns: [:filterable]
 
-    resources :relationships do
-      match 'between/:first_node/:second_node', action: :between, on: :collection, as: :between_nodes, via: [:get, :post]
+    resources :mixers do
       get :related_nodes, action: :related_nodes, on: :member
+      get 'nodes_between/:second_node_id', action: :nodes_between
     end
   end
 

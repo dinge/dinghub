@@ -46,6 +46,13 @@ class Cardtec::CypherNodesController < ApplicationController
     render_filtered
   end
 
+  def search
+    init_searched_nodes
+    init_main_navigation_items
+    init_side_navigation_items
+    render_search
+  end
+
 
 
 
@@ -68,6 +75,10 @@ class Cardtec::CypherNodesController < ApplicationController
 
     def init_filtered_nodes
       @nodes = neo4j_query.match(n: params[:filter]).return(:n).map(&:n)
+    end
+
+    def init_searched_nodes
+      @nodes = neo4j_query.match(n: params[:search_term]).return(:n).map(&:n)
     end
 
 
@@ -127,6 +138,8 @@ class Cardtec::CypherNodesController < ApplicationController
     def render_filtered
       render :index
     end
+
+    def render_search; end
 
 
     # misc

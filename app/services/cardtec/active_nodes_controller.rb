@@ -11,7 +11,7 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     # initializations
 
     def init_nodes
-      @nodes = model_klass.all.order('n.updated_at DESC').all.page(params[:page])
+      @nodes = model_klass.all.order('n.updated_at DESC').page(params[:page])
     end
 
     def init_node
@@ -24,6 +24,16 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
 
     def init_filtered_nodes
       @nodes = neo4j_query.match(n: params[:filter]).where("n:`#{model_klass_name_space}`").return(:n).map(&:n)
+    end
+
+    def init_searched_nodes
+      @search_term = params[:search_term].to_s.strip
+      if @search_term.present?
+        @nodes = model_klass.all.where('n.title =~ "(?i)%s.*"' % @search_term).
+          order('n.updated_at DESC').limit(100)
+      else
+        init_nodes
+      end
     end
 
 

@@ -8,4 +8,7 @@
         %h1
           = link_to "dinghub #{controller.controller_path}", root_path
     %section.top-bar-section
+      %ul.left
+        %li
+          = text_field_tag :search, nil, placeholder: 'search'
       = render 'layouts/navigation/navigation', navigation_items: @main_navigation_items
