@@ -32,9 +32,9 @@ window.DH.Maker.Mixer = class Mixer
     $(event.currentTarget).clone().appendTo(empty_field)
 
     if this.field_content(@lf) && !this.field_content(@rf)
-      this.display_related_nodes(this.node_id_from_card(@lf))
+      this.display_related_nodes(this.parse_node_id_from_field(@lf))
     else if this.field_content(@lf) && this.field_content(@rf)
-      this.display_relations_to_other_node(this.node_id_from_card(@lf), this.node_id_from_card(@rf))
+      this.display_relations_to_other_node(this.parse_node_id_from_field(@lf), this.parse_node_id_from_field(@rf))
 
   display_related_nodes: (node_id) ->
     path = "/maker/mixers/#{node_id}/related_nodes"
@@ -48,9 +48,8 @@ window.DH.Maker.Mixer = class Mixer
   field_content: (field) ->
     $.trim(field.html())
 
-  node_id_from_card: (card) ->
-    $(card).find('a').last().attr('href').split('/')[3]
-
+  parse_node_id_from_field: (field) ->
+    field.find('.card').microdata('uuid')
 
 
 
@@ -62,7 +61,7 @@ window.DH.Maker.Editor = class Editor
     $(document).on 'click', selector, this.open_in_editor
 
   open_in_editor: (event) =>
-    event.stopImmediatePropagation()
+    # event.stopImmediatePropagation()
     event.preventDefault()
 
     card        = $(event.currentTarget).closest('.card')
