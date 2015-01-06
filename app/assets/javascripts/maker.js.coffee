@@ -18,6 +18,7 @@ window.DH.Maker.Mixer = class Mixer
 
   add_to_free_empty_field: (event) =>
     event.preventDefault()
+    @mx.show()
 
     empty_field =
       if !this.field_content(@lf)
@@ -64,7 +65,7 @@ window.DH.Maker.Editor = class Editor
     event.stopImmediatePropagation()
     event.preventDefault()
 
-    card        = $(event.currentTarget)
+    card        = $(event.currentTarget).closest('.card')
     node_uuid   = $(card).microdata('uuid')
     large_card  = $('#show_in_editor .large-card:first')
 
@@ -76,8 +77,10 @@ window.DH.Maker.Editor = class Editor
   close: () =>
     $('#show_in_editor').hide().html('')
     $('#new_in_editor').fadeIn(100)
+    $('#editor').hide()
 
   open: (card) ->
+    $('#editor').show()
     path = card.microdata('path')
     $('html, body').animate({scrollTop:0}, 'fast');
     $('#new_in_editor').hide()
@@ -98,16 +101,21 @@ window.DH.Maker.OpenCardInDialog = class OpenCardInDialog
 
 
 
-window.DH.Maker.SearchField = class SearchField
+window.DH.Maker.Controls = class Controls
   constructor: (selector) ->
-    @search_field_element = $(selector)
-    this.add_listener()
 
-  add_listener: () ->
-    @search_field_element.on 'input', ->
+  # # for delay look:
+  # http://stackoverflow.com/questions/1909441/jquery-keyup-delay
+  # https://github.com/narfdotpl/jquery-typing
+  add_search: (selector) ->
+    $(selector).on 'input', ->
       search_term = $(this).val()
       $.get "/maker/concepts/search?search_term=#{search_term}"
 
-    # # for delay look:
-    # http://stackoverflow.com/questions/1909441/jquery-keyup-delay
-    # https://github.com/narfdotpl/jquery-typing
+  add_control_listeners: () ->
+      $('#open_editor').on 'click', (event) ->
+        $('#editor').toggle()
+        event.preventDefault()
+      $('#open_mixer').on 'click', (event) ->
+        $('#mixer').toggle()
+        event.preventDefault()

@@ -11,7 +11,8 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     # initializations
 
     def init_nodes
-      @nodes = model_klass.all.order('n.updated_at DESC').page(params[:page])
+      # @nodes = model_klass.all.order('n.updated_at DESC').page(params[:page])
+      @nodes = model_klass.all.order('n.title ASC').page(params[:page])
     end
 
     def init_node
@@ -29,7 +30,7 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     def init_searched_nodes
       @search_term = params[:search_term].to_s.strip
       if @search_term.present?
-        @nodes = model_klass.all.where('n.title =~ "(?i)%s.*"' % @search_term).
+        @nodes = model_klass.all.where('n.title =~ "(?i).*%s.*"' % @search_term).
           order('n.updated_at DESC').page(params[:page])
       else
         init_nodes
@@ -66,7 +67,7 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     def init_side_navigation_items
     #   @side_navigation_items =
     #     neo4j_query.match(n: model_klass_name_space).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
-      @side_navigation_items = model_klass.all.order('n.title').limit(25)
+      @side_navigation_items = model_klass.all.order('n.updated_at DESC').limit(25)
     end
 
 

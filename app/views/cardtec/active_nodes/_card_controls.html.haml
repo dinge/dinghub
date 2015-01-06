@@ -1,4 +1,10 @@
 %ul.side-nav
   %li
+    #open_editor.button.radius.expand
+      = fa_icon 'plus-circle', text: 'add'
+  %li
+    #open_mixer.button.radius.expand
+      = fa_icon 'cogs', text: 'mix'
+  %li
     %a.button.radius.expand{href: current_index_path}
       = fa_icon 'th-large', text: 'list'
