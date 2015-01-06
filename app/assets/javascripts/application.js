@@ -36,9 +36,9 @@ $(document).ready(function() {
 
 $.ajaxSetup({
   beforeSend:function(){
-    $("#spinner").addClass('fa-spin');
+    $('#spinner').addClass('active fa-spin');
   },
   complete:function(){
-    $("#spinner").removeClass('fa-spin');
+    $('#spinner').removeClass('active fa-spin');
   }
 });
