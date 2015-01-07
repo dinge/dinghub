@@ -1,17 +1,16 @@
-= only_on_desktop_screen do
-  %nav.top-bar(data-topbar='')
-    %ul.title-area
-      %li.toggle-topbar.menu-icon
-        %a(href='#')
-          %span Menu
-      %li.name
-        %h1
-          = link_to "dinghub #{controller.controller_path}", root_path
-    %section.top-bar-section
-      = render 'layouts/navigation/navigation', navigation_items: @main_navigation_items
-      %ul.left
-        %li
-          = fa_icon :cog, id: :spinner
-          &nbsp;
-        %li
-          = text_field_tag :search, nil, placeholder: 'search'
+%nav.top-bar(data-topbar='')
+  %ul.title-area
+    %li.toggle-topbar.menu-icon
+      %a(href='#')
+        %span Menu
+    %li.name
+      %h1
+        = link_to "dinghub #{controller.controller_path}", root_path
+  %section.top-bar-section
+    = render 'layouts/navigation/navigation', navigation_items: @main_navigation_items
+    %ul.left
+      %li
+        = fa_icon :cog, id: :spinner
+        &nbsp;
+      %li
+        = text_field_tag :search, nil, placeholder: 'search'

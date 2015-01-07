@@ -38,7 +38,7 @@ window.DH.Maker.Mixer = class Mixer
 
   display_related_nodes: (node_id) ->
     path = "/maker/mixers/#{node_id}/related_nodes"
-    @cf.load(path)
+    # @cf.load(path)
 
   display_relations_to_other_node: (first_node_id, second_node_id) ->
     path = "/maker/mixers/#{first_node_id}/nodes_between/#{second_node_id}"
