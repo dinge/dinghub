@@ -24,7 +24,7 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     end
 
     def init_filtered_nodes
-      @nodes = neo4j_query.match(n: params[:filter]).where("n:`#{model_klass_name_space}`").return(:n).map(&:n)
+      @nodes = neo4j_query.match(n: params[:filter]).where("n:`#{model_klass_name_space}`").pluck(:n)
     end
 
     def init_searched_nodes

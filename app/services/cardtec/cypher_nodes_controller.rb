@@ -61,7 +61,7 @@ class Cardtec::CypherNodesController < ApplicationController
     # initializations
 
     def init_nodes
-      @nodes = neo4j_query.match(:n).return(:n).map(&:n)
+      @nodes = neo4j_query.match(:n).pluck(:n)
     end
 
     def init_node
@@ -74,11 +74,11 @@ class Cardtec::CypherNodesController < ApplicationController
     end
 
     def init_filtered_nodes
-      @nodes = neo4j_query.match(n: params[:filter]).return(:n).map(&:n)
+      @nodes = neo4j_query.match(n: params[:filter]).pluck(:n)
     end
 
     def init_searched_nodes
-      @nodes = neo4j_query.match(n: params[:search_term]).return(:n).map(&:n)
+      @nodes = neo4j_query.match(n: params[:search_term]).pluck(:n)
     end
 
 
