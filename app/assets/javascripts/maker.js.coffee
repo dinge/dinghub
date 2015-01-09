@@ -41,7 +41,7 @@ window.DH.Maker.Mixer = class Mixer
     # @cf.load(path)
 
   display_relations_to_other_node: (first_node_id, second_node_id) ->
-    path = "/maker/mixers/#{first_node_id}/nodes_between/#{second_node_id}"
+    path = "/maker/mixers/#{first_node_id}/relationships_between/#{second_node_id}"
     @cf.load(path)
 
 

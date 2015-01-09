@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
     resources :mixers do
       get :related_nodes, action: :related_nodes, on: :member
-      get 'nodes_between/:second_node_id', action: :nodes_between
+      get 'relationships_between/:second_node_id', action: :relationships_between
     end
   end
 
