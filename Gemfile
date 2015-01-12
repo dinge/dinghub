@@ -17,6 +17,7 @@ gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'nokogiri'
 gem 'unicorn'
+gem 'thin'
 gem 'browser'
 #gem 'configatron', require: false
 gem 'wisper'
@@ -36,6 +37,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
+  gem 'capistrano-thin', github: 'jhmegorei/capistrano-thin'
   gem 'quiet_assets'
 end
 
