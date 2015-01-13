@@ -16,7 +16,6 @@ gem 'haml-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'nokogiri'
-gem 'unicorn'
 gem 'thin'
 gem 'browser'
 #gem 'configatron', require: false
