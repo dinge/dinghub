@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.0.rc1'
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
@@ -31,6 +31,7 @@ gem 'kaminari', github: 'dpisarewski/kaminari', branch: 'neo4j'
 gem 'patron'
 gem 'mini_magick'
 gem 'mida'
+
 
 group :development do
   gem 'capistrano-rails'

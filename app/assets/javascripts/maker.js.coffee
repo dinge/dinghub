@@ -6,9 +6,18 @@ window.DH.Maker.Mixer = class Mixer
     @lf = @mx.find('.left')
     @cf = @mx.find('.center')
     @rf = @mx.find('.right')
+    this.init()
 
   add_listener: (selector) ->
     $(document).on 'click', selector, this.add_to_free_empty_field
+
+
+  init: () ->
+    $(document).on 'click', $("#mixer .relationship_type"), this.toggle_relationship_assigment
+
+  toggle_relationship_assigment: (event) ->
+    relationship_type = $(event.target).text()
+
 
   reset_fields: () ->
     @mx.find('> div *').remove()

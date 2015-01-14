@@ -1,4 +1,4 @@
-class Graph
+class Graph8
 
   class << self
 
@@ -6,7 +6,7 @@ class Graph
       Neo4j::Session
     end
 
-    def all_relationships
+    def all_relationship_types
       neo4j.query.match('n-[r]->()').pluck('DISTINCT TYPE(r)')
     end
 

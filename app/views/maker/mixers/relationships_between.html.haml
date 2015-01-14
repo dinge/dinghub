@@ -1,3 +1,13 @@
 .trio_panel
-  = @node.title
-  = @second_node.title
+  .left
+    = @node.title
+  .center
+    ?
+  .right
+    = @second_node.title
+
+.trio_panel#all_relationship_types
+  - @all_relationship_types.each do |title|
+    %span.relationship_type
+      = title
+  = text_field_tag :new_relationship_type, nil, placeholder: 'new relationship'
