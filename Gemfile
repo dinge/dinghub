@@ -36,7 +36,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
-  gem 'capistrano-thin', github: 'jhmegorei/capistrano-thin'
+  gem 'capistrano-thin'
   gem 'quiet_assets'
 end
 
