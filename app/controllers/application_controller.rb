@@ -12,4 +12,6 @@ class ApplicationController < ActionController::Base
     Me.current = nil
   end
 
+
+
 end

@@ -14,23 +14,43 @@
 #main_card_list
   @extend .box_panel
   padding: rem-calc(10)
+  height: 800px
+  overflow: auto
   .control
     @extend .duo_field
 
+
+
+
 #editor
+  @extend .hide
   @extend .box_panel
   @extend %card-contenteditable
   background-color: $oil
   font-color: $white
 
 #mixer
-  @extend .trio_panel
+  @extend .hide
+  @extend .box_panel
   background-color: $oil
   font-color: $white
-  // @extend .hide
-
-
-
+  .shelf
+    @extend .trio_panel
+  .connector
+    @extend .trio_panel
+  .operator
+    @extend .box_panel
+  .relationship_types
+    @extend .trio_panel
+  .relationship_type
+    @extend .radius
+    @extend .info
+    @extend .large
+    &.active
+      @extend .success
+      margin-right: 0.3rem
+  .new_relationship_type_panel
+    @extend .box_panel
 
 
 

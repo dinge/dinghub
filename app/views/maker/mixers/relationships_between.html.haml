@@ -1,13 +1,20 @@
-.trio_panel
+.connector.cardtec_tunnel
   .left
     = @node.title
   .center
-    ?
   .right
     = @second_node.title
 
-.trio_panel#all_relationship_types
-  - @all_relationship_types.each do |title|
-    %span.relationship_type
-      = title
-  = text_field_tag :new_relationship_type, nil, placeholder: 'new relationship'
+
+.relationship_type_editor
+  .relationship_types
+    - @all_relationship_types.each_with_index do |title, index|
+      %button.relationship_type{tabindex: 100 + index}
+        = title
+  .new_relationship_type_panel
+    = text_field_tag :new_relationship_type, nil, placeholder: 'new relationship', class: :new_relationship_type
+
+
+"c311a44e-a4fa-45de-810d-f8872f3af15e"
+
+"09746523-9df4-4b3a-8280-4a74edb88146"

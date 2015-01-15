@@ -3,55 +3,74 @@ window.DH.Maker = {}
 window.DH.Maker.Mixer = class Mixer
   constructor: (mixer_element) ->
     @mx = $(mixer_element)
-    @lf = @mx.find('.left')
-    @cf = @mx.find('.center')
-    @rf = @mx.find('.right')
-    this.init()
+    @shelf        = @mx.find('.shelf')
+    @shelf_left   = @shelf.find('.left')
+    @shelf_center = @shelf.find('.center')
+    @shelf_right  = @shelf.find('.right')
+    @op           = @mx.find('.operator')
+    this.add_relationship_type_listener()
 
   add_listener: (selector) ->
     $(document).on 'click', selector, this.add_to_free_empty_field
 
-
-  init: () ->
-    $(document).on 'click', $("#mixer .relationship_type"), this.toggle_relationship_assigment
+  add_relationship_type_listener: () ->
+    $(document).on 'click', @mx.find('.relationship_type'), this.toggle_relationship_assigment
 
   toggle_relationship_assigment: (event) ->
     relationship_type = $(event.target).text()
+    console.log $.trim(relationship_type)
 
+  add_new_relationship_type_listener: () ->
+    $('.new_relationship_type').on 'keypress', =>
+      if event.which == 13
+        nrte = @op.find('.new_relationship_type')
+        rte = $('<button>').addClass('relationship_type active').html($.trim(nrte.val()))
+        rte.prependTo(@op.find('.relationship_types'))
+        nrte.val('')
 
-  reset_fields: () ->
-    @mx.find('> div *').remove()
+  reset_all: () ->
+    this.reset_shelf()
+    @op.html('')
 
-  reset_field: (field) ->
-    @mx.find("> div #{field}").remove()
+  reset_shelf: () ->
+    @shelf.find('> div *').remove()
+
+  # reset_field: (field) ->
+  #   @mx.find("> div #{field}").remove()
 
   add_to_free_empty_field: (event) =>
     event.preventDefault()
     @mx.show()
 
     empty_field =
-      if !this.field_content(@lf)
-        @lf
-      else if !this.field_content(@rf)
-        @rf
+      if !this.field_content(@shelf_left)
+        @shelf_left
+      else if !this.field_content(@shelf_right)
+        @shelf_right
       else
-        this.reset_fields()
-        @lf
+        this.reset_all()
+        @shelf_left
 
     $(event.currentTarget).clone().appendTo(empty_field)
 
-    if this.field_content(@lf) && !this.field_content(@rf)
-      this.display_related_nodes(this.parse_node_id_from_field(@lf))
-    else if this.field_content(@lf) && this.field_content(@rf)
-      this.display_relations_to_other_node(this.parse_node_id_from_field(@lf), this.parse_node_id_from_field(@rf))
+    if this.field_content(@shelf_left) && !this.field_content(@shelf_right)
+      this.display_related_nodes(this.parse_node_id_from_field(@shelf_left))
+    else if this.field_content(@shelf_left) && this.field_content(@shelf_right)
+      this.display_relations_to_other_node(this.parse_node_id_from_field(@shelf_left), this.parse_node_id_from_field(@shelf_right))
 
   display_related_nodes: (node_id) ->
     path = "/maker/mixers/#{node_id}/related_nodes"
-    # @cf.load(path)
+    # @shelf_center.load(path)
 
   display_relations_to_other_node: (first_node_id, second_node_id) ->
     path = "/maker/mixers/#{first_node_id}/relationships_between/#{second_node_id}"
-    @cf.load(path)
+    $.get(path, (html) =>
+      @shelf_center.update_with(html, '.connector')
+      @op.update_with(html, '.relationship_type_editor')
+      this.add_new_relationship_type_listener()
+      @op.find('.new_relationship_type').focus()
+    )
+
 
 
   field_content: (field) ->
@@ -113,8 +132,8 @@ window.DH.Maker.Controls = class Controls
   constructor: (selector) ->
 
   # # for delay look:
-  # http://stackoverflow.com/questions/1909441/jquery-keyup-delay
-  # https://github.com/narfdotpl/jquery-typing
+  # http://stackoveshelf_rightlow.com/questions/1909441/jquery-keyup-delay
+  # https://github.com/nashelf_rightdotpl/jquery-typing
   add_search: (selector) ->
     $(selector).on 'input', ->
       search_term = $(this).val()
