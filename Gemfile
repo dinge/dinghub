@@ -31,7 +31,7 @@ gem 'kaminari', github: 'dpisarewski/kaminari', branch: 'neo4j'
 gem 'patron'
 gem 'mini_magick'
 gem 'mida'
-
+gem 'andand'
 
 group :development do
   gem 'capistrano-rails'

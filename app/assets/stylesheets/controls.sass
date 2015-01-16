@@ -35,22 +35,53 @@
   background-color: $oil
   font-color: $white
   .shelf
-    @extend .trio_panel
+    @extend %common_panel
+    // @extend .row
+    .left
+      @extend .columns
+      @extend .small-3
+    .center
+      @extend .columns
+      @extend .small-6
+    .right
+      @extend .columns
+      @extend .small-3
   .connector
-    @extend .trio_panel
+    @extend .box_panel
+    text-align: center
   .operator
     @extend .box_panel
+  .control
+    @extend .box_panel
   .relationship_types
-    @extend .trio_panel
+    @extend .box_panel
   .relationship_type
     @extend .radius
     @extend .info
     @extend .large
-    &.active
+    &.fresh
       @extend .success
       margin-right: 0.3rem
+    &.active
+      @extend .alert
   .new_relationship_type_panel
     @extend .box_panel
+
+
+// .trio_panel
+//   @extend %common_panel
+//   .left
+//     text-align: center
+//     @extend .columns
+//     @extend .small-4
+//   .center
+//     text-align: center
+//     @extend .columns
+//     @extend .small-4
+//   .right
+//     text-align: center
+//     @extend .columns
+//     @extend .small-4
 
 
 

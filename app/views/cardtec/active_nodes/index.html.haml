@@ -9,6 +9,14 @@
     .center
     .right
   .operator
+  .control.hide
+    .left
+    .center
+    .right
+      %button
+        close
+      %button
+        save
 
 #main_card_list
   = render 'main_card_list', nodes: @nodes

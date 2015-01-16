@@ -31,12 +31,3 @@ class Cardtec::TextEncoder::HtmlEncoder
   end
 
 end
-
-
-# {:title=>"Wunder",
-#  :updated_at=>1419008187,
-#  :ident=>"maker-concept-1419008186-51369",
-#  :created_at=>1419008186,
-#  :image=>"wunder.jpg",
-#  :uuid=>"fc9f6f79-d339-47c6-9600-d97a6d55a546"}
-# [61] pry(main)> Maker::Concept.last.ctn.props
