@@ -5,6 +5,11 @@
   margin-bottom: rem-calc(-14)
   @extend .sub-nav
 
+.side-nav
+  button, .button
+    @extend .expand
+    @extend .radius
+    @extend .small
 
 #control_bar
   ul
@@ -52,19 +57,28 @@
   .operator
     @extend .box_panel
   .control
+    button
+      @extend .tiny
+      @extend .radius
     @extend .box_panel
   .relationship_types
     @extend .box_panel
   .relationship_type
     @extend .radius
     @extend .info
-    @extend .large
+    // @extend .large
     &.fresh
       @extend .success
       margin-right: 0.3rem
     &.active
       @extend .alert
   .new_relationship_type_panel
+    @extend .box_panel
+  .save_relationship_panel
+    button
+      @extend .radius
+      @extend .alert
+      @extend .large
     @extend .box_panel
 
 

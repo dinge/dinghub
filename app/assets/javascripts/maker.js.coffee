@@ -1,6 +1,16 @@
 window.DH.Maker = {}
 
-window.DH.Maker.Mixer = class Mixer
+
+
+window.DH.Maker.Overlay = class Overlay
+  # constructor: (@name) ->
+
+  move: (meters) ->
+    alert @name + " moved #{meters}m."
+
+
+
+window.DH.Maker.Mixer = class Mixer extends Overlay
   constructor: (mixer_element) ->
     @mx = $(mixer_element)
     @shelf        = @mx.find('.shelf')
@@ -14,11 +24,11 @@ window.DH.Maker.Mixer = class Mixer
     $(document).on 'click', selector, this.add_to_free_empty_field
 
   add_relationship_type_listener: () ->
-    $(document).on 'click', '#mixer .relationship_type', this.toggle_relationship_assigment
+    $(document).on 'click', '#mixer .operator .relationship_type', this.toggle_relationship_assigment
 
   toggle_relationship_assigment: (event) =>
     rtl = DH.Util.cleanup($(event.target).text())
-    rt = $('<button>').addClass('relationship_type').html(rtl)
+    rt = $('<button>').addClass('large relationship_type active').html(rtl + $('<i>').addClass('fa fa-edit').html())
     relvis = @shelf.find('.new_connected_relationship')
 
     b = $(event.target)
@@ -29,6 +39,13 @@ window.DH.Maker.Mixer = class Mixer
     else
       relvis.html('???')
       b.removeClass('active')
+
+    @op.find('.save_relationship_panel, .new_relationship_type_panel').toggle()
+
+
+
+      # b.find('i').remove()
+      # b.append($('<i>').addClass('fa fa-bomb'))
 
 
   add_new_relationship_type_listener: () ->
@@ -60,10 +77,10 @@ window.DH.Maker.Mixer = class Mixer
       else if !this.field_content(@shelf_right)
         @shelf_right
       else
-        this.reset_shelf_field('.right')
-        @shelf_right
-        # this.reset_all()
-        # @shelf_left
+        # this.reset_shelf_field('.right')
+        # @shelf_right
+        this.reset_all()
+        @shelf_left
 
     $(event.currentTarget).clone().appendTo(empty_field)
 
@@ -95,7 +112,7 @@ window.DH.Maker.Mixer = class Mixer
 
 
 
-window.DH.Maker.Editor = class Editor
+window.DH.Maker.Editor = class Editor extends Overlay
   constructor: (editor_element) ->
     @ed = $(editor_element)
 
@@ -142,7 +159,7 @@ window.DH.Maker.OpenCardInDialog = class OpenCardInDialog
 
 
 
-window.DH.Maker.Controls = class Controls
+window.DH.Maker.Controls = class Controls #extends Overlay
   constructor: (selector) ->
 
   # # for delay look:

@@ -446,9 +446,13 @@ $block-grid-default-spacing: rem-calc(10);
 // $button-font-color: $white;
 // $button-font-color-alt: $oil;
 // $button-font-tny: rem-calc(11);
+$button-font-tny: rem-calc(11 * 1.2);
 // $button-font-sml: rem-calc(13);
+$button-font-sml: rem-calc(13 * 1.2);
 // $button-font-med: rem-calc(16);
+$button-font-med: rem-calc(16 * 1.4);
 // $button-font-lrg: rem-calc(20);
+$button-font-lrg: rem-calc(20 * 1.5);
 // $button-font-weight: $font-weight-normal;
 // $button-font-align: center;
 

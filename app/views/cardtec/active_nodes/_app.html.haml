@@ -4,7 +4,8 @@
   editor.add_listener('.card h5')
 
   mixer = new DH.Maker.Mixer('#mixer')
-  mixer.add_listener('.card')
+  mixer.add_listener('#main_card_list .card')
+  mixer.add_listener('#mixer .card')
 
   controls = new DH.Maker.Controls
   controls.add_search('#search')

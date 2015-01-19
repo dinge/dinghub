@@ -1,10 +1,12 @@
 .connector.cardtec_tunnel.itemscope{itemid: @first_node.id}
   .first_node
-    = @first_node.title
+    %h4
+      = @first_node.title
   .new_connected_relationship
     ???
   .last_node.itemscope{itemprop: 'isRelatedTo', itemid: @last_node.id}
-    = @last_node.title
+    %h4
+      = @last_node.title
 
 
 .relationship_type_editor
@@ -14,7 +16,9 @@
         = title
   .new_relationship_type_panel
     = text_field_tag :new_relationship_type, nil, placeholder: 'new relationship', class: :new_relationship_type
-
+  .save_relationship_panel.hide
+    %button
+      save
 
 
 / <div class="cardtec_tunnel" itemid="828b013a-bb23-4fe9-964f-26fbc2e8ef50" itemscope>

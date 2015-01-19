@@ -1,7 +1,7 @@
 :ruby
   side_navigation_items ||= @side_navigation_items
 
-%ul.side-nav
+%ul.side-nav#side_navigation
   - if side_navigation_items.present?
     - side_navigation_items.each do |item|
       %li
