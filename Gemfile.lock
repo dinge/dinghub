@@ -8,8 +8,8 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
-  remote: git@github.com:neo4jrb/neo4j.git
-  revision: 8b6a4efc3c27e0d1f24b31f814e726b4a4a8cafc
+  remote: git@github.com:jhmegorei/neo4j.git
+  revision: a8607684d4056ead7c54c18e22f68d49f15a335b
   specs:
     neo4j (4.1.0)
       active_attr (~> 0.8)
