@@ -67,7 +67,7 @@ class Cardtec::ActiveNodesController < Cardtec::CypherNodesController
     def init_side_navigation_items
     #   @side_navigation_items =
     #     neo4j_query.match(n: model_klass_name_space).pluck('DISTINCT labels(n) AS labels').flatten.uniq.sort
-      @side_navigation_items = model_klass.all.order('n.updated_at DESC').limit(25)
+      @side_navigation_items = model_klass.all.order('n.updated_at DESC').limit(80)
     end
 
 
