@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require jquery.microdata
+
 // require turbolinks
 
 // require jquery-ui/core
@@ -23,6 +24,10 @@
 
 // require jquery-ui/draggable
 // require jquery-ui/droppable
+
+
+
+//= require jquery.update_with
 
 //= require dinghub
 //= require card

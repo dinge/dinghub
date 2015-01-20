@@ -6,6 +6,17 @@
   @extend .sub-nav
 
 
+
+#side_navigation
+  height: 800px
+  overflow: auto
+
+.side-nav
+  button, .button
+    @extend .expand
+    @extend .radius
+    @extend .small
+
 #control_bar
   ul
     margin-right: 15px
@@ -14,23 +25,83 @@
 #main_card_list
   @extend .box_panel
   padding: rem-calc(10)
+  height: 800px
+  overflow: auto
   .control
     @extend .duo_field
 
+
+
+
 #editor
+  @extend .hide
   @extend .box_panel
   @extend %card-contenteditable
   background-color: $oil
   font-color: $white
 
 #mixer
-  @extend .trio_panel
+  @extend .hide
+  @extend .box_panel
   background-color: $oil
   font-color: $white
-  // @extend .hide
+  .shelf
+    @extend %common_panel
+    // @extend .row
+    .left
+      @extend .columns
+      @extend .small-3
+    .center
+      @extend .columns
+      @extend .small-6
+    .right
+      @extend .columns
+      @extend .small-3
+  .connector
+    @extend .box_panel
+    text-align: center
+  .operator
+    @extend .box_panel
+  .control
+    button
+      @extend .tiny
+      @extend .radius
+    @extend .box_panel
+  .relationship_types
+    @extend .box_panel
+  .relationship_type
+    @extend .radius
+    @extend .info
+    // @extend .large
+    &.fresh
+      @extend .success
+      margin-right: 0.3rem
+    &.active
+      @extend .alert
+  .new_relationship_type_panel
+    @extend .box_panel
+  .save_relationship_panel
+    button
+      @extend .radius
+      @extend .alert
+      @extend .large
+    @extend .box_panel
 
 
-
+// .trio_panel
+//   @extend %common_panel
+//   .left
+//     text-align: center
+//     @extend .columns
+//     @extend .small-4
+//   .center
+//     text-align: center
+//     @extend .columns
+//     @extend .small-4
+//   .right
+//     text-align: center
+//     @extend .columns
+//     @extend .small-4
 
 
 

@@ -1,10 +1,40 @@
 %ul.side-nav
   %li
-    #open_editor.button.radius.expand
+    %a.button{href: current_index_path}
+      = fa_icon 'th-large', text: 'list'
+  %li
+    %button.open_quick_add.disabled
+      = fa_icon 'plus-circle', text: '++'
+  %li
+    %button.open_editor
       = fa_icon 'plus-circle', text: 'add'
   %li
-    #open_mixer.button.radius.expand
+    %button.open_editor.disabled
+      = fa_icon 'pencil', text: 'edit'
+  %li
+    %button.open_mixer
       = fa_icon 'cogs', text: 'mix'
   %li
-    %a.button.radius.expand{href: current_index_path}
-      = fa_icon 'th-large', text: 'list'
+    %button.open_images.disabled
+      = fa_icon 'image', text: 'image'
+  %li
+    %button.open_bundler.disabled
+      = fa_icon 'sitemap', text: 'bag'
+  %li
+    %button.open_map.disabled
+      = fa_icon 'map-marker', text: 'map'
+  %li
+    %button.open_timetable.disabled
+      = fa_icon 'clock-o', text: 'time'
+  %li
+    %button.open_info.disabled
+      = fa_icon 'info', text: 'info'
+  %li
+    %button.open_actions.disabled
+      = fa_icon 'flash', text: 'action'
+  %li
+    %button.open_beta.disabled
+      = fa_icon 'bomb', text: 'beta'
+  %li
+    %button.open_shell.disabled
+      = fa_icon 'terminal', text: 'shell'

@@ -1,3 +1,28 @@
-.trio_panel
-  = @node.title
-  = @second_node.title
+.connector.cardtec_tunnel.itemscope{itemid: @first_node.id}
+  .first_node
+    %h4
+      = @first_node.title
+  .new_connected_relationship
+    ???
+  .last_node.itemscope{itemprop: 'isRelatedTo', itemid: @last_node.id}
+    %h4
+      = @last_node.title
+
+
+.relationship_type_editor
+  .relationship_types
+    - @all_relationship_types.each_with_index do |title, index|
+      %button.relationship_type
+        = title
+  .new_relationship_type_panel
+    = text_field_tag :new_relationship_type, nil, placeholder: 'new relationship', class: :new_relationship_type
+  .save_relationship_panel.hide
+    %button
+      save
+
+
+/ <div class="cardtec_tunnel" itemid="828b013a-bb23-4fe9-964f-26fbc2e8ef50" itemscope>
+/   <div itemprop="isRelatedTo" itemscope itemid="09746523-9df4-4b3a-8280-4a74edb88146">
+/     <span itemprop='relationship_type' content='is_a'></span>
+/   </div>
+/ </div>

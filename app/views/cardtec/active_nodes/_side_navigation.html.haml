@@ -1,7 +1,7 @@
 :ruby
   side_navigation_items ||= @side_navigation_items
 
-%ul.cards
+%ul.cards#side_navigation
   - if side_navigation_items.map.present?
     - side_navigation_items.each do |node|
       %li

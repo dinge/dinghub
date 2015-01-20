@@ -1,12 +1,22 @@
-#editor.hide
+#editor
   #new_in_editor
     = render 'new_card'
   #show_in_editor
 
-#mixer.hide
-  .left
-  .center
-  .right
+#mixer
+  .shelf
+    .left
+    .center
+    .right
+  .operator
+  .control
+    .left
+    .center
+    .right
+      %button
+        close
+      %button
+        save
 
 #main_card_list
   = render 'main_card_list', nodes: @nodes

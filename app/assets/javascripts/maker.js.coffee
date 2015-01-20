@@ -1,59 +1,118 @@
 window.DH.Maker = {}
 
-window.DH.Maker.Mixer = class Mixer
+
+
+window.DH.Maker.Overlay = class Overlay
+  # constructor: (@name) ->
+
+  move: (meters) ->
+    alert @name + " moved #{meters}m."
+
+
+
+window.DH.Maker.Mixer = class Mixer extends Overlay
   constructor: (mixer_element) ->
     @mx = $(mixer_element)
-    @lf = @mx.find('.left')
-    @cf = @mx.find('.center')
-    @rf = @mx.find('.right')
+    @shelf        = @mx.find('.shelf')
+    @shelf_left   = @shelf.find('.left')
+    @shelf_center = @shelf.find('.center')
+    @shelf_right  = @shelf.find('.right')
+    @op           = @mx.find('.operator')
+    this.add_relationship_type_listener()
 
   add_listener: (selector) ->
     $(document).on 'click', selector, this.add_to_free_empty_field
 
-  reset_fields: () ->
-    @mx.find('> div *').remove()
+  add_relationship_type_listener: () ->
+    $(document).on 'click', '#mixer .operator .relationship_type', this.toggle_relationship_assigment
 
-  reset_field: (field) ->
-    @mx.find("> div #{field}").remove()
+  toggle_relationship_assigment: (event) =>
+    rtl = DH.Util.cleanup($(event.target).text())
+    rt = $('<button>').addClass('large relationship_type active').html(rtl + $('<i>').addClass('fa fa-edit').html())
+    relvis = @shelf.find('.new_connected_relationship')
+
+    b = $(event.target)
+    if ! b.hasClass('active')
+      relvis.html(rt)
+      @op.find('.relationship_types .relationship_type.active').removeClass('active')
+      b.addClass('active')
+    else
+      relvis.html('???')
+      b.removeClass('active')
+
+    @op.find('.save_relationship_panel, .new_relationship_type_panel').toggle()
+
+
+
+      # b.find('i').remove()
+      # b.append($('<i>').addClass('fa fa-bomb'))
+
+
+  add_new_relationship_type_listener: () ->
+    $('.new_relationship_type').on 'keypress', =>
+      if event.which == 13
+        nrte = @op.find('.new_relationship_type')
+        rte = $('<button>').addClass('relationship_type fresh').html(DH.Util.cleanup(nrte.val())).hide()
+        rte.prependTo(@op.find('.relationship_types')).fadeIn(100)
+        # @op.find('.relationship_type:first').focus()
+        nrte.val('')
+
+  reset_all: () ->
+    this.reset_shelf()
+    @op.html('')
+
+  reset_shelf: () ->
+    @shelf.find('> div *').remove()
+
+  reset_shelf_field: (field) ->
+    @shelf.find("> div#{field}").html('')
 
   add_to_free_empty_field: (event) =>
     event.preventDefault()
     @mx.show()
 
     empty_field =
-      if !this.field_content(@lf)
-        @lf
-      else if !this.field_content(@rf)
-        @rf
+      if !this.field_content(@shelf_left)
+        @shelf_left
+      else if !this.field_content(@shelf_right)
+        @shelf_right
       else
-        this.reset_fields()
-        @lf
+        # this.reset_shelf_field('.right')
+        # @shelf_right
+        this.reset_all()
+        @shelf_left
 
     $(event.currentTarget).clone().appendTo(empty_field)
 
-    if this.field_content(@lf) && !this.field_content(@rf)
-      this.display_related_nodes(this.parse_node_id_from_field(@lf))
-    else if this.field_content(@lf) && this.field_content(@rf)
-      this.display_relations_to_other_node(this.parse_node_id_from_field(@lf), this.parse_node_id_from_field(@rf))
+    if this.field_content(@shelf_left) && !this.field_content(@shelf_right)
+      this.display_related_nodes(this.parse_node_id_from_field(@shelf_left))
+    else if this.field_content(@shelf_left) && this.field_content(@shelf_right)
+      this.display_relations_to_other_node(this.parse_node_id_from_field(@shelf_left), this.parse_node_id_from_field(@shelf_right))
 
   display_related_nodes: (node_id) ->
     path = "/maker/mixers/#{node_id}/related_nodes"
-    # @cf.load(path)
+    # @shelf_center.load(path)
 
-  display_relations_to_other_node: (first_node_id, second_node_id) ->
-    path = "/maker/mixers/#{first_node_id}/relationships_between/#{second_node_id}"
-    @cf.load(path)
+  display_relations_to_other_node: (first_node_id, last_node_id) ->
+    path = "/maker/mixers/#{first_node_id}/relationships_between/#{last_node_id}"
+    $.get(path, (html) =>
+      @shelf_center.update_with(html, '.connector')
+      @op.update_with(html, '.relationship_type_editor')
+      this.add_new_relationship_type_listener()
+      @op.find('.new_relationship_type').focus() if ! DH.Util.is_ipad()
+    )
+
 
 
   field_content: (field) ->
-    $.trim(field.html())
+    DH.Util.cleanup(field.html())
 
   parse_node_id_from_field: (field) ->
     field.find('.card').microdata('uuid')
 
 
 
-window.DH.Maker.Editor = class Editor
+window.DH.Maker.Editor = class Editor extends Overlay
   constructor: (editor_element) ->
     @ed = $(editor_element)
 
@@ -100,21 +159,23 @@ window.DH.Maker.OpenCardInDialog = class OpenCardInDialog
 
 
 
-window.DH.Maker.Controls = class Controls
+window.DH.Maker.Controls = class Controls #extends Overlay
   constructor: (selector) ->
 
   # # for delay look:
-  # http://stackoverflow.com/questions/1909441/jquery-keyup-delay
-  # https://github.com/narfdotpl/jquery-typing
+  # http://stackoveshelf_rightlow.com/questions/1909441/jquery-keyup-delay
+  # https://github.com/nashelf_rightdotpl/jquery-typing
   add_search: (selector) ->
     $(selector).on 'input', ->
       search_term = $(this).val()
       $.get "/maker/concepts/search?search_term=#{search_term}"
 
   add_control_listeners: () ->
-      $('#open_editor').on 'click', (event) ->
+      cb = $('#control_bar')
+
+      cb.find('.open_editor').on 'click', (event) ->
         $('#editor').toggle()
         event.preventDefault()
-      $('#open_mixer').on 'click', (event) ->
+      cb.find('.open_mixer').on 'click', (event) ->
         $('#mixer').toggle()
         event.preventDefault()
