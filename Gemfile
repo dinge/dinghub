@@ -33,6 +33,9 @@ gem 'mini_magick'
 gem 'mida'
 gem 'andand'
 
+gem 'rdf-rdfa'
+gem 'rdf-microdata'
+
 group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'

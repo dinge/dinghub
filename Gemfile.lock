@@ -156,6 +156,7 @@ GEM
       haml (~> 4.0.0)
       nokogiri (~> 1.6.0)
       ruby_parser (~> 3.5)
+    htmlentities (4.3.3)
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -171,6 +172,7 @@ GEM
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
     json (1.8.2)
+    link_header (0.0.8)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -245,6 +247,23 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    rdf (1.1.7)
+      link_header (~> 0.0, >= 0.0.8)
+    rdf-aggregate-repo (1.1.0)
+      rdf (>= 1.1)
+    rdf-microdata (2.0)
+      htmlentities (~> 4.3)
+      nokogiri (~> 1.6)
+      rdf (~> 1.1)
+      rdf-xsd (~> 1.1)
+    rdf-rdfa (1.1.5)
+      haml (~> 4.0)
+      htmlentities (~> 4.3)
+      rdf (~> 1.1, >= 1.1.6)
+      rdf-aggregate-repo
+      rdf-xsd (~> 1.1)
+    rdf-xsd (1.1.2)
+      rdf (~> 1.1)
     rdoc (4.2.0)
       json (~> 1.4)
     rspec-core (3.1.7)
@@ -340,6 +359,8 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails
+  rdf-microdata
+  rdf-rdfa
   rspec-rails
   sass-rails
   sdoc (~> 0.4.0)

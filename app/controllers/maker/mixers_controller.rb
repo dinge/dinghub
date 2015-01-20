@@ -12,4 +12,9 @@ class Maker::MixersController < Cardtec::ActiveNodesController
     @node = Maker::App.find(params[:id])
   end
 
+  def cardtec_tunnel
+    render :nothing => true
+    # binding.pry
+  end
+
 end
