@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'#, '4.2.0.rc1'
+gem 'rails'
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -16,7 +16,7 @@ gem 'haml-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'nokogiri'
-gem 'unicorn'
+gem 'thin'
 gem 'browser'
 #gem 'configatron', require: false
 gem 'wisper'
@@ -37,6 +37,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
+  gem 'capistrano-thin'
   gem 'quiet_assets'
 end
 
