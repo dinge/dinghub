@@ -18,7 +18,7 @@ gem 'font-awesome-rails'
 gem 'nokogiri'
 # gem 'thin'
 gem 'browser'
-#gem 'configatron', require: false
+gem 'configatron', require: false
 gem 'wisper'
 # gem 'wisper-activejob'
 # gem 'actor_bot_adapters', git: 'git@github.com:megorei/actor_bot_adapters.git'

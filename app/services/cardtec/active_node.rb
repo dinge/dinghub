@@ -30,7 +30,7 @@ module Cardtec::ActiveNode
 
   def to_cardtec_node
     node = persisted? ? neo4j_obj : Cardtec::Node::NullNode.new
-    @cardtec_node ||= Cardtec::Node.new(node, self.class)
+    @cardtec_node ||= Cardtec::Node.new(node, self)
   end
   alias :ctn :to_cardtec_node
 
@@ -92,8 +92,14 @@ module Cardtec::ActiveNode
     end
 
     def name_without_namespace
-      name.split('::').last
+      # name.split('::').last
+      model_name.human
     end
+
+    def schema_path
+      model_name.collection.singularize
+    end
+
 
   end
 

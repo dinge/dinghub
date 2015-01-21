@@ -1,5 +1,5 @@
 class Cardtec::TextEncoder
-  attr_reader :neo_node, :props
+  attr_reader :neo_node, :props, :cardtec_node
 
   def initialize(neo_node, cardtec_node)
     @neo_node, @props = neo_node, neo_node.props
@@ -27,6 +27,10 @@ class Cardtec::TextEncoder
 
   def to_editable_html
     HtmlEncoder.new(self).to_editable_html
+  end
+
+  def to_card_element_properties
+    HtmlEncoder.new(self).to_card_element_properties
   end
 
   def to_hash

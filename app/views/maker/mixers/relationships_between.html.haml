@@ -1,12 +1,24 @@
-.connector.cardtec_tunnel.itemscope{itemid: @first_node.id}
-  .first_node
-    %h4
+/ .connector.cardtec_tunnel.itemscope{itemid: @first_node.id}
+/   .first_node
+/     %h4
+/       = @first_node.title
+/   .new_connected_relationship
+/     ???
+/   .last_node.itemscope{itemprop: 'isRelatedTo', itemid: @last_node.id}
+/     %h4
+/       = @last_node.title
+
+.connector.cardtec_tunnel{itemscope: '', itemtype: 'http://dingdealer.de/Statement'}
+  .subject_node{@first_node.ctn.to_card_element_properties}
+    %h4{itemprop: 'title'}
       = @first_node.title
-  .new_connected_relationship
+  .predicate_relationship_type{itemprop: 'predicate', itemscope: '', itemtype: ''}
     ???
-  .last_node.itemscope{itemprop: 'isRelatedTo', itemid: @last_node.id}
-    %h4
+  .object_node{@last_node.ctn.to_card_element_properties}
+    %h4{itemprop: 'title'}
       = @last_node.title
+
+
 
 
 .relationship_type_editor

@@ -38,7 +38,7 @@ window.DH.Maker.Mixer = class Mixer extends CardDirector
   toggle_relationship_assigment: (event) =>
     rtl = DH.Util.cleanup($(event.target).text())
     rt = $('<button>').addClass('large relationship_type active').html(rtl + $('<i>').addClass('fa fa-edit').html())
-    relvis = @shelf.find('.new_connected_relationship')
+    relvis = @shelf.find('.predicate_relationship_type')
 
     b = $(event.target)
     if ! b.hasClass('active')
@@ -62,8 +62,8 @@ window.DH.Maker.Mixer = class Mixer extends CardDirector
     $('.new_relationship_type').on 'keypress', =>
       if event.which == 13
         nrte = @op.find('.new_relationship_type')
-        rte = $('<button>').addClass('relationship_type fresh').html(DH.Util.cleanup(nrte.val())).hide()
-        rte.prependTo(@op.find('.relationship_types')).fadeIn(100)
+        rte = $('<button>').addClass('relationship_type fresh').html(DH.Util.cleanup(nrte.val()))
+        rte.prependTo(@op.find('.relationship_types'))
         # @op.find('.relationship_type:first').focus()
         nrte.val('')
 
@@ -117,7 +117,7 @@ window.DH.Maker.Mixer = class Mixer extends CardDirector
 
   save_result: () =>
     cardtec_message = @shelf_center.find('.connector').parent().html()
-    $.post('/maker/mixers/cardtec_tunnel', { cardtec_message: cardtec_message } )
+    # $.post('/maker/mixers/cardtec_tunnel', { cardtec_message: cardtec_message } )
     this.reset_shelf_field('.right')
     this.reset_shelf_field('.center')
     this.reset_operator()
