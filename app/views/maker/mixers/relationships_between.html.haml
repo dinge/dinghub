@@ -1,13 +1,3 @@
-/ .connector.cardtec_tunnel.itemscope{itemid: @first_node.id}
-/   .first_node
-/     %h4
-/       = @first_node.title
-/   .new_connected_relationship
-/     ???
-/   .last_node.itemscope{itemprop: 'isRelatedTo', itemid: @last_node.id}
-/     %h4
-/       = @last_node.title
-
 .connector.cardtec_tunnel{itemscope: '', itemtype: 'http://dingdealer.de/Statement'}
   .subject_node{@first_node.ctn.to_card_element_properties}
     %h4{itemprop: 'title'}
@@ -17,8 +7,6 @@
   .object_node{@last_node.ctn.to_card_element_properties}
     %h4{itemprop: 'title'}
       = @last_node.title
-
-
 
 
 .relationship_type_editor
@@ -31,32 +19,3 @@
   .save_relationship_panel.hide
     %button.save
       save
-
-
-/ <div class="cardtec_tunnel" itemid="828b013a-bb23-4fe9-964f-26fbc2e8ef50" itemscope>
-/   <div itemprop="isRelatedTo" itemscope itemid="09746523-9df4-4b3a-8280-4a74edb88146">
-/     <span itemprop='relationship_type' content='is_a'></span>
-/   </div>
-/ </div>
-
-
-/ <div class="connector cardtec_tunnel itemscope" itemid="95d66f93-e84f-438b-8865-00102ca0afc4">
-/   <div class="first_node">
-/     <h4>Bier</h4>
-/   </div>
-/   <div class="new_connected_relationship">
-/     <button class="large relationship_type active">performs</button>
-/   </div>
-/   <div class="last_node itemscope" itemid="09746523-9df4-4b3a-8280-4a74edb88146" itemprop="isRelatedTo">
-/     <span itemprop='relationship_type' content='is_a'></span>
-/     <h4>Bagger</h4>
-/   </div>
-/ </div>
-
-
-
-/ <div class="connector cardtec_tunnel itemscope" itemid="95d66f93-e84f-438b-8865-00102ca0afc4">
-/   <div class="last_node itemscope" itemid="09746523-9df4-4b3a-8280-4a74edb88146" itemprop="isRelatedTo">
-/     <h4>Bagger</h4>
-/   </div>
-/ </div>

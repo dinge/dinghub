@@ -117,7 +117,7 @@ window.DH.Maker.Mixer = class Mixer extends CardDirector
 
   save_result: () =>
     cardtec_message = @shelf_center.find('.connector').parent().html()
-    # $.post('/maker/mixers/cardtec_tunnel', { cardtec_message: cardtec_message } )
+    $.post('/maker/mixers/cardtec_tunnel', { cardtec_message: cardtec_message } )
     this.reset_shelf_field('.right')
     this.reset_shelf_field('.center')
     this.reset_operator()

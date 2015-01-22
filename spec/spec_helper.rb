@@ -89,7 +89,7 @@ RSpec.configure do |config|
 =end
 
   config.before(:suite) do
-    # start_neo4j_test_database
+    start_neo4j_test_database
   end
 
   config.after(:suite) do
