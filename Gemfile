@@ -16,7 +16,7 @@ gem 'haml-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'nokogiri'
-gem 'thin'  if !Dir.glob('./config/thin/*.rb').empty?
+gem 'thin'  if !Dir.glob('./config/thin/*').empty?
 gem 'browser'
 gem 'configatron', require: false
 gem 'wisper'
@@ -40,7 +40,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
-  gem 'capistrano-thin' if !Dir.glob('./config/thin/*.rb').empty?
+  gem 'capistrano-thin' if !Dir.glob('./config/thin/*').empty?
   gem 'quiet_assets'
 end
 
