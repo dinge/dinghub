@@ -7,6 +7,8 @@ require 'action_view/railtie'
 require 'sprockets/railtie'
 require 'neo4j/railtie'
 
+require 'configatron/core'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -36,7 +38,18 @@ module Dinghub
     config.neo4j.transform_rel_type = :upcase
 
     config.autoload_paths += %W(#{config.root}/app)
+
+
+    setup = config.setup = Configatron::RootStore.new
+    setup.semantic_schema.root_url = 'http://dingdealer.de'
+
+
   end
+
+  def self.setup
+    Application.config.setup
+  end
+
 end
 
 

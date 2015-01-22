@@ -2,22 +2,31 @@ window.DH.Maker = {}
 
 
 
-window.DH.Maker.Overlay = class Overlay
-  # constructor: (@name) ->
+window.DH.Maker.CardDirector = class CardDirector
+  constructor: (director_element) ->
+    @de = $(director_element)
+    this.add_control_listeners()
 
-  move: (meters) ->
-    alert @name + " moved #{meters}m."
+  add_control_listeners: () ->
+    @de.on 'click', '.control button.close', this.close_director
+    @de.on 'click', 'button.save', this.save_result
+
+  close_director: () =>
+    @de.toggle()
+
+  save_result: () =>
+    # implement in subclass
 
 
 
-window.DH.Maker.Mixer = class Mixer extends Overlay
-  constructor: (mixer_element) ->
-    @mx = $(mixer_element)
-    @shelf        = @mx.find('.shelf')
+window.DH.Maker.Mixer = class Mixer extends CardDirector
+  constructor: (director_element) ->
+    super(director_element)
+    @shelf        = @de.find('.shelf')
     @shelf_left   = @shelf.find('.left')
     @shelf_center = @shelf.find('.center')
     @shelf_right  = @shelf.find('.right')
-    @op           = @mx.find('.operator')
+    @op           = @de.find('.operator')
     this.add_relationship_type_listener()
 
   add_listener: (selector) ->
@@ -29,21 +38,22 @@ window.DH.Maker.Mixer = class Mixer extends Overlay
   toggle_relationship_assigment: (event) =>
     rtl = DH.Util.cleanup($(event.target).text())
     rt = $('<button>').addClass('large relationship_type active').html(rtl + $('<i>').addClass('fa fa-edit').html())
-    relvis = @shelf.find('.new_connected_relationship')
+    relvis = @shelf.find('.predicate_relationship_type')
 
     b = $(event.target)
     if ! b.hasClass('active')
       relvis.html(rt)
       @op.find('.relationship_types .relationship_type.active').removeClass('active')
       b.addClass('active')
+      @op.find('.save_relationship_panel').show()
+      @op.find('.new_relationship_type_panel').hide()
     else
       relvis.html('???')
       b.removeClass('active')
+      @op.find('.save_relationship_panel').hide()
+      @op.find('.new_relationship_type_panel').show()
 
-    @op.find('.save_relationship_panel, .new_relationship_type_panel').toggle()
-
-
-
+    # @op.find('.save_relationship_panel, .new_relationship_type_panel').toggle()
       # b.find('i').remove()
       # b.append($('<i>').addClass('fa fa-bomb'))
 
@@ -52,8 +62,8 @@ window.DH.Maker.Mixer = class Mixer extends Overlay
     $('.new_relationship_type').on 'keypress', =>
       if event.which == 13
         nrte = @op.find('.new_relationship_type')
-        rte = $('<button>').addClass('relationship_type fresh').html(DH.Util.cleanup(nrte.val())).hide()
-        rte.prependTo(@op.find('.relationship_types')).fadeIn(100)
+        rte = $('<button>').addClass('relationship_type fresh').html(DH.Util.cleanup(nrte.val()))
+        rte.prependTo(@op.find('.relationship_types'))
         # @op.find('.relationship_type:first').focus()
         nrte.val('')
 
@@ -67,9 +77,12 @@ window.DH.Maker.Mixer = class Mixer extends Overlay
   reset_shelf_field: (field) ->
     @shelf.find("> div#{field}").html('')
 
+  reset_operator: () ->
+    @op.html('')
+
   add_to_free_empty_field: (event) =>
     event.preventDefault()
-    @mx.show()
+    @de.show()
 
     empty_field =
       if !this.field_content(@shelf_left)
@@ -102,6 +115,12 @@ window.DH.Maker.Mixer = class Mixer extends Overlay
       @op.find('.new_relationship_type').focus() if ! DH.Util.is_ipad()
     )
 
+  save_result: () =>
+    cardtec_message = @shelf_center.find('.connector').parent().html()
+    # $.post('/maker/mixers/cardtec_tunnel', { cardtec_message: cardtec_message } )
+    this.reset_shelf_field('.right')
+    this.reset_shelf_field('.center')
+    this.reset_operator()
 
 
   field_content: (field) ->
@@ -112,9 +131,9 @@ window.DH.Maker.Mixer = class Mixer extends Overlay
 
 
 
-window.DH.Maker.Editor = class Editor extends Overlay
-  constructor: (editor_element) ->
-    @ed = $(editor_element)
+window.DH.Maker.Editor = class Editor extends CardDirector
+  constructor: (director_element) ->
+    super(director_element)
 
   add_listener: (selector) ->
     $(document).on 'click', selector, this.open_in_editor

@@ -4,6 +4,7 @@ class Cardtec::TextEncoder::HtmlEncoder
 
   def initialize(text_encoder)
     @text_encoder = text_encoder
+    @active_node = text_encoder.cardtec_node.active_node
   end
 
   def to_html
@@ -28,6 +29,16 @@ class Cardtec::TextEncoder::HtmlEncoder
         end
       end.join.html_safe
     end
+  end
+
+  def to_card_element_properties(options = {})
+    # class:      ActionView::RecordIdentifier.dom_class(@active_node, :card)
+      # itemtype:   "#{Dinghub.setup.semantic_schema.root_url}/Thing",
+
+    { itemscope:  '',
+      itemtype:   'http://asdasd/Thing',
+      itemid:     @active_node.uuid,
+      itemtype:   @active_node.class.schema_path }.merge(options)
   end
 
 end

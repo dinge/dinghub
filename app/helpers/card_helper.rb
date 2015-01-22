@@ -1,10 +1,11 @@
 module CardHelper
 
-  def card_element_properties(node)
+  def card_element_properties(node, options = {})
     { class: dom_class(node, :card),
       itemscope:  '',
       itemtype:   'http://schema.org/Thing',
-      itemid:     node.uuid }
+      itemid:     node.uuid,
+      itemtype:   node.class.schema_path }.merge(options)
   end
 
   def cardtec_header(node)
@@ -17,3 +18,5 @@ module CardHelper
   end
 
 end
+
+

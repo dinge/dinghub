@@ -8,8 +8,8 @@
 
 
 #side_navigation
-  height: 800px
-  overflow: auto
+  // height: 800px
+  // overflow: auto
 
 .side-nav
   button, .button
@@ -25,8 +25,8 @@
 #main_card_list
   @extend .box_panel
   padding: rem-calc(10)
-  height: 800px
-  overflow: auto
+  // height: 800px
+  // overflow: auto
   .control
     @extend .duo_field
 
@@ -48,6 +48,7 @@
   .shelf
     @extend %common_panel
     // @extend .row
+    height: 12rem
     .left
       @extend .columns
       @extend .small-3
@@ -60,9 +61,11 @@
   .connector
     @extend .box_panel
     text-align: center
+    height: 9rem
   .operator
     @extend .box_panel
   .control
+    height: 3rem
     button
       @extend .tiny
       @extend .radius
@@ -79,14 +82,19 @@
     &.active
       @extend .alert
   .new_relationship_type_panel
+    height: 4rem
     @extend .box_panel
   .save_relationship_panel
+    height: 4rem
     button
       @extend .radius
       @extend .alert
-      @extend .large
+      // @extend .large
     @extend .box_panel
 
+
+// .mixer-connector
+// .mixer-operator
 
 // .trio_panel
 //   @extend %common_panel

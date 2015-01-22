@@ -16,9 +16,9 @@ gem 'haml-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'nokogiri'
-gem 'thin'
+gem 'thin'  if !Dir.glob('./config/thin/*.rb').empty?
 gem 'browser'
-#gem 'configatron', require: false
+gem 'configatron', require: false
 gem 'wisper'
 # gem 'wisper-activejob'
 # gem 'actor_bot_adapters', git: 'git@github.com:megorei/actor_bot_adapters.git'
@@ -33,11 +33,14 @@ gem 'mini_magick'
 gem 'mida'
 gem 'andand'
 
+gem 'rdf-rdfa'
+gem 'rdf-microdata'
+
 group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
-  gem 'capistrano-thin'
+  gem 'capistrano-thin' if !Dir.glob('./config/thin/*.rb').empty?
   gem 'quiet_assets'
 end
 

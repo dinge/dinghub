@@ -13,10 +13,18 @@
     .left
     .center
     .right
-      %button
-        close
-      %button
+      %button.info
+        info
+      %button.help
+        help
+      %button.save
         save
+      %button.cancel
+        cancel
+      %button.reset
+        reset
+      %button.close
+        close
 
 #main_card_list
   = render 'main_card_list', nodes: @nodes

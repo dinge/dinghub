@@ -3,7 +3,7 @@ class Cardtec::Node
   include Cardtec::Node::Updater
   include Wisper::Publisher
 
-  attr_reader :neo_node, :neo_ruby_klass
+  attr_reader :neo_node, :neo_ruby_klass, :active_node
 
   PROPERTIES =
     [ :labels,
@@ -32,11 +32,13 @@ class Cardtec::Node
 
 
   delegate :to_yaml, :to_html, :to_param, :to_editable_html, :to_hash, :to_json, to: :text_encoder_instance
+  delegate :to_card_element_properties, to: :text_encoder_instance
   delegate :from_yaml, :from_html, to: :text_decoder_instance
 
 
-  def initialize(neo_node = NullNode.new, neo_ruby_klass = nil)
-    @neo_node, @neo_ruby_klass = neo_node, neo_ruby_klass
+  def initialize(neo_node = NullNode.new, active_node = nil)
+    @neo_node, @active_node = neo_node, active_node
+    @neo_ruby_klass = active_node.class if active_node.present?
   end
 
 
