@@ -13,7 +13,7 @@ set :rvm_ruby_string, :local
 set :rvm_type, :system
 set :rvm_autolibs_flag, 'read-only'
 set :rvm_install_with_sudo, true
-set :rvm_ruby_version, '2.1.2@dinghub' # Defaults to: 'default
+set :rvm_ruby_version, '2.1.5@dinghub' # Defaults to: 'default
 
 set :conditionally_migrate, true
 
