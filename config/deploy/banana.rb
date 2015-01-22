@@ -1,3 +1,6 @@
+require 'capistrano/thin'
+
+
 set :branch, 'master'
 set :rack_env, 'production'
 set :rails_env, 'production'
