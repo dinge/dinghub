@@ -29,11 +29,12 @@ gem 'kaminari', github: 'dpisarewski/kaminari', branch: 'neo4j'
 
 gem 'patron'
 gem 'mini_magick'
-gem 'mida'
+# gem 'mida', github: 'dinge/mida'
+gem 'mida', path: '/Users/scolex/rails/dev/gems/mida/'
 gem 'andand'
 
-gem 'rdf-rdfa'
-gem 'rdf-microdata'
+# gem 'rdf-rdfa'
+# gem 'rdf-microdata'
 
 group :development do
   gem 'capistrano-rails'
