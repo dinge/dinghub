@@ -1,32 +1,47 @@
 window.DH.Maker = {}
 
-
-
-window.DH.Maker.CardDirector = class CardDirector
-  constructor: (director_element) ->
-    @de = $(director_element)
+window.DH.Maker.CardTool = class CardTool
+  constructor: (tool_selector) ->
+    @te = $(tool_selector)
     this.add_control_listeners()
 
+
   add_control_listeners: () ->
-    @de.on 'click', '.control button.close', this.close_director
-    @de.on 'click', 'button.save', this.save_result
+    @save_button = @te.find('.control button.save')
+    @te.on 'click', '.control button.close', this.close_tool
+    @te.on 'click', '.control button.reset', this.reset_tool
+    $(document).on 'click', @save_button.selector, this.save_result
+    this.toogle_save_button(true)
 
-  close_director: () =>
-    @de.toggle()
+  toogle_save_button: (initial) ->
+    @save_button.prop 'disabled', (i, v) ->
+      not v
+    # @save_button.toggleClass('success') unless initial
 
-  save_result: () =>
+  close_tool: () =>
+    @te.toggle()
+
+  reset_tool: () =>
     # implement in subclass
 
+  save_result: () =>
+    this.toogle_save_button()
+    # implement in subclass and call super()
 
 
-window.DH.Maker.Mixer = class Mixer extends CardDirector
-  constructor: (director_element) ->
-    super(director_element)
-    @shelf        = @de.find('.shelf')
+
+
+window.DH.Maker.Mixer = class Mixer extends CardTool
+  constructor: (tool_selector) ->
+    super(tool_selector)
+    this.init_fields()
+
+  init_fields: () ->
+    @shelf        = @te.find('.shelf')
     @shelf_left   = @shelf.find('.left')
     @shelf_center = @shelf.find('.center')
     @shelf_right  = @shelf.find('.right')
-    @op           = @de.find('.operator')
+    @op           = @te.find('.operator')
     this.add_relationship_type_listener()
 
   add_listener: (selector) ->
@@ -45,17 +60,11 @@ window.DH.Maker.Mixer = class Mixer extends CardDirector
       relvis.html(rt)
       @op.find('.relationship_types .relationship_type.active').removeClass('active')
       b.addClass('active')
-      @op.find('.save_relationship_panel').show()
-      @op.find('.new_relationship_type_panel').hide()
+      this.toogle_save_button()
     else
       relvis.html('???')
       b.removeClass('active')
-      @op.find('.save_relationship_panel').hide()
-      @op.find('.new_relationship_type_panel').show()
-
-    # @op.find('.save_relationship_panel, .new_relationship_type_panel').toggle()
-      # b.find('i').remove()
-      # b.append($('<i>').addClass('fa fa-bomb'))
+      this.toogle_save_button()
 
 
   add_new_relationship_type_listener: () ->
@@ -67,22 +76,9 @@ window.DH.Maker.Mixer = class Mixer extends CardDirector
         # @op.find('.relationship_type:first').focus()
         nrte.val('')
 
-  reset_all: () ->
-    this.reset_shelf()
-    @op.html('')
-
-  reset_shelf: () ->
-    @shelf.find('> div *').remove()
-
-  reset_shelf_field: (field) ->
-    @shelf.find("> div#{field}").html('')
-
-  reset_operator: () ->
-    @op.html('')
-
   add_to_free_empty_field: (event) =>
     event.preventDefault()
-    @de.show()
+    @te.show()
 
     empty_field =
       if !this.field_content(@shelf_left)
@@ -92,7 +88,7 @@ window.DH.Maker.Mixer = class Mixer extends CardDirector
       else
         # this.reset_shelf_field('.right')
         # @shelf_right
-        this.reset_all()
+        this.reset_tool()
         @shelf_left
 
     $(event.currentTarget).clone().appendTo(empty_field)
@@ -115,13 +111,27 @@ window.DH.Maker.Mixer = class Mixer extends CardDirector
       @op.find('.new_relationship_type').focus() if ! DH.Util.is_ipad()
     )
 
-  save_result: () =>
+  save_result: (event) =>
     cardtec_message = @shelf_center.find('.connector').parent().html()
     $.post('/maker/mixers/', { cardtec_message: cardtec_message } )
     this.reset_shelf_field('.right')
     this.reset_shelf_field('.center')
     this.reset_operator()
+    super()
 
+
+  reset_tool: () ->
+    this.reset_shelf()
+    @op.html('')
+
+  reset_shelf: () ->
+    @shelf.find('> div *').remove()
+
+  reset_shelf_field: (field) ->
+    @shelf.find("> div#{field}").html('')
+
+  reset_operator: () ->
+    @op.html('')
 
   field_content: (field) ->
     DH.Util.cleanup(field.html())
@@ -132,9 +142,9 @@ window.DH.Maker.Mixer = class Mixer extends CardDirector
 
 
 
-window.DH.Maker.Editor = class Editor extends CardDirector
-  constructor: (director_element) ->
-    super(director_element)
+window.DH.Maker.Editor = class Editor extends CardTool
+  constructor: (tool_element) ->
+    super(tool_element)
 
   add_listener: (selector) ->
     $(document).on 'click', selector, this.open_in_editor
