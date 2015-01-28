@@ -37,8 +37,8 @@ window.DH.Maker.Mixer = class Mixer extends CardDirector
 
   toggle_relationship_assigment: (event) =>
     rtl = DH.Util.cleanup($(event.target).text())
-    rt = $('<button>').addClass('large relationship_type active').attr('itemprop', 'title').html(rtl + $('<i>').addClass('fa fa-edit').html())
-    relvis = @shelf.find('.predicate_relationship_type')
+    rt = $('<button>').addClass('large relationship_type active').html(rtl)
+    relvis = @shelf.find('.predicate')
 
     b = $(event.target)
     if ! b.hasClass('active')
@@ -117,7 +117,6 @@ window.DH.Maker.Mixer = class Mixer extends CardDirector
 
   save_result: () =>
     cardtec_message = @shelf_center.find('.connector').parent().html()
-    debugger
     $.post('/maker/mixers/', { cardtec_message: cardtec_message } )
     this.reset_shelf_field('.right')
     this.reset_shelf_field('.center')
@@ -129,6 +128,7 @@ window.DH.Maker.Mixer = class Mixer extends CardDirector
 
   parse_node_id_from_field: (field) ->
     field.find('.card').microdata('uuid')
+    # field.find('.card').properties('uuid').itemValue()
 
 
 

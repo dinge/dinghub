@@ -29,8 +29,8 @@ Rails.application.routes.draw do
     resources :items, concerns: [:filterable]
     resources :trait_values, concerns: [:filterable]
 
-    resources :mixers, only: [] do
-      post :cardtec_tunnel, action: :cardtec_tunnel, on: :collection
+    resources :mixers, only: [:create] do
+      # post :cardtec_tunnel, action: :cardtec_tunnel, on: :collection
       get :related_nodes, action: :related_nodes, on: :member
       get 'relationships_between/:last_node_id', action: :relationships_between
     end

@@ -14,8 +14,5 @@
  *= require font-awesome
  *= require_self
  *= require dinghub
- *= require jquery-ui/core
- *= require jquery-ui/theme
- *= require jquery-ui/draggable
  */
 

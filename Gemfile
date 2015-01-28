@@ -22,15 +22,15 @@ gem 'wisper'
 # gem 'wisper-activejob'
 # gem 'actor_bot_adapters', git: 'git@github.com:megorei/actor_bot_adapters.git'
 # gem 'spawno', github: 'megorei/spawno'
-gem 'jquery-ui-rails'
+# gem 'jquery-ui-rails'
 
 gem 'carrierwave-neo4j'
 gem 'kaminari', github: 'dpisarewski/kaminari', branch: 'neo4j'
 
 gem 'patron'
 gem 'mini_magick'
-# gem 'mida', github: 'dinge/mida'
-gem 'mida', path: '/Users/scolex/rails/dev/gems/mida/'
+gem 'mida', github: 'dinge/mida'
+# gem 'mida', path: '/Users/scolex/rails/dev/gems/mida/'
 gem 'andand'
 
 # gem 'rdf-rdfa'

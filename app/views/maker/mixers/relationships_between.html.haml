@@ -1,12 +1,15 @@
-.connector.cardtec_tunnel{itemscope: '', itemtype: 'http://dingdealer.de/Statement'}
-  .subject_node{@first_node.ctn.to_card_element_properties}
-    %h4{itemprop: 'title'}
-      = @first_node.title
-  .predicate_relationship_type{itemprop: 'predicate', itemscope: '', itemtype: ''}
+.connector{itemscope: '', itemtype: AppConfig.config.semantic_schema.root_url + controller_path.singularize }
+  .subject
+    %h4
+      %data{itemprop: :subject_uuid, value: @first_node.uuid}
+        = @first_node.title
+  .predicate{itemprop: :predicate_title}
     ???
-  .object_node{@last_node.ctn.to_card_element_properties}
-    %h4{itemprop: 'title'}
-      = @last_node.title
+  .object
+    %h4
+      %data{itemprop: :object_uuid, value: @last_node.uuid}
+        = @last_node.title
+
 
 
 .relationship_type_editor
@@ -19,3 +22,10 @@
   .save_relationship_panel.hide
     %button.save
       save
+
+
+
+
+
+
+

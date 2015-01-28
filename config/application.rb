@@ -40,17 +40,16 @@ module Dinghub
     config.autoload_paths += %W(#{config.root}/app)
 
 
-    setup = config.setup = Configatron::RootStore.new
-    setup.semantic_schema.root_url = 'http://dingdealer.de'
+    app_config = config.app_config = Configatron::RootStore.new
+    app_config.semantic_schema.root_url = 'http://dingdealer.de/'
 
 
   end
-
-  def self.setup
-    Application.config.setup
-  end
-
 end
 
 
-
+module AppConfig
+  def self.config
+    Rails.application.config.app_config
+  end
+end

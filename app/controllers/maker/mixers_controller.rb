@@ -13,12 +13,13 @@ class Maker::MixersController < Cardtec::ActiveNodesController
   end
 
   def create
+    props = Mida::Document.new(params[:cardtec_message]).items.first.flat_properties
+    @subject_node  = neo4j_query.match(:n).where(n: { uuid: props[:subject_uuid] }).pluck(:n).first
+    @object_node   = neo4j_query.match(:n).where(n: { uuid: props[:object_uuid] }).pluck(:n).first
 
-  end
+    @relationship = Neo4j::Relationship.create(props[:predicate_title], @subject_node, @object_node)
 
-  def cardtec_tunnel
     render :nothing => true
-    # binding.pry
   end
 
 end
