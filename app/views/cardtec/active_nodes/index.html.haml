@@ -13,18 +13,20 @@
     .left
     .center
     .right
-      %button.info
+      %button.info{disabled: true}
         info
-      %button.help
+      %button.help{disabled: true}
         help
-      %button.cancel
+      %button.cancel{disabled: true}
         cancel
       %button.reset
         reset
-      %button.save
-        save
       %button.close
         close
+      %button.minimize
+        minimize
+      %button.save
+        save
 
 #main_card_list
   = render 'main_card_list', nodes: @nodes

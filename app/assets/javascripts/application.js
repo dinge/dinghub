@@ -14,24 +14,16 @@
 //= require jquery_ujs
 //= require foundation
 //= require jquery.microdata
-
+//= require jquery-observe
 // require turbolinks
-
-// require jquery-ui/core
-// require jquery-ui/widget
-// require jquery-ui/mouse
-// require jquery-ui/position
-
-// require jquery-ui/draggable
-// require jquery-ui/droppable
-
-
-
 //= require jquery.update_with
 
 //= require dinghub
 //= require card
 //= require maker
+//= require maker.control_bar
+//= require maker.mixer
+//= require maker.editor
 
 
 $(document).ready(function() {

@@ -36,6 +36,12 @@ gem 'andand'
 # gem 'rdf-rdfa'
 # gem 'rdf-microdata'
 
+# gem 'bower-rails'
+
+# source 'https://rails-assets.org' do
+#   gem 'rails-assets-jquery-observe'
+# end
+
 group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
@@ -54,3 +60,5 @@ group :raspbian do
   gem 'thin'
   gem 'capistrano-thin'
 end
+
+
