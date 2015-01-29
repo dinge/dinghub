@@ -10,6 +10,10 @@ class Graph8
       neo4j.query.match('n-[r]->()').pluck('DISTINCT TYPE(r)')
     end
 
+    def find_by_uuid(uuid)
+      neo4j.query.match(:n).where(n: { uuid: uuid }).pluck(:n).first
+    end
+
   end
 
 end

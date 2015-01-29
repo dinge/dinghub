@@ -15,23 +15,22 @@ window.DH.Maker.Mixer = class Mixer extends window.DH.Maker.CardTool
     $(document).on 'click', selector, this.add_to_free_empty_field
 
   add_relationship_type_listener: () ->
-    $(document).on 'click', '#mixer .operator .relationship_type', this.toggle_relationship_type_assigment
+    @te.on 'click', '.operator .relationship_type', this.toggle_relationship_type_assigment
 
   toggle_relationship_type_assigment: (event) =>
     this.vizualize_relationship_type_assigment($(event.target))
 
   add_new_relationship_type_listener: () ->
     $('.new_relationship_type').on 'keypress', =>
-      if event.which == 13
+      if event.which is 13
         new_relationship_type_input = @op.find('.new_relationship_type')
         new_relationship_type = DH.Util.cleanup(new_relationship_type_input.val())
 
         existing_relationship_type = this.find_relationship_type(new_relationship_type)
-        if existing_relationship_type.length >= 1
-          new_relationship_type_button = existing_relationship_type
+        new_relationship_type_button = if existing_relationship_type.length >= 1
+          existing_relationship_type
         else
-          new_relationship_type_button = $('<button>').addClass('relationship_type fresh').html(new_relationship_type)
-          new_relationship_type_button.prependTo(@op.find('.relationship_types'))
+          $('<button>').addClass('relationship_type fresh').html(new_relationship_type).prependTo(@op.find('.relationship_types'))
 
         new_relationship_type_input.val('')
         this.vizualize_relationship_type_assigment(new_relationship_type_button)
@@ -63,7 +62,9 @@ window.DH.Maker.Mixer = class Mixer extends window.DH.Maker.CardTool
     empty_field =
       if !this.field_content(@shelf_left)
         @shelf_left
-      else if !this.field_content(@shelf_right)
+      # else if !this.field_content(@shelf_right)
+      else if !this.field_content(@shelf_right) or @shelf_right.find('.card').length == 0
+        this.reset_shelf_field('.right')
         @shelf_right
       else
         # this.reset_shelf_field('.right')
@@ -80,7 +81,12 @@ window.DH.Maker.Mixer = class Mixer extends window.DH.Maker.CardTool
 
   display_related_nodes: (node_id) ->
     path = "/maker/mixers/#{node_id}/related_nodes"
-    # @shelf_center.load(path)
+    $.get(path, (html) =>
+      @shelf_center.update_with(html, '.rel_types_with_nodes_to')
+      @shelf_right.update_with(html, '.rel_types_with_nodes_from')
+      $(document).foundation('tooltip', 'reflow');
+    )
+
 
   display_relations_to_other_node: (first_node_id, last_node_id) ->
     path = "/maker/mixers/#{first_node_id}/relationships_between/#{last_node_id}"

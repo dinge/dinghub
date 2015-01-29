@@ -47,6 +47,8 @@ group :development do
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'quiet_assets'
+  gem 'coffee-rails-source-maps'
+  gem 'sass-rails-source-maps'
 end
 
 group :test, :development do

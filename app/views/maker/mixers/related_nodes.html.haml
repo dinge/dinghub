@@ -1,18 +1,27 @@
-:ruby
-  all_related_nodes = @node.all_related_nodes
+.rel_types_with_nodes_to
+  %h4
+    relationships to:
+  %ul.no-bullet
+    - @rel_types_with_nodes_to.each do |rel_type, nodes|
+      %li
+        = rel_type
+        - nodes.each do |node|
+          %span.has-tip{'data-tooltip' => '', 'aria-haspopup' => 'true', title: node.class.name }
+            %small
+              = node.human_title
 
-.panel.radius.hide
-  #all_related.content
-    = trio_panel('related nodes')
-    %ul.inline-list
-      - all_related_nodes.values.flatten.each do |related_node|
-        %li
-          = render 'tiny_card', node: related_node, link_path: url_for(related_node)
 
-  - @node.association_methods.each do |am|
-    .content{id: "related_#{am}"}
-      = trio_panel(am)
-      %ul.inline-list
-        - all_related_nodes[am].each do |related_node|
-          %li
-            = render 'tiny_card', node: related_node, link_path: url_for(related_node)
+.rel_types_with_nodes_from
+  %h4
+    relationships from:
+  %ul.no-bullet
+    - @rel_types_with_nodes_from.each do |rel_type, nodes|
+      %li
+        = rel_type
+        - nodes.each do |node|
+          %span.has-tip{'data-tooltip' => '', 'aria-haspopup' => 'true', title: node.class.name }
+            %small
+              = node.human_title
+
+
+

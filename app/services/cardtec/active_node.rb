@@ -6,7 +6,6 @@ module Cardtec::ActiveNode
     include GlobalID::Identification
     include Wisper::Publisher
     extend  CarrierWave::Neo4j
-    extend  ClassMethods
 
 
     property  :title,       type: String
@@ -72,7 +71,7 @@ module Cardtec::ActiveNode
 
 
 
-  module ClassMethods
+  class_methods do
 
     def to_cardtec_node
       Cardtec::Node::ActiveNodeClassMethodProxy.new(self)
