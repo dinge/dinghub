@@ -25,6 +25,7 @@
 //= require maker.control_bar
 //= require maker.creator
 //= require maker.editor
+//= require maker.classic_editor
 //= require maker.mixer
 
 

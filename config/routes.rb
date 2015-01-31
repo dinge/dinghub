@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     root 'concepts#index'
 
     resource :creator, only: [:create]
+    resource :editors, only: [:create]
     resources :mixers, only: [:create] do
       get :related_nodes, action: :related_nodes, on: :member
       get 'relationships_between/:last_node_id', action: :relationships_between

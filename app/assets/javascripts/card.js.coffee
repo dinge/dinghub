@@ -37,47 +37,6 @@ window.DH.Card.AddPropertyFieldEditor = class AddPropertyFieldEditor
 
 
 
-window.DH.Card.ObserveSave = class ObserveSave
-  add_listener: () ->
-    $(document).on 'click', '.create-editable-html', this.create_card
-    $(document).on 'click', '.update-editable-html', this.update_card
-    $(document).on 'keypress', this.save_on_keypress
-
-  create_card: () =>
-    card_to_save  = $('#new_in_editor > .card:visible:first')
-    path          = card_to_save.microdata('path')
-    if card_to_save && path
-      $.ajax path,
-        data: { cardtec_node: { html: card_to_save.html() } }
-        type: 'POST'
-        dataType: 'script'
-
-  update_card: () =>
-    card_to_save  = $('#show_in_editor > .card:visible:first')
-    path          = card_to_save.microdata('path')
-    if card_to_save && path
-      $.ajax
-        url:  path
-        data: { cardtec_node: { html: card_to_save.html() } }
-        type: 'PUT'
-        dataType: 'script'
-
-  save_on_keypress: () =>
-    if event.which == 13 && event.ctrlKey
-      event.preventDefault()
-      if $('.update-editable-html:visible').length == 1
-        this.update_card()
-      else if $('.create-editable-html:visible').length == 1
-        this.create_card()
-      false
-    else
-      true
-
-
-
-os = new ObserveSave
-os.add_listener()
-
 pfe = new AddPropertyFieldEditor
 pfe.init()
 

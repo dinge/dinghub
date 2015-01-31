@@ -1,8 +1,8 @@
-// $('#new_in_editor').html("<%= j render('new_card') %>").show();
-// $('#show_in_editor').html('').hide();
-// $('#main_card_list .cards .card[itemid="<%= @node.uuid %>"]').remove()
-// $('#main_card_list ul').prepend("<%= j content_tag('li') { render('small_card', node: @node.reload) } %>");
+$('.new-in-classic-editor').html("<%= j render('new_card') %>").show();
+$('.show-in-classic-editor').html('').hide();
+$('#main_card_list .cards .card[itemid="<%= @node.uuid %>"]').remove()
+$('#main_card_list ul').prepend("<%= j content_tag('li') { render('small_card', node: @node.reload) } %>");
 
-// pfe = new DH.Card.AddPropertyFieldEditor;
-// pfe.focus_first_property_value();
-// pfe.add_control_fields();
+pfe = new DH.Card.AddPropertyFieldEditor;
+pfe.focus_first_property_value();
+pfe.add_control_fields();

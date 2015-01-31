@@ -17,6 +17,8 @@ window.DH.Maker.ControlBar = class ControlBar
         event.preventDefault()
       cb.find('.open_editor').on 'click', (event) ->
         $('#editor').toggle()
+      cb.find('.open_classic_editor').on 'click', (event) ->
+        $('.classic-editor').toggle()
         event.preventDefault()
       cb.find('.open_mixer').on 'click', (event) ->
         $('#mixer').toggle()

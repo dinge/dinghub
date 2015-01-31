@@ -1,0 +1,2 @@
+module Maker::EditorsHelper
+end
