@@ -1,4 +1,4 @@
-class Maker::MixersController < Cardtec::ActiveNodesController
+class Maker::MixersController < ApplicationController
   layout false
 
   def relationships_between

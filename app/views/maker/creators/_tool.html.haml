@@ -1,0 +1,13 @@
+:ruby
+  @model_klass ||= model_klass
+
+.maker-creator
+  .maker-creator-operator
+    .cardtec-card{itemscope: ''}
+      .cardtec-header
+        = cardtec_header(@model_klass.new)
+      = @model_klass.new.ctn.to_editable_html
+
+  .maker-creator-control
+    = render 'maker/shared/control'
+

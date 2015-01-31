@@ -12,6 +12,9 @@ window.DH.Maker.ControlBar = class ControlBar
   add_control_listeners: () ->
       cb = $('#control_bar')
 
+      cb.find('.open_creator').on 'click', (event) ->
+        $('.maker-creator').toggle()
+        event.preventDefault()
       cb.find('.open_editor').on 'click', (event) ->
         $('#editor').toggle()
         event.preventDefault()

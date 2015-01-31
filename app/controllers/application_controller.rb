@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
     Me.current = nil
   end
 
-
+  def neo4j_query
+    Neo4j::Session.query
+  end
 
 end

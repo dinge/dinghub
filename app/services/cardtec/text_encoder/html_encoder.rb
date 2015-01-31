@@ -8,7 +8,7 @@ class Cardtec::TextEncoder::HtmlEncoder
   end
 
   def to_html
-    content_tag(:div, class: :cardtec_card) do
+    content_tag(:div, class: 'cardtec-card-html') do
       @text_encoder.to_hash.map do |k, v|
         content_tag(:div, class: :cardtec_property) do
           content_tag(:div, k, class: :cardtec_property_name) <<
@@ -21,7 +21,7 @@ class Cardtec::TextEncoder::HtmlEncoder
   def to_editable_html
     node_uuid = @text_encoder.neo_node.ctn.uuid
     editable_properties = @text_encoder.to_hash.except(*Cardtec::Node::SYSTEM_PROPERTIES)
-    content_tag(:div, id: node_uuid, class: 'cardtec_card cardtec_card_html') do
+    content_tag(:div, id: node_uuid, class: 'cardtec-card-html') do
       editable_properties.map do |k, v|
         content_tag(:div, class: :cardtec_property) do
           content_tag(:div, k, class: :cardtec_property_name, contenteditable: true) <<

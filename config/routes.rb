@@ -21,6 +21,14 @@ Rails.application.routes.draw do
 
   namespace :maker do
     root 'concepts#index'
+
+    resource :creator, only: [:create]
+    resources :mixers, only: [:create] do
+      get :related_nodes, action: :related_nodes, on: :member
+      get 'relationships_between/:last_node_id', action: :relationships_between
+    end
+
+
     resources :topics, concerns: [:filterable]
     resources :concepts, concerns: [:filterable]
     resources :traits, concerns: [:filterable]
@@ -28,12 +36,6 @@ Rails.application.routes.draw do
     resources :bundles, concerns: [:filterable]
     resources :items, concerns: [:filterable]
     resources :trait_values, concerns: [:filterable]
-
-    resources :mixers, only: [:create] do
-      # post :cardtec_tunnel, action: :cardtec_tunnel, on: :collection
-      get :related_nodes, action: :related_nodes, on: :member
-      get 'relationships_between/:last_node_id', action: :relationships_between
-    end
   end
 
 

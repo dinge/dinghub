@@ -20,10 +20,12 @@
 
 //= require dinghub
 //= require card
+
 //= require maker
 //= require maker.control_bar
-//= require maker.mixer
+//= require maker.creator
 //= require maker.editor
+//= require maker.mixer
 
 
 $(document).ready(function() {

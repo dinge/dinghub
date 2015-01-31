@@ -1,32 +1,10 @@
+= render 'maker/creators/tool'
+
 #editor
-  #new_in_editor
-    = render 'new_card'
   #show_in_editor
 
-#mixer
-  .shelf
-    .left
-    .center
-    .right
-  .operator
-  .control
-    .left
-    .center
-    .right
-      %button.info{disabled: true}
-        info
-      %button.help{disabled: true}
-        help
-      %button.cancel{disabled: true}
-        cancel
-      %button.reset
-        reset
-      %button.close
-        close
-      %button.minimize
-        minimize
-      %button.save
-        save
+= render 'maker/mixers/tool'
+
 
 #main_card_list
   = render 'main_card_list', nodes: @nodes

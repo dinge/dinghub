@@ -1,5 +1,7 @@
 :coffeescript
 
+  creator = new DH.Maker.Creator('.maker-creator')
+
   editor = new DH.Maker.Editor('#editor')
   editor.add_listener('.card h5')
 
@@ -10,6 +12,12 @@
   controls = new DH.Maker.ControlBar
   controls.add_search('#search')
   controls.add_control_listeners()
+
+
+
+
+
+
 
   # dialog = new window.DH.Maker.OpenCardInDialog
   # dialog.add_listener $('.cards .card').find('a:first')

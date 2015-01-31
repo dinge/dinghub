@@ -1,0 +1,119 @@
+// maker base placeholder
+%maker-base
+  @extend .hide
+  @extend .box_panel
+  background-color: $oil
+  font-color: $white
+
+%maker-operator-base
+  @extend .box_panel
+
+%maker-control-base
+  height: 3rem
+  button
+    @extend .tiny
+    @extend .radius
+  @extend .box_panel
+
+
+// maker-creator
+.maker-creator
+  @extend %maker-base
+
+.maker-creator-operator
+  @extend %maker-operator-base
+  @extend %card-contenteditable
+
+.maker-creator-control
+  @extend %maker-control-base
+
+
+
+// maker-editor
+#editor
+  @extend .hide
+  @extend .box_panel
+  @extend %card-contenteditable
+  background-color: $oil
+  font-color: $white
+
+#mixer
+  @extend .hide
+  @extend .box_panel
+  background-color: $oil
+  font-color: $white
+  .shelf
+    @extend %common_panel
+    // @extend .row
+    min-height: 12rem
+    .left
+      @extend .columns
+      @extend .small-3
+    .center
+      @extend .columns
+      @extend .small-6
+    .right
+      @extend .columns
+      @extend .small-3
+  .connector
+    @extend .box_panel
+    text-align: center
+    height: 9rem
+  .operator
+    @extend .box_panel
+  .control
+    height: 3rem
+    button
+      @extend .tiny
+      @extend .radius
+    @extend .box_panel
+  .relationship_types
+    @extend .box_panel
+  .relationship_type
+    @extend .radius
+    @extend .info
+    // @extend .large
+    &.fresh
+      @extend .success
+      margin-right: 0.3rem
+    &.active
+      @extend .alert
+  .new_relationship_type_panel
+    height: 4rem
+    @extend .box_panel
+  .save_relationship_panel
+    height: 4rem
+    button
+      @extend .radius
+      @extend .alert
+      // @extend .large
+    @extend .box_panel
+
+
+// .mixer-connector
+// .mixer-operator
+
+// .trio_panel
+//   @extend %common_panel
+//   .left
+//     text-align: center
+//     @extend .columns
+//     @extend .small-4
+//   .center
+//     text-align: center
+//     @extend .columns
+//     @extend .small-4
+//   .right
+//     text-align: center
+//     @extend .columns
+//     @extend .small-4
+
+
+
+// .width-duration
+//   +transition-property(width)
+//   +transition-duration(10s)
+
+// .width-duration:hover
+//   width: 300px
+//   height: 300px

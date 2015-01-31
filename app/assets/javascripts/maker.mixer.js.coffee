@@ -1,6 +1,7 @@
-window.DH.Maker.Mixer = class Mixer extends window.DH.Maker.CardTool
+window.DH.Maker.Mixer = class Mixer extends window.DH.Maker.MakerTool
   constructor: (tool_selector) ->
     super(tool_selector)
+    this.toogle_save_button(true)
     this.init_fields()
 
   init_fields: () ->
@@ -103,8 +104,7 @@ window.DH.Maker.Mixer = class Mixer extends window.DH.Maker.CardTool
     this.reset_shelf_field('.right')
     this.reset_shelf_field('.center')
     this.reset_operator()
-    super()
-
+    this.toogle_save_button()
 
   reset_tool: () ->
     this.reset_shelf()
@@ -122,8 +122,5 @@ window.DH.Maker.Mixer = class Mixer extends window.DH.Maker.CardTool
   field_content: (field) ->
     DH.Util.cleanup(field.html())
 
-  parse_node_id_from_field: (field) ->
-    field.find('.card').microdata('uuid')
-    # field.find('.card').properties('uuid').itemValue()
 
 
