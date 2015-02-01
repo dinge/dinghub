@@ -12,13 +12,11 @@
   mixer.add_listener('#main_card_list .card')
   mixer.add_listener('#mixer .card')
 
-  controls = new DH.Maker.ControlBar
-  controls.add_search('#search')
-  controls.add_control_listeners()
+  control_bar = new DH.Maker.ControlBar('#control_bar')
+  control_bar.add_control_listeners()
 
-
-
-
+  global_search = new DH.GLobalSearch('#search')
+  global_search.add_listener()
 
 
 

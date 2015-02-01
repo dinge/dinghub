@@ -10,15 +10,18 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//
+// require turbolinks # disabled
+//
 //= require jquery
 //= require jquery_ujs
 //= require foundation
 //= require jquery.microdata
 //= require jquery-observe
-// require turbolinks
 //= require jquery.update_with
 
 //= require dinghub
+//= require global_search
 //= require card
 
 //= require maker
