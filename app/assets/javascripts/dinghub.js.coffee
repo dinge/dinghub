@@ -6,3 +6,9 @@ window.DH.Util = class Util
 
   @cleanup: (string) ->
     $.trim(string)
+
+  @delay: (callback, ms) ->
+    timer = 0
+    do (callback, ms) ->
+      clearTimeout (timer)
+      timer = setTimeout(callback, ms)
