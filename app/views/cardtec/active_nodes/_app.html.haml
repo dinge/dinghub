@@ -2,15 +2,15 @@
 
   creator = new DH.Maker.Creator('.maker-creator')
 
-  # editor = new DH.Maker.Editor('#maker-editor')
+  # editor = new DH.Maker.Editor('.maker-editor')
   # editor.add_listener('.card h5')
 
   classic_editor = new DH.Maker.ClassicEditor('.classic-editor')
   classic_editor.add_listener('.card h5')
 
-  mixer = new DH.Maker.Mixer('#mixer')
+  mixer = new DH.Maker.Mixer('.maker-mixer')
   mixer.add_listener('#main_card_list .card')
-  mixer.add_listener('#mixer .card')
+  mixer.add_listener('.maker-mixer .card')
 
   control_bar = new DH.Maker.ControlBar('#control_bar')
   control_bar.add_control_listeners()
