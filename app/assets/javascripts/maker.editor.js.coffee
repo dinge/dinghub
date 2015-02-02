@@ -21,18 +21,14 @@ window.DH.Maker.Editor = class Editor extends window.DH.Maker.MakerTool
   close: () =>
     # $('#show_in_editor').hide().html('')
     # $('#new_in_editor').fadeIn(100)
-    $('#editor').hide()
+    $('.maker-editor').hide()
 
   open: (card) ->
-    $('#editor').show()
+    $('.maker-editor').show()
     path = card.microdata('path')
     this.scroll_to_top()
-    # $('#new_in_editor').hide()
     $('#show_in_editor').load path, ->
       $('#show_in_editor').show()
       $(document).foundation('tab', 'reflow');
       pfe = new DH.Card.AddPropertyFieldEditor
       pfe.add_control_fields()
-      # $('#show_in_editor .close_button').on 'click', ->
-      #   ed = new DH.Maker.Editor
-      #   ed.close()

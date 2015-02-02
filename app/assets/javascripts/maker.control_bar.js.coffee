@@ -7,7 +7,7 @@ window.DH.Maker.ControlBar = class ControlBar
       $('.maker-creator').toggle()
       event.preventDefault()
     @cbe.find('.open_editor').on 'click', (event) ->
-      $('#editor').toggle()
+      $('.maker-editor').toggle()
     @cbe.find('.open_classic_editor').on 'click', (event) ->
       $('.classic-editor').toggle()
       event.preventDefault()
