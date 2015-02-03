@@ -6,16 +6,16 @@
     %button.open_quick_add.disabled.hide
       = fa_icon 'plus-circle', text: '++'
   %li
-    %button.open_creator
+    %button{data: { 'maker-tool' => 'maker-creator' } }
       = fa_icon 'plus-circle', text: 'add'
   %li
-    %button.open_editor
+    %button{data: { 'maker-tool' => 'maker-editor' } }
       = fa_icon 'pencil', text: 'edit'
   %li
-    %button.open_mixer
+    %button{data: { 'maker-tool' => 'maker-mixer' } }
       = fa_icon 'cogs', text: 'mix'
   %li
-    %button.open_classic_editor
+    %button{data: { 'maker-tool' => 'maker-classic-editor' } }
       = fa_icon 'pencil', text: 'cedit'
   %li
     %button.open_images.disabled.hide
