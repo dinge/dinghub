@@ -1,0 +1,22 @@
+:ruby
+  link_path ||= current_show_path(node)
+
+.card.mini-card{card_element_properties(node)}
+  .cardtec-header
+    = cardtec_header(node)
+  .card-header
+    %h5
+      = link_to(link_path) do
+        = node.human_title
+
+
+
+
+
+
+  .card-body.hide
+    - if node.image?
+      .main-image
+        = link_to(link_path) do
+          = image_tag(node.image.tiny.url)
+
